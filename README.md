@@ -115,4 +115,4 @@ Distributed under the MIT License. See `LICENSE` for more information.
 
 ---
 
-_Developed with ❤️ by the Straw Hat Devs_
+_Developed with ❤️ by Laminou Amadou Ahmed
