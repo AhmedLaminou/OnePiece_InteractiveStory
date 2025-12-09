@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#1A1A1A">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="16dp">
+
+        <TextView
+            android:id="@+id/versus_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="BATTLE SIMULATOR"
+            android:textColor="#D32F2F"
+            android:textSize="28sp"
+            android:textStyle="bold"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <!-- Fighter 1 Selection -->
+        <androidx.cardview.widget.CardView
+            android:id="@+id/card_fighter_1"
+            android:layout_width="0dp"
+            android:layout_height="150dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginEnd="8dp"
+            app:cardBackgroundColor="#333333"
+            app:cardCornerRadius="8dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/vs_text"
+            app:layout_constraintTop_toBottomOf="@id/versus_title">
+
+            <TextView
+                android:id="@+id/fighter_1_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Select Fighter 1"
+                android:textColor="#FFFFFF"
+                android:layout_gravity="center" />
+        </androidx.cardview.widget.CardView>
+
+        <TextView
+            android:id="@+id/vs_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="VS"
+            android:textColor="#FFD700"
+            android:textSize="32sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toEndOf="@id/card_fighter_1"
+            app:layout_constraintEnd_toStartOf="@id/card_fighter_2"
+            app:layout_constraintTop_toTopOf="@id/card_fighter_1"
+            app:layout_constraintBottom_toBottomOf="@id/card_fighter_1" />
+
+        <!-- Fighter 2 Selection -->
+        <androidx.cardview.widget.CardView
+            android:id="@+id/card_fighter_2"
+            android:layout_width="0dp"
+            android:layout_height="150dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginStart="8dp"
+            app:cardBackgroundColor="#333333"
+            app:cardCornerRadius="8dp"
+            app:layout_constraintStart_toEndOf="@id/vs_text"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/versus_title">
+
+            <TextView
+                android:id="@+id/fighter_2_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Select Fighter 2"
+                android:textColor="#FFFFFF"
+                android:layout_gravity="center" />
+        </androidx.cardview.widget.CardView>
+
+        <Button
+            android:id="@+id/btn_fight"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="FIGHT!"
+            android:textSize="24sp"
+            android:backgroundTint="#D32F2F"
+            android:layout_marginTop="32dp"
+            app:layout_constraintTop_toBottomOf="@id/card_fighter_1" />
+
+        <TextView
+            android:id="@+id/battle_log"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:textColor="#FFFFFF"
+            android:fontFamily="monospace"
+            android:layout_marginTop="16dp"
+            android:background="#000000"
+            android:padding="8dp"
+            app:layout_constraintTop_toBottomOf="@id/btn_fight" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.core.widget.NestedScrollView>

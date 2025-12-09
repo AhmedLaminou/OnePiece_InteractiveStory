@@ -1,0 +1,130 @@
+package com.onepiece.story.ui
+
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import com.onepiece.story.data.model.Arc
+import com.onepiece.story.data.model.Character
+import com.onepiece.story.data.model.Quiz
+import com.onepiece.story.data.model.UserProfile
+import com.onepiece.story.data.repository.OnePieceRepository
+import com.onepiece.story.data.repository.UserRepository
+import kotlinx.coroutines.launch
+import android.app.Application
+import androidx.lifecycle.AndroidViewModel
+import androidx.lifecycle.asLiveData
+
+import com.onepiece.story.data.local.DevilFruitEntity
+import com.onepiece.story.data.local.DevilFruitType
+
+class MainViewModel(application: Application) : AndroidViewModel(application) {
+
+    private val repository = OnePieceRepository(application)
+    private val userRepository = UserRepository(application)
+
+    private val _arcs = MutableLiveData<List<Arc>>()
+    val arcs: LiveData<List<Arc>> = _arcs
+
+    private val _selectedArc = MutableLiveData<Arc?>()
+    val selectedArc: LiveData<Arc?> = _selectedArc
+
+    private val _arcCharacters = MutableLiveData<List<Character>>()
+    val arcCharacters: LiveData<List<Character>> = _arcCharacters
+
+    private val _selectedCharacter = MutableLiveData<Character?>()
+    val selectedCharacter: LiveData<Character?> = _selectedCharacter
+
+    private val _currentQuiz = MutableLiveData<Quiz?>()
+    val currentQuiz: LiveData<Quiz?> = _currentQuiz
+
+    private val _userProfile = MutableLiveData<UserProfile>()
+    val userProfile: LiveData<UserProfile> = _userProfile
+
+    private val _allCharacters = MutableLiveData<List<Character>>()
+    val allCharacters: LiveData<List<Character>> = _allCharacters
+
+    init {
+        loadArcs()
+        loadUserProfile()
+        loadAllCharacters()
+    }
+
+    private fun loadAllCharacters() {
+        viewModelScope.launch {
+            repository.getAllCharacters().collect {
+                _allCharacters.value = it
+            }
+        }
+    }
+
+    private fun loadUserProfile() {
+        viewModelScope.launch {
+            userRepository.userProfile.collect {
+                _userProfile.value = it
+            }
+        }
+    }
+
+    fun addXp(amount: Int) {
+        userRepository.addXp(amount)
+    }
+
+    fun unlockBadge(badgeId: String) {
+        userRepository.unlockBadge(badgeId)
+        loadUserProfile()
+    }
+    
+    fun completeArc(arcId: String) {
+        userRepository.completeArc(arcId)
+        loadUserProfile()
+    }
+
+    fun getDevilFruitsByType(type: DevilFruitType): LiveData<List<DevilFruitEntity>> {
+        return repository.getDevilFruitsByType(type).asLiveData()
+    }
+
+    private fun loadArcs() {
+        viewModelScope.launch {
+            repository.getArcs().collect {
+                _arcs.value = it
+            }
+        }
+    }
+
+
+    fun selectArc(arcId: String) {
+        viewModelScope.launch {
+            repository.getArcDetails(arcId).collect { arc ->
+                _selectedArc.value = arc
+                if (arc != null) {
+                    loadCharactersForArc(arc.id)
+                }
+            }
+        }
+    }
+
+    private fun loadCharactersForArc(arcId: String) {
+        viewModelScope.launch {
+            repository.getCharactersForArc(arcId).collect {
+                _arcCharacters.value = it
+            }
+        }
+    }
+
+    fun selectCharacter(characterId: String) {
+        viewModelScope.launch {
+            repository.getCharacterDetails(characterId).collect {
+                _selectedCharacter.value = it
+            }
+        }
+    }
+
+    fun loadQuiz(quizId: String) {
+        viewModelScope.launch {
+            repository.getQuiz(quizId).collect {
+                _currentQuiz.value = it
+            }
+        }
+    }
+}

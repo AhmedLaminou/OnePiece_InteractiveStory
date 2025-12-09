@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/homeFragment">
+
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="com.onepiece.story.ui.HomeFragment"
+        android:label="One Piece Storybook"
+        tools:layout="@layout/fragment_home">
+        <action
+            android:id="@+id/action_homeFragment_to_arcDetailFragment"
+            app:destination="@id/arcDetailFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_profileFragment"
+            app:destination="@id/profileFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_encyclopediaFragment"
+            app:destination="@id/encyclopediaFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_versusFragment"
+            app:destination="@id/versusFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_bountyFragment"
+            app:destination="@id/bountyFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_devilFruitFragment"
+            app:destination="@id/devilFruitFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_crewBuilderFragment"
+            app:destination="@id/crewBuilderFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/arcDetailFragment"
+        android:name="com.onepiece.story.ui.ArcDetailFragment"
+        android:label="Arc Details"
+        tools:layout="@layout/fragment_arc_detail">
+        <argument
+            android:name="arcId"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_arcDetailFragment_to_characterDetailFragment"
+            app:destination="@id/characterDetailFragment" />
+        <action
+            android:id="@+id/action_arcDetailFragment_to_quizFragment"
+            app:destination="@id/quizFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/characterDetailFragment"
+        android:name="com.onepiece.story.ui.CharacterDetailFragment"
+        android:label="Character Stats"
+        tools:layout="@layout/fragment_character_detail">
+        <argument
+            android:name="characterId"
+            app:argType="string" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/quizFragment"
+        android:name="com.onepiece.story.ui.QuizFragment"
+        android:label="Quiz"
+        tools:layout="@layout/fragment_quiz">
+        <argument
+            android:name="quizId"
+            app:argType="string" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/profileFragment"
+        android:name="com.onepiece.story.ui.ProfileFragment"
+        android:label="Pirate Profile"
+        tools:layout="@layout/fragment_profile" />
+
+    <fragment
+        android:id="@+id/encyclopediaFragment"
+        android:name="com.onepiece.story.ui.encyclopedia.EncyclopediaFragment"
+        android:label="Encyclopedia"
+        tools:layout="@layout/fragment_encyclopedia" />
+
+    <fragment
+        android:id="@+id/versusFragment"
+        android:name="com.onepiece.story.ui.versus.VersusFragment"
+        android:label="Battle Simulator"
+        tools:layout="@layout/fragment_versus" />
+
+    <fragment
+        android:id="@+id/bountyFragment"
+        android:name="com.onepiece.story.ui.bounty.BountyFragment"
+        android:label="Wanted Posters"
+        tools:layout="@layout/fragment_bounty" />
+
+    <fragment
+        android:id="@+id/devilFruitFragment"
+        android:name="com.onepiece.story.ui.devilfruit.DevilFruitFragment"
+        android:label="Devil Fruit Library"
+        tools:layout="@layout/fragment_devil_fruit" />
+
+    <fragment
+        android:id="@+id/crewBuilderFragment"
+        android:name="com.onepiece.story.ui.crew.CrewBuilderFragment"
+        android:label="Crew Builder"
+        tools:layout="@layout/fragment_crew_builder" />
+</navigation>
