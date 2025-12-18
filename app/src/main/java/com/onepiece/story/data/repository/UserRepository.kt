@@ -1,84 +1,118 @@
 package com.onepiece.story.data.repository
 
 import android.content.Context
-import android.content.SharedPreferences
-import com.onepiece.story.data.model.UserProfile
+import com.onepiece.story.data.model.User
+import com.onepiece.story.data.remote.SupabaseManager
+import io.github.jan.supabase.auth.auth
+import io.github.jan.supabase.postgrest.postgrest
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.launch
 
 class UserRepository(context: Context) {
 
-    private val prefs: SharedPreferences = context.getSharedPreferences("one_piece_prefs", Context.MODE_PRIVATE)
-    private val _userProfile = MutableStateFlow(loadProfile())
-    val userProfile: Flow<UserProfile> = _userProfile.asStateFlow()
+    private val supabase = SupabaseManager.client
+    
+    // Fallback/Initial state
+    private val _userProfile = MutableStateFlow(User(name = "Guest", currentTitle = "Rookie Pirate"))
+    val userProfile: Flow<User> = _userProfile.asStateFlow()
 
-    private fun loadProfile(): UserProfile {
-        val uid = prefs.getString("uid", "user_local") ?: "user_local"
-        val username = prefs.getString("username", "Pirate Recruit") ?: "Pirate Recruit"
-        val level = prefs.getInt("level", 1)
-        val xp = prefs.getInt("xp", 0)
-        val badges = prefs.getStringSet("badges", emptySet())?.toList() ?: emptyList()
-        val completedArcs = prefs.getStringSet("completed_arcs", emptySet())?.toList() ?: emptyList()
-        val title = prefs.getString("title", "East Blue Rookie") ?: "East Blue Rookie"
+    init {
+        listenToUserUpdates()
+    }
 
-        return UserProfile(uid, username, level, xp, badges, completedArcs, title)
+    private fun listenToUserUpdates() {
+        CoroutineScope(Dispatchers.IO).launch {
+            val session = supabase.auth.currentSessionOrNull()
+            if (session != null) {
+                val uid = session.user?.id ?: return@launch
+                try {
+                    val user = supabase.postgrest.from("users").select {
+                        filter {
+                            eq("id", uid)
+                        }
+                    }.decodeSingleOrNull<User>()
+                    
+                    if (user != null) {
+                        _userProfile.value = user
+                    }
+                } catch (e: Exception) {
+                    e.printStackTrace()
+                }
+            }
+        }
     }
 
     fun addXp(amount: Int) {
-        val current = _userProfile.value
-        var newXp = current.currentXp + amount
-        var newLevel = current.currentLevel
-        
-        // Simple level up logic: Level * 1000 XP required
-        val xpRequired = newLevel * 1000
-        if (newXp >= xpRequired) {
-            newLevel++
-            newXp -= xpRequired // Carry over excess XP? Or just keep total? Let's keep total for now but reset bar visually
-            // For this simple implementation, let's just keep accumulating total XP and calculate level
+        CoroutineScope(Dispatchers.IO).launch {
+            val session = supabase.auth.currentSessionOrNull()
+            val uid = session?.user?.id ?: return@launch
+            val current = _userProfile.value
+            
+            var newXp = current.xp + amount
+            val calculatedLevel = (newXp / 1000) + 1
+
+            try {
+                // Update local state immediately for UI responsiveness
+                _userProfile.value = current.copy(xp = newXp, level = calculatedLevel)
+                
+                // Sync with Supabase
+                supabase.postgrest.from("users").update(
+                    mapOf("xp" to newXp, "level" to calculatedLevel)
+                ) {
+                    filter { eq("id", uid) }
+                }
+            } catch (e: Exception) {
+                e.printStackTrace()
+            }
         }
-
-        // Recalculate level based on total XP for robustness
-        // Level 1: 0-999
-        // Level 2: 1000-1999
-        // etc.
-        val calculatedLevel = (newXp / 1000) + 1
-
-        val updatedProfile = current.copy(currentXp = newXp, currentLevel = calculatedLevel)
-        saveProfile(updatedProfile)
-        _userProfile.value = updatedProfile
     }
 
     fun unlockBadge(badgeId: String) {
-        val current = _userProfile.value
-        if (!current.unlockedBadges.contains(badgeId)) {
-            val newBadges = current.unlockedBadges + badgeId
-            val updatedProfile = current.copy(unlockedBadges = newBadges)
-            saveProfile(updatedProfile)
-            _userProfile.value = updatedProfile
+        CoroutineScope(Dispatchers.IO).launch {
+            val session = supabase.auth.currentSessionOrNull()
+            val uid = session?.user?.id ?: return@launch
+            val current = _userProfile.value
+            
+            if (!current.unlockedBadges.contains(badgeId)) {
+                val newBadges = current.unlockedBadges + badgeId
+                
+                try {
+                    _userProfile.value = current.copy(unlockedBadges = newBadges)
+                    supabase.postgrest.from("users").update(
+                        mapOf("unlockedBadges" to newBadges)
+                    ) {
+                        filter { eq("id", uid) }
+                    }
+                } catch (e: Exception) {
+                    e.printStackTrace()
+                }
+            }
         }
     }
     
     fun completeArc(arcId: String) {
-        val current = _userProfile.value
-        if (!current.completedArcs.contains(arcId)) {
-             val newArcs = current.completedArcs + arcId
-             val updatedProfile = current.copy(completedArcs = newArcs)
-             saveProfile(updatedProfile)
-             _userProfile.value = updatedProfile
-        }
-    }
-
-    private fun saveProfile(profile: UserProfile) {
-        prefs.edit().apply {
-            putString("uid", profile.uid)
-            putString("username", profile.username)
-            putInt("level", profile.currentLevel)
-            putInt("xp", profile.currentXp)
-            putStringSet("badges", profile.unlockedBadges.toSet())
-            putStringSet("completed_arcs", profile.completedArcs.toSet())
-            putString("title", profile.title)
-            apply()
+        CoroutineScope(Dispatchers.IO).launch {
+            val session = supabase.auth.currentSessionOrNull()
+            val uid = session?.user?.id ?: return@launch
+            val current = _userProfile.value
+            
+            if (!current.completedArcs.contains(arcId)) {
+                 val newArcs = current.completedArcs + arcId
+                 try {
+                     _userProfile.value = current.copy(completedArcs = newArcs)
+                     supabase.postgrest.from("users").update(
+                        mapOf("completedArcs" to newArcs)
+                     ) {
+                        filter { eq("id", uid) }
+                     }
+                 } catch (e: Exception) {
+                     e.printStackTrace()
+                 }
+            }
         }
     }
 }

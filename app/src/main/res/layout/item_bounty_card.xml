@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/bounty_card"
+    android:layout_width="160dp"
+    android:layout_height="wrap_content"
+    android:layout_marginEnd="12dp"
+    android:clickable="true"
+    android:focusable="true"
+    app:cardBackgroundColor="@color/bounty_bg"
+    app:cardCornerRadius="12dp"
+    app:cardElevation="6dp"
+    app:strokeColor="@color/bounty_border"
+    app:strokeWidth="3dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        android:padding="12dp">
+
+        <!-- WANTED Header -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="WANTED"
+            android:textColor="@color/bounty_text"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            android:fontFamily="serif" />
+
+        <!-- Character Image -->
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/character_image"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_marginTop="8dp"
+            android:src="@drawable/ic_launcher_background"
+            app:civ_border_color="@color/bounty_border"
+            app:civ_border_width="2dp" />
+
+        <!-- Character Name -->
+        <TextView
+            android:id="@+id/character_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:text="Monkey D. Luffy"
+            android:textColor="@color/bounty_text"
+            android:textSize="11sp"
+            android:textStyle="bold" />
+
+        <!-- Bounty Amount -->
+        <TextView
+            android:id="@+id/bounty_amount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:text="3,000,000,000"
+            android:textColor="@color/op_red_dark"
+            android:textSize="12sp"
+            android:textStyle="bold" />
+
+        <!-- DEAD OR ALIVE -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:text="DEAD OR ALIVE"
+            android:textColor="@color/bounty_text"
+            android:textSize="8sp"
+            android:fontFamily="serif" />
+
+    </LinearLayout>
+
+</com.google.android.material.card.MaterialCardView>

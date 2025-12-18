@@ -12,6 +12,7 @@ import java.io.InputStreamReader
 
 import com.onepiece.story.data.local.DevilFruitEntity
 import com.onepiece.story.data.local.DevilFruitType
+import com.onepiece.story.data.local.HakiUserEntity
 
 class CsvImporter(private val context: Context, private val database: AppDatabase) {
 
@@ -21,12 +22,51 @@ class CsvImporter(private val context: Context, private val database: AppDatabas
         
         importChapters()
         importCharacters()
+        importEnrichedCharacters()
         importDevilFruits()
+        importHakiUsers()
+    }
+
+    private suspend fun importHakiUsers() {
+        try {
+            val inputStream = context.assets.open("Data/HakiUsers/haki_users.csv")
+            val reader = CSVReader(InputStreamReader(inputStream))
+            val lines = reader.readAll()
+            
+            val hakiUsers = lines.drop(1).mapNotNull { row ->
+                try {
+                    val name = row[0].trim()
+                    if (name.isBlank()) return@mapNotNull null
+                    
+                    val hasObservation = row.getOrNull(1)?.trim() == "1"
+                    val hasArmament = row.getOrNull(2)?.trim() == "1"
+                    val hasConquerors = row.getOrNull(3)?.trim() == "1"
+                    
+                    val id = "haki_${name.lowercase().replace(Regex("[^a-z0-9]"), "_")}"
+                    
+                    HakiUserEntity(
+                        id = id,
+                        characterName = name.replace(" (Deceased)†", "").replace(" (Unknown status)?", ""),
+                        hasObservation = hasObservation,
+                        hasArmament = hasArmament,
+                        hasConquerors = hasConquerors
+                    )
+                } catch (e: Exception) {
+                    Log.e("CsvImporter", "Error parsing haki user row", e)
+                    null
+                }
+            }
+            
+            database.hakiUserDao().insertAll(hakiUsers)
+            Log.d("CsvImporter", "Imported ${hakiUsers.size} haki users")
+        } catch (e: Exception) {
+            Log.e("CsvImporter", "Error importing haki users", e)
+        }
     }
 
     private suspend fun importChapters() {
         try {
-            val inputStream = context.assets.open("Chapters.csv")
+            val inputStream = context.assets.open("Data/Arcs/Chapters.csv")
             val reader = CSVReader(InputStreamReader(inputStream))
             val lines = reader.readAll()
             
@@ -55,7 +95,7 @@ class CsvImporter(private val context: Context, private val database: AppDatabas
 
     private suspend fun importCharacters() {
         try {
-            val inputStream = context.assets.open("Characters.csv")
+            val inputStream = context.assets.open("Data/Arcs/Characters.csv")
             val reader = CSVReader(InputStreamReader(inputStream))
             val lines = reader.readAll()
             
@@ -90,6 +130,105 @@ class CsvImporter(private val context: Context, private val database: AppDatabas
             Log.d("CsvImporter", "Imported ${characters.size} characters")
         } catch (e: Exception) {
             Log.e("CsvImporter", "Error importing characters", e)
+        }
+    }
+
+    private suspend fun importEnrichedCharacters() {
+        try {
+            val inputStream = context.assets.open("Data/OnePiece/onpiece.csv")
+            val reader = CSVReader(InputStreamReader(inputStream))
+            val lines = reader.readAll()
+            
+            if (lines.isEmpty()) return
+            val header = lines[0]
+            
+            // Find column indices
+            val nameIdx = header.indexOfFirst { it.contains("Official English Name", ignoreCase = true) }.takeIf { it >= 0 } ?: 3
+            val japaneseNameIdx = header.indexOfFirst { it.contains("Japanese Name", ignoreCase = true) }.takeIf { it >= 0 } ?: 1
+            val debutIdx = header.indexOfFirst { it.contains("Debut", ignoreCase = true) }.takeIf { it >= 0 } ?: 4
+            val affiliationIdx = header.indexOfFirst { it.contains("Affiliations", ignoreCase = true) }.takeIf { it >= 0 } ?: 5
+            val occupationIdx = header.indexOfFirst { it.contains("Occupations", ignoreCase = true) }.takeIf { it >= 0 } ?: 6
+            val statusIdx = header.indexOfFirst { it.contains("Status", ignoreCase = true) }.takeIf { it >= 0 } ?: 7
+            val birthdayIdx = header.indexOfFirst { it.contains("Birthday", ignoreCase = true) }.takeIf { it >= 0 } ?: 8
+            val ageIdx = header.indexOfFirst { it.equals("Age", ignoreCase = true) }.takeIf { it >= 0 } ?: 13
+            val heightIdx = header.indexOfFirst { it.equals("Height", ignoreCase = true) }.takeIf { it >= 0 } ?: 14
+            val bloodTypeIdx = header.indexOfFirst { it.contains("Blood Type", ignoreCase = true) }.takeIf { it >= 0 } ?: 15
+            val originIdx = header.indexOfFirst { it.contains("Origin", ignoreCase = true) }.takeIf { it >= 0 } ?: 11
+            
+            val enrichedCharacters = lines.drop(1).mapNotNull { row ->
+                try {
+                    if (row.size <= nameIdx) return@mapNotNull null
+                    
+                    val name = row.getOrNull(nameIdx)?.trim() ?: return@mapNotNull null
+                    if (name.isBlank()) return@mapNotNull null
+                    
+                    val japaneseName = row.getOrNull(japaneseNameIdx)?.trim()
+                    val debut = row.getOrNull(debutIdx)?.trim()
+                    val affiliation = row.getOrNull(affiliationIdx)?.trim()
+                    val occupation = row.getOrNull(occupationIdx)?.trim()
+                    val status = row.getOrNull(statusIdx)?.trim()?.ifBlank { "Unknown" } ?: "Unknown"
+                    val birthday = row.getOrNull(birthdayIdx)?.trim()
+                    val age = row.getOrNull(ageIdx)?.trim()
+                    val height = row.getOrNull(heightIdx)?.trim()
+                    val bloodType = row.getOrNull(bloodTypeIdx)?.trim()
+                    val origin = row.getOrNull(originIdx)?.trim()
+                    
+                    // Extract chapter/episode from debut
+                    val chapterMatch = Regex("Chapter (\\d+)").find(debut ?: "")
+                    val episodeMatch = Regex("Episode (\\d+)").find(debut ?: "")
+                    
+                    val id = "char_${name.lowercase().replace(Regex("[^a-z0-9]"), "_")}"
+                    
+                    // Assign image folder path for Straw Hats
+                    val imageFolderPath = when {
+                        name.contains("Luffy", ignoreCase = true) -> "Images/Characters/Monkey_D_Luffy"
+                        name.contains("Zoro", ignoreCase = true) -> "Images/Characters/Roronoa_Zoro"
+                        name.contains("Nami", ignoreCase = true) && !name.contains("Minami") -> "Images/Characters/Nami"
+                        name.contains("Usopp", ignoreCase = true) -> "Images/Characters/Usopp"
+                        name.contains("Sanji", ignoreCase = true) -> "Images/Characters/Sanji"
+                        name.contains("Chopper", ignoreCase = true) -> "Images/Characters/Tony_Tony_Chopper"
+                        name.contains("Robin", ignoreCase = true) && name.contains("Nico") -> "Images/Characters/Nico_Robin"
+                        name.contains("Franky", ignoreCase = true) -> "Images/Characters/Franky"
+                        name.contains("Brook", ignoreCase = true) -> "Images/Characters/Brook"
+                        name.contains("Jinbe", ignoreCase = true) || name.contains("Jimbei", ignoreCase = true) -> "Images/Characters/Jinbe"
+                        else -> null
+                    }
+                    
+                    CharacterEntity(
+                        id = id,
+                        name = name,
+                        japaneseName = japaneseName,
+                        alias = null,
+                        chapter = chapterMatch?.groupValues?.get(1),
+                        episode = episodeMatch?.groupValues?.get(1),
+                        year = null,
+                        note = null,
+                        powerLevel = (100..1000).random(),
+                        bounty = (10000000..5000000000).random(),
+                        devilFruit = null,
+                        haki = null,
+                        imageUrl = null,
+                        status = status,
+                        affiliation = affiliation,
+                        occupation = occupation,
+                        origin = origin,
+                        age = age,
+                        height = height,
+                        bloodType = bloodType,
+                        birthday = birthday,
+                        biography = null,
+                        imageFolderPath = imageFolderPath
+                    )
+                } catch (e: Exception) {
+                    Log.e("CsvImporter", "Error parsing enriched character row", e)
+                    null
+                }
+            }
+            
+            database.characterDao().insertAll(enrichedCharacters)
+            Log.d("CsvImporter", "Imported ${enrichedCharacters.size} enriched characters from onpiece.csv")
+        } catch (e: Exception) {
+            Log.e("CsvImporter", "Error importing enriched characters", e)
         }
     }
 

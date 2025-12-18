@@ -6,7 +6,7 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
 
-@Database(entities = [CharacterEntity::class, ChapterEntity::class, ArcEntity::class, DevilFruitEntity::class, CrewMemberEntity::class], version = 3, exportSchema = false)
+@Database(entities = [CharacterEntity::class, ChapterEntity::class, ArcEntity::class, DevilFruitEntity::class, CrewMemberEntity::class, FavoriteEntity::class, HakiUserEntity::class], version = 6, exportSchema = false)
 @TypeConverters(Converters::class)
 abstract class AppDatabase : RoomDatabase() {
     abstract fun characterDao(): CharacterDao
@@ -14,6 +14,8 @@ abstract class AppDatabase : RoomDatabase() {
     abstract fun arcDao(): ArcDao
     abstract fun devilFruitDao(): DevilFruitDao
     abstract fun crewMemberDao(): CrewMemberDao
+    abstract fun favoriteDao(): FavoriteDao
+    abstract fun hakiUserDao(): HakiUserDao
 
     companion object {
         @Volatile
@@ -25,7 +27,9 @@ abstract class AppDatabase : RoomDatabase() {
                     context.applicationContext,
                     AppDatabase::class.java,
                     "one_piece_database"
-                ).build()
+                )
+                .fallbackToDestructiveMigration()
+                .build()
                 INSTANCE = instance
                 instance
             }

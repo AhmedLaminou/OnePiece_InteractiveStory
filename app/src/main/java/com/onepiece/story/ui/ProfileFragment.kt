@@ -5,50 +5,59 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.activityViewModels
+import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.onepiece.story.R
-import com.onepiece.story.databinding.FragmentProfileBinding
+import com.onepiece.story.databinding.FragmentProfilePremiumBinding
 import com.onepiece.story.databinding.ItemBadgeBinding
+import com.onepiece.story.ui.auth.AuthViewModel
+import com.onepiece.story.data.repository.OnePieceRepository
 
 class ProfileFragment : Fragment() {
 
-    private var _binding: FragmentProfileBinding? = null
+    private var _binding: FragmentProfilePremiumBinding? = null
     private val binding get() = _binding!!
-    private val viewModel: MainViewModel by activityViewModels()
+    private lateinit var viewModel: AuthViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentProfileBinding.inflate(inflater, container, false)
+        _binding = FragmentProfilePremiumBinding.inflate(inflater, container, false)
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        val repository = OnePieceRepository(requireContext())
+        viewModel = AuthViewModel(repository)
+
         val badgeAdapter = BadgeAdapter()
         binding.badgesRecycler.adapter = badgeAdapter
         binding.badgesRecycler.layoutManager = GridLayoutManager(context, 3)
 
-        viewModel.userProfile.observe(viewLifecycleOwner) { profile ->
-            binding.username.text = profile.username
-            binding.userTitle.text = profile.title
-            binding.levelText.text = "Level ${profile.currentLevel}"
-            
-            // XP Bar Logic
-            val xpForNextLevel = (profile.currentLevel) * 1000
-            val xpForCurrentLevel = (profile.currentLevel - 1) * 1000
-            val progress = profile.currentXp - xpForCurrentLevel
-            val maxProgress = xpForNextLevel - xpForCurrentLevel
-            
-            binding.xpBar.max = maxProgress
-            binding.xpBar.progress = progress
+        viewModel.userData.observe(viewLifecycleOwner) { user ->
+            if (user != null) {
+                binding.username.text = user.name
+                binding.pirateTitle.text = user.currentTitle
+                // Premium layout doesn't have XP widgets; keep stats static for now.
+            } else {
+                // Not logged in, redirect or show empty state
+                binding.username.text = "Guest Pirate"
+                binding.pirateTitle.text = "Login to see stats"
+            }
+        }
 
-            // Badges
-            badgeAdapter.submitList(profile.unlockedBadges)
+        binding.toolbar.setNavigationOnClickListener {
+            findNavController().navigateUp()
+        }
+
+        binding.btnLogout.setOnClickListener {
+            viewModel.logout()
+            findNavController().navigate(R.id.action_profileFragment_to_loginFragment)
         }
     }
 
@@ -88,7 +97,7 @@ class BadgeAdapter : androidx.recyclerview.widget.ListAdapter<String, BadgeAdapt
         }
     }
 
-    class BadgeDiffCallback : androidx.recyclerview.widget.DiffUtil.ItemCallback<String>() {
+    class BadgeDiffCallback : DiffUtil.ItemCallback<String>() {
         override fun areItemsTheSame(oldItem: String, newItem: String) = oldItem == newItem
         override fun areContentsTheSame(oldItem: String, newItem: String) = oldItem == newItem
     }

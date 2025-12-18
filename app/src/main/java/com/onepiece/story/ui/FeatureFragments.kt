@@ -15,7 +15,9 @@ import com.github.mikephil.charting.data.RadarData
 import com.github.mikephil.charting.data.RadarDataSet
 import com.github.mikephil.charting.data.RadarEntry
 import com.github.mikephil.charting.formatter.IndexAxisValueFormatter
+import com.onepiece.story.R
 import com.onepiece.story.databinding.FragmentCharacterDetailBinding
+import com.onepiece.story.ui.adapters.ImageCarouselAdapter
 import com.onepiece.story.databinding.FragmentQuizBinding
 
 class CharacterDetailFragment : Fragment() {
@@ -40,13 +42,95 @@ class CharacterDetailFragment : Fragment() {
 
         viewModel.selectedCharacter.observe(viewLifecycleOwner) { character ->
             if (character != null) {
+                // Basic info
                 binding.charName.text = character.name
                 binding.charBio.text = character.biography
                 binding.headerImage.load(character.imageUrl)
-                binding.humorLine.text = character.humorLine
+                binding.humorLine.text = "\"${character.humorLine}\""
+
+                // Japanese name
+                binding.charJapaneseName.text = character.japaneseName ?: ""
+                binding.charJapaneseName.visibility = if (character.japaneseName.isNullOrBlank()) View.GONE else View.VISIBLE
+
+                // Alias/Title
+                binding.charAlias.text = character.occupation ?: "Pirate"
+
+                // Profile stats
+                binding.statAge.text = character.age ?: "Unknown"
+                binding.statHeight.text = character.height ?: "Unknown"
+                binding.statBlood.text = character.bloodType ?: "Unknown"
+                binding.statOrigin.text = character.origin ?: "Unknown"
+                binding.statBirthday.text = character.birthday ?: "Unknown"
+                binding.statAffiliation.text = character.affiliation ?: "Unknown"
+                binding.statOccupation.text = character.occupation ?: "Unknown"
+
+                // Status badge
+                binding.statusBadge.text = character.status?.uppercase() ?: "UNKNOWN"
+                when (character.status?.lowercase()) {
+                    "alive" -> binding.statusBadge.setBackgroundResource(R.drawable.bg_status_alive)
+                    "deceased" -> binding.statusBadge.setBackgroundResource(R.drawable.bg_status_deceased)
+                    else -> binding.statusBadge.setBackgroundResource(R.drawable.bg_status_unknown)
+                }
+
+                // Debut info
+                val debutParts = character.firstAppearanceArc.split(", ")
+                binding.debutChapter.text = debutParts.getOrNull(0)?.replace("Chapter ", "") ?: "?"
+                binding.debutEpisode.text = debutParts.getOrNull(1)?.replace("Episode ", "") ?: "?"
+
+                // Setup image carousel
+                setupImageCarousel(character.id)
 
                 setupRadarChart(character.stats)
             }
+        }
+    }
+
+    private fun setupImageCarousel(characterId: String) {
+        // Dynamically build folder path from character ID
+        // e.g., char_monkey_d_luffy -> Monkey_D_Luffy
+        val folderName = characterId
+            .removePrefix("char_")
+            .split("_")
+            .joinToString("_") { it.replaceFirstChar { c -> c.uppercase() } }
+        
+        val folderPath = "Images/Characters/$folderName"
+        
+        try {
+            val assetManager = requireContext().assets
+            val files = assetManager.list(folderPath) ?: emptyArray()
+            
+            // Filter only image files
+            val imageExtensions = listOf(".jpg", ".jpeg", ".png", ".webp", ".avif")
+            val imageFiles = files.filter { file ->
+                imageExtensions.any { file.lowercase().endsWith(it) }
+            }
+            
+            val imagePaths = imageFiles.map { "$folderPath/$it" }
+            
+            if (imagePaths.isNotEmpty()) {
+                val adapter = ImageCarouselAdapter(imagePaths)
+                binding.imageCarousel.adapter = adapter
+                binding.imageCarousel.visibility = View.VISIBLE
+                binding.headerImage.visibility = View.GONE
+                
+                // Load first image as header fallback
+                try {
+                    val inputStream = assetManager.open(imagePaths[0])
+                    val bitmap = android.graphics.BitmapFactory.decodeStream(inputStream)
+                    binding.headerImage.setImageBitmap(bitmap)
+                    inputStream.close()
+                } catch (e: Exception) {
+                    // Ignore
+                }
+            } else {
+                // No images found, show default
+                binding.imageCarousel.visibility = View.GONE
+                binding.headerImage.visibility = View.VISIBLE
+            }
+        } catch (e: Exception) {
+            // Fallback to default image
+            binding.imageCarousel.visibility = View.GONE
+            binding.headerImage.visibility = View.VISIBLE
         }
     }
 

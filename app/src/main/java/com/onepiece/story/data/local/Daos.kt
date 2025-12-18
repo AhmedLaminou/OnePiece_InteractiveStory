@@ -71,3 +71,51 @@ interface CrewMemberDao {
     @Query("SELECT SUM(bounty) FROM crew_members")
     suspend fun getTotalBounty(): Long?
 }
+
+@Dao
+interface FavoriteDao {
+    @Query("SELECT * FROM favorites ORDER BY addedAt DESC")
+    fun getAll(): Flow<List<FavoriteEntity>>
+
+    @Query("SELECT * FROM favorites WHERE itemType = :type ORDER BY addedAt DESC")
+    fun getByType(type: String): Flow<List<FavoriteEntity>>
+
+    @Query("SELECT * FROM favorites WHERE itemId = :itemId AND itemType = :itemType LIMIT 1")
+    suspend fun getByItemIdAndType(itemId: String, itemType: String): FavoriteEntity?
+
+    @Query("SELECT EXISTS(SELECT 1 FROM favorites WHERE itemId = :itemId AND itemType = :itemType)")
+    fun isFavorite(itemId: String, itemType: String): Flow<Boolean>
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun insert(favorite: FavoriteEntity)
+
+    @Query("DELETE FROM favorites WHERE itemId = :itemId AND itemType = :itemType")
+    suspend fun delete(itemId: String, itemType: String)
+
+    @Query("DELETE FROM favorites")
+    suspend fun deleteAll()
+
+    @Query("SELECT COUNT(*) FROM favorites")
+    suspend fun getCount(): Int
+}
+
+@Dao
+interface HakiUserDao {
+    @Query("SELECT * FROM haki_users ORDER BY characterName ASC")
+    fun getAll(): Flow<List<HakiUserEntity>>
+
+    @Query("SELECT * FROM haki_users WHERE hasConquerors = 1 ORDER BY characterName ASC")
+    fun getConquerors(): Flow<List<HakiUserEntity>>
+
+    @Query("SELECT * FROM haki_users WHERE hasObservation = 1 ORDER BY characterName ASC")
+    fun getObservationUsers(): Flow<List<HakiUserEntity>>
+
+    @Query("SELECT * FROM haki_users WHERE hasArmament = 1 ORDER BY characterName ASC")
+    fun getArmamentUsers(): Flow<List<HakiUserEntity>>
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun insertAll(users: List<HakiUserEntity>)
+
+    @Query("SELECT COUNT(*) FROM haki_users")
+    suspend fun getCount(): Int
+}

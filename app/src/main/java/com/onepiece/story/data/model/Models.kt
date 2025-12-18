@@ -13,13 +13,25 @@ data class Character(
     val biography: String = "",
     val abilities: List<String> = emptyList(),
     val devilFruit: DevilFruit? = null,
-    val powerLevel: Int = 0, // 0-1000 scale
-    val yonkoComparison: Double = 0.0, // 0.0 - 1.0
+    val powerLevel: Int = 0,
+    val yonkoComparison: Double = 0.0,
     val stats: CharacterStats = CharacterStats(),
     val quotes: List<String> = emptyList(),
     val videoClips: List<VideoClip> = emptyList(),
     val funFacts: List<String> = emptyList(),
-    val humorLine: String = ""
+    val humorLine: String = "",
+    val japaneseName: String? = null,
+    val age: String? = null,
+    val height: String? = null,
+    val status: String? = null,
+    val affiliation: String? = null,
+    val occupation: String? = null,
+    val origin: String? = null,
+    val birthday: String? = null,
+    val bloodType: String? = null,
+    val alias: String? = null,
+    val bounty: Long? = null,
+    val bountyFormatted: String? = null
 ) : Parcelable
 
 @Parcelize

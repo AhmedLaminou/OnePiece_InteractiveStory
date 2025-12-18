@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Primary Brand Colors - One Piece Inspired -->
+    <color name="op_red_primary">#D32F2F</color>
+    <color name="op_red_dark">#B71C1C</color>
+    <color name="op_red_light">#FF5252</color>
+    
+    <!-- Gold/Yellow Accent - Treasure Theme -->
+    <color name="op_gold_primary">#FFD700</color>
+    <color name="op_gold_dark">#FFA000</color>
+    <color name="op_gold_light">#FFE57F</color>
+    
+    <!-- Ocean Blues -->
+    <color name="op_ocean_deep">#0D47A1</color>
+    <color name="op_ocean_primary">#1976D2</color>
+    <color name="op_ocean_light">#42A5F5</color>
+    <color name="op_ocean_teal">#00ACC1</color>
+    
+    <!-- Dark Theme Background -->
+    <color name="bg_primary">#0A0A0F</color>
+    <color name="bg_secondary">#12121A</color>
+    <color name="bg_card">#1A1A24</color>
+    <color name="bg_card_elevated">#222230</color>
+    <color name="bg_surface">#2A2A38</color>
+    
+    <!-- Glass/Frosted Effect -->
+    <color name="glass_white">#1AFFFFFF</color>
+    <color name="glass_white_medium">#33FFFFFF</color>
+    <color name="glass_dark">#80000000</color>
+    
+    <!-- Text Colors -->
+    <color name="text_primary">#FFFFFF</color>
+    <color name="text_secondary">#B3B3B3</color>
+    <color name="text_tertiary">#666666</color>
+    <color name="text_gold">#FFD700</color>
+    <color name="text_accent">#00E5FF</color>
+    
+    <!-- Status Colors -->
+    <color name="status_alive">#4CAF50</color>
+    <color name="status_deceased">#F44336</color>
+    <color name="status_unknown">#9E9E9E</color>
+    
+    <!-- Haki Colors -->
+    <color name="haki_observation">#7C4DFF</color>
+    <color name="haki_armament">#212121</color>
+    <color name="haki_conqueror">#D500F9</color>
+    
+    <!-- Devil Fruit Type Colors -->
+    <color name="df_paramecia">#E91E63</color>
+    <color name="df_zoan">#8BC34A</color>
+    <color name="df_logia">#00BCD4</color>
+    <color name="df_mythical">#9C27B0</color>
+    
+    <!-- Crew Colors -->
+    <color name="crew_straw_hat">#FFD700</color>
+    <color name="crew_marine">#1976D2</color>
+    <color name="crew_revolutionary">#4CAF50</color>
+    <color name="crew_yonko">#9C27B0</color>
+    
+    <!-- Gradient Overlays -->
+    <color name="gradient_start">#00000000</color>
+    <color name="gradient_end">#CC000000</color>
+    <color name="gradient_gold_start">#33FFD700</color>
+    <color name="gradient_gold_end">#00FFD700</color>
+    
+    <!-- Bounty Poster -->
+    <color name="bounty_bg">#F5E6C8</color>
+    <color name="bounty_border">#8B4513</color>
+    <color name="bounty_text">#4A2C00</color>
+    
+    <!-- Stats Radar Chart -->
+    <color name="stat_strength">#F44336</color>
+    <color name="stat_speed">#2196F3</color>
+    <color name="stat_intelligence">#9C27B0</color>
+    <color name="stat_endurance">#4CAF50</color>
+    <color name="stat_haki">#FF9800</color>
+    <color name="stat_devil_fruit">#E91E63</color>
+    
+    <!-- Rarity Colors (for TCG) -->
+    <color name="rarity_common">#9E9E9E</color>
+    <color name="rarity_uncommon">#4CAF50</color>
+    <color name="rarity_rare">#2196F3</color>
+    <color name="rarity_super_rare">#9C27B0</color>
+    <color name="rarity_secret">#FFD700</color>
+</resources>

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Base dark background -->
+    <item>
+        <shape android:shape="rectangle">
+            <solid android:color="#0D0D15" />
+        </shape>
+    </item>
+    
+    <!-- Radial gradient for depth -->
+    <item>
+        <shape android:shape="rectangle">
+            <gradient
+                android:type="radial"
+                android:gradientRadius="600dp"
+                android:centerX="0.5"
+                android:centerY="0.2"
+                android:startColor="#1A1A3E"
+                android:endColor="#00000000" />
+        </shape>
+    </item>
+    
+    <!-- Subtle ocean blue accent -->
+    <item>
+        <shape android:shape="rectangle">
+            <gradient
+                android:type="linear"
+                android:angle="135"
+                android:startColor="#050820"
+                android:centerColor="#00000000"
+                android:endColor="#0A1628" />
+        </shape>
+    </item>
+    
+    <!-- Gold accent at top -->
+    <item>
+        <shape android:shape="rectangle">
+            <gradient
+                android:type="linear"
+                android:angle="270"
+                android:startColor="#20FFD700"
+                android:endColor="#00000000" />
+        </shape>
+    </item>
+</layer-list>

@@ -7,7 +7,7 @@ import androidx.lifecycle.viewModelScope
 import com.onepiece.story.data.model.Arc
 import com.onepiece.story.data.model.Character
 import com.onepiece.story.data.model.Quiz
-import com.onepiece.story.data.model.UserProfile
+import com.onepiece.story.data.model.User
 import com.onepiece.story.data.repository.OnePieceRepository
 import com.onepiece.story.data.repository.UserRepository
 import kotlinx.coroutines.launch
@@ -38,22 +38,76 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
     private val _currentQuiz = MutableLiveData<Quiz?>()
     val currentQuiz: LiveData<Quiz?> = _currentQuiz
 
-    private val _userProfile = MutableLiveData<UserProfile>()
-    val userProfile: LiveData<UserProfile> = _userProfile
+    private val _userProfile = MutableLiveData<User>()
+    val userProfile: LiveData<User> = _userProfile
 
     private val _allCharacters = MutableLiveData<List<Character>>()
     val allCharacters: LiveData<List<Character>> = _allCharacters
+
+    private val _allChapters = MutableLiveData<List<com.onepiece.story.data.local.ChapterEntity>>()
+    val allChapters: LiveData<List<com.onepiece.story.data.local.ChapterEntity>> = _allChapters
+
+    private val _searchResults = MutableLiveData<List<Character>>()
+    val searchResults: LiveData<List<Character>> = _searchResults
+
+    private val _searchQuery = MutableLiveData<String>()
+    val searchQuery: LiveData<String> = _searchQuery
+
+    private val _featuredCharacters = MutableLiveData<List<Character>>()
+    val featuredCharacters: LiveData<List<Character>> = _featuredCharacters
+
+    private val _topBounties = MutableLiveData<List<Character>>()
+    val topBounties: LiveData<List<Character>> = _topBounties
+
+    private val _conquerorUsers = MutableLiveData<List<com.onepiece.story.data.local.HakiUserEntity>>()
+    val conquerorUsers: LiveData<List<com.onepiece.story.data.local.HakiUserEntity>> = _conquerorUsers
 
     init {
         loadArcs()
         loadUserProfile()
         loadAllCharacters()
+        loadAllChapters()
+        loadFeaturedCharacters()
+        loadTopBounties()
+        loadConquerorUsers()
+    }
+
+    private fun loadFeaturedCharacters() {
+        viewModelScope.launch {
+            repository.getFeaturedCharacters(10).collect {
+                _featuredCharacters.value = it
+            }
+        }
+    }
+
+    private fun loadTopBounties() {
+        viewModelScope.launch {
+            repository.getTopBounties(10).collect {
+                _topBounties.value = it
+            }
+        }
+    }
+
+    private fun loadConquerorUsers() {
+        viewModelScope.launch {
+            repository.getConquerorsHakiUsers().collect {
+                _conquerorUsers.value = it
+            }
+        }
     }
 
     private fun loadAllCharacters() {
         viewModelScope.launch {
             repository.getAllCharacters().collect {
                 _allCharacters.value = it
+            }
+        }
+    }
+
+    private fun loadAllChapters() {
+        viewModelScope.launch {
+            repository.getAllChapters().collect {
+                _allChapters.value = it
             }
         }
     }
@@ -125,6 +179,43 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
             repository.getQuiz(quizId).collect {
                 _currentQuiz.value = it
             }
+        }
+    }
+
+    fun searchCharacters(query: String) {
+        _searchQuery.value = query
+        viewModelScope.launch {
+            repository.searchCharacters(query).collect { results ->
+                _searchResults.value = results
+            }
+        }
+    }
+
+    fun clearSearch() {
+        _searchQuery.value = ""
+        _searchResults.value = emptyList()
+    }
+
+    // Favorites
+    private val _favorites = MutableLiveData<List<com.onepiece.story.data.local.FavoriteEntity>>()
+    val favorites: LiveData<List<com.onepiece.story.data.local.FavoriteEntity>> = _favorites
+
+    fun loadFavorites() {
+        viewModelScope.launch {
+            repository.getAllFavorites().collect {
+                _favorites.value = it
+            }
+        }
+    }
+
+    fun isFavorite(itemId: String, itemType: String): LiveData<Boolean> {
+        return repository.isFavorite(itemId, itemType).asLiveData()
+    }
+
+    fun toggleFavorite(itemId: String, itemType: String, itemName: String, imageUrl: String? = null) {
+        viewModelScope.launch {
+            repository.toggleFavorite(itemId, itemType, itemName, imageUrl)
+            loadFavorites()
         }
     }
 }

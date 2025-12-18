@@ -6,7 +6,9 @@ import android.transition.TransitionInflater
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.EditorInfo
 import androidx.core.view.ViewCompat
+import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.FragmentNavigatorExtras
@@ -17,16 +19,19 @@ import com.bumptech.glide.Glide
 import com.onepiece.story.R
 import com.onepiece.story.data.model.Arc
 import com.onepiece.story.databinding.FragmentArcDetailBinding
-import com.onepiece.story.databinding.FragmentHomeBinding
+import com.onepiece.story.databinding.FragmentHomePremiumBinding
 import com.onepiece.story.ui.adapters.ArcAdapter
 import com.onepiece.story.ui.adapters.CharacterAdapter
+import com.onepiece.story.ui.adapters.FeaturedCharacterAdapter
+import com.onepiece.story.ui.adapters.HakiUserAdapter
+import com.onepiece.story.ui.adapters.SearchResultsAdapter
 import com.onepiece.story.ui.adapters.SlideAdapter
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.YouTubePlayer
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.AbstractYouTubePlayerListener
 
 class HomeFragment : Fragment() {
 
-    private var _binding: FragmentHomeBinding? = null
+    private var _binding: FragmentHomePremiumBinding? = null
     private val binding get() = _binding!!
     private val viewModel: MainViewModel by activityViewModels()
 
@@ -34,7 +39,7 @@ class HomeFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentHomeBinding.inflate(inflater, container, false)
+        _binding = FragmentHomePremiumBinding.inflate(inflater, container, false)
         return binding.root
     }
 
@@ -78,6 +83,101 @@ class HomeFragment : Fragment() {
 
         viewModel.arcs.observe(viewLifecycleOwner) { arcs ->
             adapter.submitList(arcs)
+        }
+
+        // Setup Featured Characters
+        val featuredAdapter = FeaturedCharacterAdapter { character ->
+            val action = HomeFragmentDirections.actionHomeFragmentToCharacterDetailFragment(character.id)
+            findNavController().navigate(action)
+        }
+        binding.featuredCharactersRecycler.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+        binding.featuredCharactersRecycler.adapter = featuredAdapter
+
+        viewModel.featuredCharacters.observe(viewLifecycleOwner) { characters ->
+            featuredAdapter.submitList(characters)
+        }
+
+        // Setup Top Bounties
+        val bountiesAdapter = FeaturedCharacterAdapter { character ->
+            val action = HomeFragmentDirections.actionHomeFragmentToCharacterDetailFragment(character.id)
+            findNavController().navigate(action)
+        }
+        binding.topBountiesRecycler.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+        binding.topBountiesRecycler.adapter = bountiesAdapter
+
+        viewModel.topBounties.observe(viewLifecycleOwner) { characters ->
+            bountiesAdapter.submitList(characters)
+        }
+
+        // Setup Conqueror's Haki Users
+        val hakiAdapter = HakiUserAdapter { hakiUser ->
+            // Try to find the character and navigate
+            viewModel.searchCharacters(hakiUser.characterName)
+        }
+        binding.conquerorsRecycler.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+        binding.conquerorsRecycler.adapter = hakiAdapter
+
+        viewModel.conquerorUsers.observe(viewLifecycleOwner) { users ->
+            hakiAdapter.submitList(users)
+        }
+
+        // See All click handlers
+        binding.seeAllCharacters.setOnClickListener {
+            findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToEncyclopediaFragment())
+        }
+
+        binding.seeAllArcs.setOnClickListener {
+            findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToEncyclopediaFragment())
+        }
+
+        binding.seeAllBounties.setOnClickListener {
+            findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToBountyFragment())
+        }
+
+        // Setup search results adapter
+        val searchAdapter = SearchResultsAdapter { character ->
+            val action = HomeFragmentDirections.actionHomeFragmentToCharacterDetailFragment(character.id)
+            findNavController().navigate(action)
+        }
+        binding.searchResultsRecycler.adapter = searchAdapter
+
+        // Setup search functionality
+        binding.searchInput.addTextChangedListener { text ->
+            val query = text?.toString() ?: ""
+            if (query.length >= 2) {
+                viewModel.searchCharacters(query)
+                binding.searchResultsContainer.visibility = View.VISIBLE
+            } else {
+                viewModel.clearSearch()
+                binding.searchResultsContainer.visibility = View.GONE
+            }
+        }
+
+        binding.searchInput.setOnEditorActionListener { _, actionId, _ ->
+            if (actionId == EditorInfo.IME_ACTION_SEARCH) {
+                val query = binding.searchInput.text?.toString() ?: ""
+                if (query.isNotBlank()) {
+                    viewModel.searchCharacters(query)
+                    binding.searchResultsContainer.visibility = View.VISIBLE
+                }
+                true
+            } else {
+                false
+            }
+        }
+
+        // Observe search results
+        viewModel.searchResults.observe(viewLifecycleOwner) { results ->
+            searchAdapter.submitList(results)
+            binding.searchResultsTitle.text = "Search Results (${results.size})"
+            
+            if (results.isEmpty() && binding.searchInput.text?.length ?: 0 >= 2) {
+                binding.searchEmptyState.visibility = View.VISIBLE
+                binding.searchResultsRecycler.visibility = View.GONE
+            } else {
+                binding.searchEmptyState.visibility = View.GONE
+                binding.searchResultsRecycler.visibility = View.VISIBLE
+            }
         }
     }
 

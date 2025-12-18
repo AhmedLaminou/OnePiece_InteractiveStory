@@ -15,3 +15,4 @@ dependencyResolutionManagement {
 }
 rootProject.name = "OnePieceInteractiveStory"
 include(":app")
+include(":backend")

@@ -1,0 +1,87 @@
+Character_ID,Name,Alias,Crew_ID,Status,Origin,Affiliation,Role,First_Appearance_Arc_ID,Debut_Chapter,Debut_Episode,Current_Bounty_ID,Devil_Fruit_ID,Haki_ID,Relationship_ID,Arc_Count,Last_Known_Location,Active_Years
+CH001,Monkey D. Luffy,Straw Hat,null,Alive,East Blue,Straw Hat Pirates,Captain,null,1,1,null,null,null,null,30,Wano Country,22
+CH002,Roronoa Zoro,Swordsman,null,Alive,East Blue,Straw Hat Pirates,Swordsman,null,3,2,null,null,null,null,28,Wano Country,22
+CH003,Nami,Cat Burglar,null,Alive,Orange Town,Straw Hat Pirates,Navigator,null,8,1,null,null,null,null,28,Wano Country,22
+CH004,Usopp,Sogeking,null,Alive,Syrup Village,Straw Hat Pirates,Sniper,null,11,8,null,null,null,null,26,Wano Country,22
+CH005,Sanji,Black Leg,null,Alive,North Blue,Straw Hat Pirates,Cook,null,14,43,null,null,null,null,27,Wano Country,22
+CH006,Tony Tony Chopper,Reindeer Doctor,null,Alive,Drum Island,Straw Hat Pirates,Doctor,null,17,119,null,null,null,null,24,Wano Country,22
+CH007,Nico Robin,Devil Child,null,Alive,Ohara,Straw Hat Pirates,Archaeologist,null,22,114,null,null,null,null,23,Wano Country,22
+CH008,Franky,Cybernetic Shipwright,null,Alive,South Blue,Straw Hat Pirates,Shipwright,null,29,233,null,null,null,null,21,Wano Country,22
+CH009,Brook,Soul King,null,Alive,West Blue,Straw Hat Pirates,Musician,null,34,337,null,null,null,null,20,Wano Country,22
+CH010,Jinbe,Knight of the Sea,null,Alive,Fish-Man Island,Straw Hat Pirates,Helmsman,null,53,655,null,null,null,null,13,Wano Country,22
+CH011,Shanks,Red-Haired,null,Alive,West Blue,Red Hair Pirates,Captain,null,0,1,null,null,null,null,20,Red Line,30
+CH012,Ben Beckman,No. 2 of the Emperor,null,Alive,West Blue,Red Hair Pirates,First Mate,null,0,1,null,null,null,null,20,Red Line,30
+CH013,Yasopp,null,null,Alive,East Blue,Red Hair Pirates,Sniper,null,0,1,null,null,null,null,20,Red Line,30
+CH014,Lucky Roo,null,null,Alive,West Blue,Red Hair Pirates,Crew Member,null,0,1,null,null,null,null,20,Red Line,30
+CH015,Kaya,null,null,Alive,Syrup Village,null,Friend,null,10,3,null,null,null,null,1,Syrup Village,3
+CH016,Dracule Mihawk,Hawk Eyes,null,Alive,Unknown,Independent,World's Strongest Swordsman,null,23,24,null,null,null,null,15,Various Islands,25
+CH017,Donquixote Doflamingo,Joker,null,Deceased,North Blue,Donquixote Pirates,Captain,null,56,233,null,null,null,null,16,Underworld,25
+CH018,Caesar Clown,null,null,Deceased,Unknown,Independent,Scientist,null,64,655,null,null,null,null,12,Smile Factory,7
+CH019,Big Mom,Charlotte Linlin,null,Alive,South Blue,Big Mom Pirates,Captain,null,38,426,null,null,null,null,20,Totland,28
+CH020,Katakuri,null,null,Alive,Totland,Big Mom Pirates,Commander,null,68,825,null,null,null,null,12,Whole Cake Island,12
+CH021,Charlotte Perospero,null,null,Alive,Totland,Big Mom Pirates,Commander,null,70,861,null,null,null,null,10,Whole Cake Island,12
+CH022,Eneru,God,null,Alive,Skypiea,Self-Proclaimed God,Antagonist,null,25,182,null,null,null,null,10,Skypiea,12
+CH023,Crocodile,Mr.0,null,Deceased,North Blue,Baroque Works,Captain,null,21,110,null,null,null,null,12,Arabasta,15
+CH024,Rob Lucci,null,null,Alive,Water 7,CP9,Assassin,null,31,289,null,null,null,null,15,Enies Lobby,15
+CH025,Franky Family Members,null,null,Alive,South Blue,Franky Family,Crew,null,28,228,null,null,null,null,7,Water 7,10
+CH026,Pell,null,null,Alive,Arabasta,Kingdom Soldier,Captain,null,20,95,null,null,null,null,7,Arabasta,10
+CH027,Bartholomew Kuma,null,null,Alive,West Blue,Revolutionaries,Cybernetic Pacifista,null,32,400,null,null,null,null,16,Sabaody Archipelago,15
+CH028,Smoker,White Hunter,null,Alive,Unknown,Marines,Commodore,null,21,41,null,null,null,null,25,Loguetown,20
+CH029,Tashigi,null,null,Alive,Unknown,Marines,Lieutenant,null,21,41,null,null,null,null,25,Loguetown,20
+CH030,Fujitora,Issho,null,Alive,Unknown,Marines,Admiral,null,69,753,null,null,null,null,11,Whole Cake Island,15
+CH031,Kizaru,Borsalino,null,Alive,Unknown,Marines,Admiral,null,48,517,null,null,null,null,14,Sabaody Archipelago,15
+CH032,Aokiji,Kuzan,null,Alive,Unknown,Marines,Admiral,null,42,598,null,null,null,null,18,Unknown,20
+CH033,Akainu,Sakazuki,null,Alive,Unknown,Marines,Admiral,null,45,579,null,null,null,null,15,Marines HQ,20
+CH034,Garp,null,null,Alive,West Blue,Marines,Hero of the Marines,null,1,2,null,null,null,null,25,Marines HQ,55
+CH035,Kaidou,Kaido of the Beasts,null,Alive,North Blue,Beasts Pirates,Captain,null,51,795,null,null,null,null,16,Wano Country,35
+CH036,King,null,null,Alive,Unknown,Beasts Pirates,All-Star,null,51,796,null,null,null,null,16,Wano Country,12
+CH037,Queen,null,null,Alive,Unknown,Beasts Pirates,All-Star,null,51,796,null,null,null,null,16,Wano Country,12
+CH038,Jack,null,null,Alive,Unknown,Beasts Pirates,All-Star,null,51,796,null,null,null,null,16,Wano Country,12
+CH039,Higuma,null,null,Deceased,East Blue,Mountain Bandit,Captain,null,0,1,null,null,null,null,1,East Blue,2
+CH040,Alvida,null,null,Alive,East Blue,Independent,Captain,null,1,2,null,null,null,null,3,East Blue,10
+CH041,Captain Morgan,null,null,Deceased,East Blue,Marines,Captain,null,0,1,null,null,null,null,3,East Blue,8
+CH042,Hatchan,null,null,Alive,East Blue,Arlong Pirates,Octopus Fishman,null,12,35,null,null,null,null,10,Arlong Park,8
+CH043,Arlong,null,null,Deceased,East Blue,Arlong Pirates,Captain,null,12,34,null,null,null,null,10,Arlong Park,10
+CH044,Nefertari Vivi,Princess Vivi,null,Alive,Arabasta,Kingdom,Princess,null,19,92,null,null,null,null,14,Arabasta,12
+CH045,Monkey D. Garp,Marine Hero,null,Alive,West Blue,Marines,Hero,null,1,2,null,null,null,null,25,Marine HQ,50
+CH046,Shirahoshi,Mermaid Princess,null,Alive,Fish-Man Island,Mermaid Kingdom,Princess,null,51,616,null,null,null,null,10,Undersea Kingdom,15
+CH047,Portgas D. Ace,Fire Fist,null,Deceased,South Blue,Whitebeard Pirates,Commander,null,23,154,null,null,null,null,18,Marineford,10
+CH048,Whitebeard,Edward Newgate,null,Deceased,South Blue,Whitebeard Pirates,Captain,null,22,234,null,null,null,null,20,Marineford,30
+CH049,Marco,The Phoenix,null,Alive,South Blue,Whitebeard Pirates,First Division Commander,null,22,234,null,null,null,null,20,Marineford,15
+CH050,Thatch,null,null,Deceased,South Blue,Whitebeard Pirates,Crew Member,null,22,235,null,null,null,null,18,Whitebeard Ship,12
+CH051,Izou,null,null,Alive,South Blue,Whitebeard Pirates,Crew Member,null,22,236,null,null,null,null,18,Whitebeard Ship,12
+CH052,Jewelry Bonney,null,null,Alive,South Blue,Independent,Captain,null,42,542,null,null,null,null,12,Grand Line,15
+CH053,Capone Bege,null,null,Alive,North Blue,Fire Tank Pirates,Captain,null,60,701,null,null,null,null,10,Whole Cake Island,12
+CH054,Charlotte Katakuri,null,null,Alive,Totland,Big Mom Pirates,Commander,null,68,825,null,null,null,null,12,Whole Cake Island,12
+CH055,Eustass Kid,null,null,Alive,South Blue,Kid Pirates,Captain,null,51,784,null,null,null,null,15,Sabaody Archipelago,12
+CH056, Trafalgar D. Water Law,null,null,Alive,North Blue,Heart Pirates,Captain,null,52,698,null,null,null,null,15,Sabaody Archipelago,12
+CH057,Donquixote Rosinante,Corazon,null,Deceased,North Blue,Donquixote Pirates,Commander,null,56,234,null,null,null,null,12,Dressrosa,10
+CH058,Pica,null,null,Alive,Unknown,Donquixote Pirates,Commander,null,61,700,null,null,null,null,12,Dressrosa,12
+CH059,Dellinger,null,null,Alive,Unknown,Donquixote Pirates,Combatant,null,61,700,null,null,null,null,12,Dressrosa,12
+CH060,Fuji-null,null,null,Alive,Unknown,Donquixote Pirates,Combatant,null,61,700,null,null,null,null,12,Dressrosa,12
+CH061,Senor Pink,null,null,Alive,Unknown,Donquixote Pirates,Combatant,null,61,700,null,null,null,null,12,Dressrosa,12
+CH062,Cavendish,null,null,Alive,North Blue,Beautiful Pirates,Captain,null,59,656,null,null,null,null,10,Coliseum,12
+CH063,Rebecca,null,null,Alive,North Blue,Coliseum,Warrior,null,59,656,null,null,null,null,10,Coliseum,12
+CH064,Sabo,null,null,Alive,East Blue,Revolutionaries,Chief of Staff,null,26,150,null,null,null,null,18,Revolutionary Base,15
+CH065,Koala,null,null,Alive,North Blue,Revolutionaries,Martial Arts Instructor,null,26,150,null,null,null,null,18,Revolutionary Base,15
+CH066,Bartholomew Kuma,null,null,Alive,West Blue,Revolutionaries,Cybernetic Pacifista,null,32,400,null,null,null,null,16,Sabaody Archipelago,15
+CH067,Sentomaru,null,null,Alive,West Blue,Marines,Bodyguard,null,32,400,null,null,null,null,16,Sabaody Archipelago,15
+CH068,Donquixote Doflamingo,null,null,Deceased,North Blue,Donquixote Pirates,Captain,null,56,233,null,null,null,null,16,Underworld,25
+CH069,Caesar Clown,null,null,Deceased,Unknown,Independent,Scientist,null,64,655,null,null,null,null,12,Smile Factory,7
+CH070,Crocodile,null,null,Deceased,North Blue,Baroque Works,Captain,null,21,110,null,null,null,null,12,Arabasta,15
+CH071,Enel,God,null,Alive,Skypiea,Self-Proclaimed God,Antagonist,null,25,182,null,null,null,null,10,Skypiea,12
+CH072,Monkey D. Dragon,null,null,Alive,East Blue,Revolutionaries,Captain,null,26,150,null,null,null,null,20,Revolutionary Base,20
+CH073,Boa Hancock,Snake Princess,null,Alive,Amazon Lily,Kuja Pirates,Captain,null,34,406,null,null,null,null,16,Amazon Lily,15
+CH074,Surume,null,null,Alive,Unknown,Kuja Pirates,Crew Member,null,34,406,null,null,null,null,16,Amazon Lily,12
+CH075,Shiliew,null,null,Alive,Unknown,CP9,Assassin,null,31,289,null,null,null,null,15,Enies Lobby,15
+CH076,Foxy,null,null,Alive,North Blue,Silver Fox Pirates,Captain,null,35,428,null,null,null,null,12,Davy Back Fight,10
+CH077,Lao G,null,null,Alive,West Blue,Long Ring Long Land Pirates,Captain,null,37,452,null,null,null,null,10,Long Ring Long Land,10
+CH078,Dorry,null,null,Alive,Unknown,Long Ring Long Land Pirates,Captain,null,37,452,null,null,null,null,10,Long Ring Long Land,10
+CH079,Brogy,null,null,Alive,Unknown,Long Ring Long Land Pirates,Captain,null,37,452,null,null,null,null,10,Long Ring Long Land,10
+CH080,Pell,null,null,Alive,Arabasta,Kingdom Soldier,Captain,null,20,95,null,null,null,null,7,Arabasta,10
+CH081,Koza,null,null,Alive,Arabasta,Kingdom Soldier,Commander,null,20,95,null,null,null,null,7,Arabasta,10
+CH082,Wapol,null,null,Deceased,Drum Island,Kingdom,Captain,null,18,99,null,null,null,null,10,Drum Island,12
+CH083,Chess,null,null,Deceased,Drum Island,Kingdom,Crew Member,null,18,99,null,null,null,null,10,Drum Island,12
+CH084,Kuromarimo,null,null,Alive,Unknown,Independent,Criminal,null,41,395,null,null,null,null,12,Grand Line,10
+CH085,Capone Bege,null,null,Alive,North Blue,Fire Tank Pirates,Captain,null,60,701,null,null,null,null,10,Whole Cake Island,12
+CH086,Charlotte Oven,null,null,Alive,Totland,Big Mom Pirates,Commander,null,68,825,null,null,null,null,12,Whole Cake Island,12

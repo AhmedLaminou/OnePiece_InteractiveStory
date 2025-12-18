@@ -9,7 +9,7 @@
         android:id="@+id/homeFragment"
         android:name="com.onepiece.story.ui.HomeFragment"
         android:label="One Piece Storybook"
-        tools:layout="@layout/fragment_home">
+        tools:layout="@layout/fragment_home_premium">
         <action
             android:id="@+id/action_homeFragment_to_arcDetailFragment"
             app:destination="@id/arcDetailFragment" />
@@ -31,6 +31,9 @@
         <action
             android:id="@+id/action_homeFragment_to_crewBuilderFragment"
             app:destination="@id/crewBuilderFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_characterDetailFragment"
+            app:destination="@id/characterDetailFragment" />
     </fragment>
 
     <fragment
@@ -70,16 +73,14 @@
     </fragment>
 
     <fragment
-        android:id="@+id/profileFragment"
-        android:name="com.onepiece.story.ui.ProfileFragment"
-        android:label="Pirate Profile"
-        tools:layout="@layout/fragment_profile" />
-
-    <fragment
         android:id="@+id/encyclopediaFragment"
         android:name="com.onepiece.story.ui.encyclopedia.EncyclopediaFragment"
         android:label="Encyclopedia"
-        tools:layout="@layout/fragment_encyclopedia" />
+        tools:layout="@layout/fragment_encyclopedia">
+        <action
+            android:id="@+id/action_encyclopediaFragment_to_characterDetailFragment"
+            app:destination="@id/characterDetailFragment" />
+    </fragment>
 
     <fragment
         android:id="@+id/versusFragment"
@@ -104,4 +105,52 @@
         android:name="com.onepiece.story.ui.crew.CrewBuilderFragment"
         android:label="Crew Builder"
         tools:layout="@layout/fragment_crew_builder" />
+
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="com.onepiece.story.ui.auth.LoginFragment"
+        android:label="Login"
+        tools:layout="@layout/fragment_login">
+        <action
+            android:id="@+id/action_loginFragment_to_registerFragment"
+            app:destination="@id/registerFragment" />
+        <action
+            android:id="@+id/action_loginFragment_to_homeFragment"
+            app:destination="@id/homeFragment"
+            app:popUpTo="@id/homeFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/registerFragment"
+        android:name="com.onepiece.story.ui.auth.RegisterFragment"
+        android:label="Register"
+        tools:layout="@layout/fragment_register">
+        <action
+            android:id="@+id/action_registerFragment_to_homeFragment"
+            app:destination="@id/homeFragment"
+            app:popUpTo="@id/homeFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/adminDashboardFragment"
+        android:name="com.onepiece.story.ui.admin.AdminDashboardFragment"
+        android:label="Admin Dashboard"
+        tools:layout="@layout/fragment_admin_dashboard" />
+
+    <fragment
+        android:id="@+id/profileFragment"
+        android:name="com.onepiece.story.ui.ProfileFragment"
+        android:label="Pirate Profile"
+        tools:layout="@layout/fragment_profile_premium">
+        <action
+            android:id="@+id/action_profileFragment_to_adminDashboardFragment"
+            app:destination="@id/adminDashboardFragment" />
+        <action
+            android:id="@+id/action_profileFragment_to_loginFragment"
+            app:destination="@id/loginFragment"
+            app:popUpTo="@id/homeFragment"
+            app:popUpToInclusive="false" />
+    </fragment>
 </navigation>

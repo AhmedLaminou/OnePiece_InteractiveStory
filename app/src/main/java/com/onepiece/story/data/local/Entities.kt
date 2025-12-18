@@ -11,15 +11,27 @@ import com.google.gson.reflect.TypeToken
 data class CharacterEntity(
     @PrimaryKey val id: String,
     val name: String,
+    val japaneseName: String? = null,
+    val alias: String? = null,
     val chapter: String?,
     val episode: String?,
     val year: Int?,
     val note: String?,
-    val powerLevel: Int = 0, // Default for now, will be calculated or updated
+    val powerLevel: Int = 0,
     val bounty: Long = 0,
     val devilFruit: String? = null,
-    val haki: String? = null, // JSON string
-    val imageUrl: String? = null
+    val haki: String? = null,
+    val imageUrl: String? = null,
+    val status: String? = "Alive",
+    val affiliation: String? = null,
+    val occupation: String? = null,
+    val origin: String? = null,
+    val age: String? = null,
+    val height: String? = null,
+    val bloodType: String? = null,
+    val birthday: String? = null,
+    val biography: String? = null,
+    val imageFolderPath: String? = null
 )
 
 @Entity(tableName = "chapters")
@@ -39,6 +51,25 @@ data class ArcEntity(
     val saga: String,
     val startChapter: Int,
     val endChapter: Int
+)
+
+@Entity(tableName = "favorites")
+data class FavoriteEntity(
+    @PrimaryKey val id: String,
+    val itemType: String, // "character", "arc", "devil_fruit"
+    val itemId: String,
+    val itemName: String,
+    val imageUrl: String? = null,
+    val addedAt: Long = System.currentTimeMillis()
+)
+
+@Entity(tableName = "haki_users")
+data class HakiUserEntity(
+    @PrimaryKey val id: String,
+    val characterName: String,
+    val hasObservation: Boolean = false,
+    val hasArmament: Boolean = false,
+    val hasConquerors: Boolean = false
 )
 
 class Converters {
