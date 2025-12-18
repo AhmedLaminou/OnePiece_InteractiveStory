@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginHorizontal="16dp"
+    android:layout_marginVertical="8dp"
+    android:clickable="true"
+    android:focusable="true"
+    android:foreground="?android:attr/selectableItemBackground"
+    app:cardBackgroundColor="@color/bg_secondary"
+    app:cardCornerRadius="16dp"
+    app:cardElevation="6dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="12dp">
+
+        <!-- Devil Fruit Icon/Image -->
+        <FrameLayout
+            android:layout_width="80dp"
+            android:layout_height="80dp">
+
+            <ImageView
+                android:id="@+id/fruit_image"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/bg_fruit_circle"
+                android:padding="12dp"
+                android:scaleType="centerInside"
+                android:src="@drawable/ic_profile" />
+
+            <!-- Type Badge -->
+            <TextView
+                android:id="@+id/type_badge"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom|center_horizontal"
+                android:background="@drawable/bg_df_type_paramecia"
+                android:paddingHorizontal="8dp"
+                android:paddingVertical="2dp"
+                android:text="Paramecia"
+                android:textColor="@android:color/white"
+                android:textSize="8sp"
+                android:textStyle="bold" />
+
+        </FrameLayout>
+
+        <!-- Fruit Info -->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <!-- Fruit Name -->
+            <TextView
+                android:id="@+id/fruit_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Gomu Gomu no Mi"
+                android:textColor="@color/text_primary"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+            <!-- English Name -->
+            <TextView
+                android:id="@+id/fruit_english_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:text="Rubber-Rubber Fruit"
+                android:textColor="@color/text_secondary"
+                android:textSize="12sp" />
+
+            <!-- Ability Description -->
+            <TextView
+                android:id="@+id/fruit_ability"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:ellipsize="end"
+                android:maxLines="2"
+                android:text="Grants the user a rubber body"
+                android:textColor="@color/text_secondary"
+                android:textSize="11sp" />
+
+            <!-- Current User -->
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/user_avatar"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:src="@drawable/ic_profile"
+                    app:civ_border_color="@color/op_gold_primary"
+                    app:civ_border_width="1dp" />
+
+                <TextView
+                    android:id="@+id/current_user"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="6dp"
+                    android:text="Monkey D. Luffy"
+                    android:textColor="@color/op_gold_primary"
+                    android:textSize="11sp"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <!-- Arrow -->
+        <ImageView
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_gravity="center_vertical"
+            android:src="@android:drawable/ic_media_play"
+            app:tint="@color/text_secondary" />
+
+    </LinearLayout>
+
+</com.google.android.material.card.MaterialCardView>

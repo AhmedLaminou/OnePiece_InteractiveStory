@@ -26,6 +26,7 @@ import com.onepiece.story.ui.adapters.FeaturedCharacterAdapter
 import com.onepiece.story.ui.adapters.HakiUserAdapter
 import com.onepiece.story.ui.adapters.SearchResultsAdapter
 import com.onepiece.story.ui.adapters.SlideAdapter
+import com.onepiece.story.ui.adapters.StoryCardAdapter
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.YouTubePlayer
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.AbstractYouTubePlayerListener
 
@@ -61,6 +62,14 @@ class HomeFragment : Fragment() {
             findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToProfileFragment())
         }
 
+        // Theme toggle button - dark/light mode
+        binding.btnThemeToggle.setOnClickListener {
+            com.onepiece.story.utils.ThemeManager.toggleTheme()
+            // Update icon based on theme
+            updateThemeToggleIcon()
+        }
+        updateThemeToggleIcon()
+
         binding.btnEncyclopedia.setOnClickListener {
             findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToEncyclopediaFragment())
         }
@@ -83,6 +92,24 @@ class HomeFragment : Fragment() {
 
         viewModel.arcs.observe(viewLifecycleOwner) { arcs ->
             adapter.submitList(arcs)
+        }
+
+        // Setup Popular Stories (Wattpad-style) - Using real Arc data from backend
+        val storiesAdapter = StoryCardAdapter { arc ->
+            // Navigate to arc detail with real arc data
+            val action = HomeFragmentDirections.actionHomeFragmentToArcDetailFragment(arc.id)
+            findNavController().navigate(action)
+        }
+        binding.storiesRecycler.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+        binding.storiesRecycler.adapter = storiesAdapter
+
+        // Use real arc data from backend - no fake data
+        viewModel.arcs.observe(viewLifecycleOwner) { arcs ->
+            storiesAdapter.submitList(arcs)
+        }
+
+        binding.seeAllStories.setOnClickListener {
+            findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToEncyclopediaFragment())
         }
 
         // Setup Featured Characters
@@ -178,6 +205,15 @@ class HomeFragment : Fragment() {
                 binding.searchEmptyState.visibility = View.GONE
                 binding.searchResultsRecycler.visibility = View.VISIBLE
             }
+        }
+    }
+
+    private fun updateThemeToggleIcon() {
+        val isDark = com.onepiece.story.utils.ThemeManager.isDarkMode()
+        if (isDark) {
+            binding.btnThemeToggle.setImageResource(R.drawable.ic_theme_toggle)
+        } else {
+            binding.btnThemeToggle.setImageResource(android.R.drawable.ic_menu_day)
         }
     }
 

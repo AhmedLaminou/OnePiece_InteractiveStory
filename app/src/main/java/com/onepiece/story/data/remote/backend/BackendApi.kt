@@ -94,4 +94,22 @@ class BackendApi(
             parameter("limit", limit)
         }.body()
     }
+
+    suspend fun getEpisodes(arcId: String? = null, limit: Int = 100, offset: Int = 0): List<EpisodeDto> {
+        return client.get("$baseUrl/episodes") {
+            if (!arcId.isNullOrBlank()) {
+                parameter("arc_id", arcId)
+            }
+            parameter("limit", limit)
+            parameter("offset", offset)
+        }.body()
+    }
+
+    suspend fun getArcEpisodes(arcId: String): List<EpisodeDto> {
+        return client.get("$baseUrl/arcs/$arcId/episodes").body()
+    }
+
+    suspend fun getArcChapters(arcId: String): List<ChapterDto> {
+        return client.get("$baseUrl/arcs/$arcId/chapters").body()
+    }
 }

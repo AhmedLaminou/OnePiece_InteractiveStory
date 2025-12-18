@@ -518,25 +518,119 @@ fun Application.configure() {
             dataSource.connection.use { conn ->
                 val sql = if (type.isNullOrBlank()) {
                     """
-                    SELECT id, name, japanese_name, english_name, meaning, type, description, abilities, image_url
-                    FROM devil_fruits
-                    ORDER BY name ASC
+                    SELECT df.id, df.name, df.japanese_name, df.english_name, df.meaning, df.type, 
+                           df.description, df.abilities, df.image_url,
+                           c.name as current_user_name, c.id as current_user_id
+                    FROM devil_fruits df
+                    LEFT JOIN characters c ON df.current_user_id = c.id
+                    ORDER BY df.name ASC
                     """.trimIndent()
                 } else {
                     """
-                    SELECT id, name, japanese_name, english_name, meaning, type, description, abilities, image_url
-                    FROM devil_fruits
-                    WHERE UPPER(type) = ?
-                    ORDER BY name ASC
+                    SELECT df.id, df.name, df.japanese_name, df.english_name, df.meaning, df.type, 
+                           df.description, df.abilities, df.image_url,
+                           c.name as current_user_name, c.id as current_user_id
+                    FROM devil_fruits df
+                    LEFT JOIN characters c ON df.current_user_id = c.id
+                    WHERE UPPER(df.type) LIKE ?
+                    ORDER BY df.name ASC
                     """.trimIndent()
                 }
 
                 conn.prepareStatement(sql).use { stmt ->
                     if (!type.isNullOrBlank()) {
-                        stmt.setString(1, type)
+                        stmt.setString(1, "%$type%")
                     }
                     val rs = stmt.executeQuery()
-                    call.respond(rs.toDevilFruitList())
+                    call.respond(rs.toDevilFruitListWithUser())
+                }
+            }
+        }
+
+        get("/episodes") {
+            val arcId = call.request.queryParameters["arc_id"]?.trim()
+            val limit = call.request.queryParameters["limit"]?.toIntOrNull()?.coerceIn(1, 2000) ?: 100
+            val offset = call.request.queryParameters["offset"]?.toIntOrNull()?.coerceAtLeast(0) ?: 0
+
+            dataSource.connection.use { conn ->
+                val sql = if (arcId.isNullOrBlank()) {
+                    """
+                    SELECT episode_number, title, japanese_title, arc_id, chapters_covered, 
+                           air_date, runtime_minutes, is_filler, rating, summary
+                    FROM episodes
+                    ORDER BY episode_number ASC
+                    LIMIT ? OFFSET ?
+                    """.trimIndent()
+                } else {
+                    """
+                    SELECT episode_number, title, japanese_title, arc_id, chapters_covered, 
+                           air_date, runtime_minutes, is_filler, rating, summary
+                    FROM episodes
+                    WHERE arc_id = ?
+                    ORDER BY episode_number ASC
+                    LIMIT ? OFFSET ?
+                    """.trimIndent()
+                }
+
+                conn.prepareStatement(sql).use { stmt ->
+                    if (arcId.isNullOrBlank()) {
+                        stmt.setInt(1, limit)
+                        stmt.setInt(2, offset)
+                    } else {
+                        stmt.setString(1, arcId)
+                        stmt.setInt(2, limit)
+                        stmt.setInt(3, offset)
+                    }
+                    val rs = stmt.executeQuery()
+                    call.respond(rs.toEpisodeList())
+                }
+            }
+        }
+
+        get("/arcs/{id}/episodes") {
+            val id = call.parameters["id"]
+            if (id.isNullOrBlank()) {
+                call.respond(HttpStatusCode.BadRequest, mapOf("error" to "Missing id"))
+                return@get
+            }
+
+            dataSource.connection.use { conn ->
+                conn.prepareStatement(
+                    """
+                    SELECT episode_number, title, japanese_title, arc_id, chapters_covered, 
+                           air_date, runtime_minutes, is_filler, rating, summary
+                    FROM episodes
+                    WHERE arc_id = ?
+                    ORDER BY episode_number ASC
+                    """.trimIndent()
+                ).use { stmt ->
+                    stmt.setString(1, id)
+                    val rs = stmt.executeQuery()
+                    call.respond(rs.toEpisodeList())
+                }
+            }
+        }
+
+        get("/arcs/{id}/chapters") {
+            val id = call.parameters["id"]
+            if (id.isNullOrBlank()) {
+                call.respond(HttpStatusCode.BadRequest, mapOf("error" to "Missing id"))
+                return@get
+            }
+
+            dataSource.connection.use { conn ->
+                conn.prepareStatement(
+                    """
+                    SELECT chapter_number, volume, title, romanized_title, viz_title, 
+                           pages, release_date, episodes, arc_id
+                    FROM chapters
+                    WHERE arc_id = ?
+                    ORDER BY chapter_number ASC
+                    """.trimIndent()
+                ).use { stmt ->
+                    stmt.setString(1, id)
+                    val rs = stmt.executeQuery()
+                    call.respond(rs.toChapterList())
                 }
             }
         }
@@ -851,6 +945,78 @@ private fun ResultSet.toTopBountyList(): List<TopBountyDto> {
     return out
 }
 
+@Serializable
+data class EpisodeDto(
+    val episodeNumber: Int,
+    val title: String? = null,
+    val japaneseTitle: String? = null,
+    val arcId: String? = null,
+    val chaptersCovered: String? = null,
+    val airDate: String? = null,
+    val runtimeMinutes: Int? = null,
+    val isFiller: Boolean = false,
+    val rating: Double? = null,
+    val summary: String? = null
+)
+
+@Serializable
+data class DevilFruitWithUserDto(
+    val id: String,
+    val name: String,
+    val japaneseName: String? = null,
+    val englishName: String? = null,
+    val meaning: String? = null,
+    val type: String? = null,
+    val description: String? = null,
+    val abilities: String? = null,
+    val imageUrl: String? = null,
+    val currentUserName: String? = null,
+    val currentUserId: String? = null
+)
+
+private fun ResultSet.toEpisodeList(): List<EpisodeDto> {
+    val out = mutableListOf<EpisodeDto>()
+    while (this.next()) {
+        out.add(
+            EpisodeDto(
+                episodeNumber = getInt("episode_number"),
+                title = getStringOrNull("title"),
+                japaneseTitle = getStringOrNull("japanese_title"),
+                arcId = getStringOrNull("arc_id"),
+                chaptersCovered = getStringOrNull("chapters_covered"),
+                airDate = getStringOrNull("air_date")?.toString(),
+                runtimeMinutes = getIntOrNull("runtime_minutes"),
+                isFiller = getBoolean("is_filler"),
+                rating = getDoubleOrNull("rating"),
+                summary = getStringOrNull("summary")
+            )
+        )
+    }
+    return out
+}
+
+private fun ResultSet.toDevilFruitListWithUser(): List<DevilFruitWithUserDto> {
+    val out = mutableListOf<DevilFruitWithUserDto>()
+    while (this.next()) {
+        out.add(
+            DevilFruitWithUserDto(
+                id = getString("id"),
+                name = getString("name"),
+                japaneseName = getStringOrNull("japanese_name"),
+                englishName = getStringOrNull("english_name"),
+                meaning = getStringOrNull("meaning"),
+                type = getStringOrNull("type"),
+                description = getStringOrNull("description"),
+                abilities = getStringOrNull("abilities"),
+                imageUrl = getStringOrNull("image_url"),
+                currentUserName = getStringOrNull("current_user_name"),
+                currentUserId = getStringOrNull("current_user_id")
+            )
+        )
+    }
+    return out
+}
+
 private fun ResultSet.getStringOrNull(column: String): String? {
     val v = getString(column)
     return if (wasNull() || v.isNullOrBlank()) null else v
@@ -863,5 +1029,10 @@ private fun ResultSet.getIntOrNull(column: String): Int? {
 
 private fun ResultSet.getLongOrNull(column: String): Long? {
     val v = getLong(column)
+    return if (wasNull()) null else v
+}
+
+private fun ResultSet.getDoubleOrNull(column: String): Double? {
+    val v = getDouble(column)
     return if (wasNull()) null else v
 }

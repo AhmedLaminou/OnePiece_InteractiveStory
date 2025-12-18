@@ -1,6 +1,10 @@
 <resources>
     <string name="app_name">One Piece Interactive Story</string>
     
+    <!-- Splash Screen -->
+    <string name="splash_quote">"I\'m gonna be King of the Pirates!"</string>
+    <string name="splash_subtitle">Interactive Storybook</string>
+    
     <!-- Navigation -->
     <string name="nav_home">Home</string>
     <string name="nav_encyclopedia">Encyclopedia</string>
@@ -87,6 +91,15 @@
     <string name="df_logia">Logia</string>
     <string name="df_mythical_zoan">Mythical Zoan</string>
     <string name="df_ancient_zoan">Ancient Zoan</string>
+    
+    <!-- Story Reader -->
+    <string name="lorem_ipsum">The sea stretched endlessly before him, a vast canvas of deep blue under the golden morning sun. Monkey D. Luffy stood at the edge of his small boat, his straw hat casting a shadow over his determined eyes.\n\nThis was it—the beginning of his grand adventure. The promise he made to Shanks all those years ago burned bright in his heart. He would become the King of the Pirates, no matter what stood in his way.\n\n"I'm gonna gather the best crew in the world," he declared to no one but the waves, "and find the One Piece!"</string>
+    <string name="continue_reading">Continue Reading</string>
+    <string name="reading_list">Your Reading List</string>
+    <string name="for_you">For You</string>
+    <string name="popular_stories">Popular Stories</string>
+    <string name="new_chapters">New Chapters</string>
+    <string name="read_now">READ NOW</string>
     
     <!-- Errors -->
     <string name="error_loading">Error loading data</string>

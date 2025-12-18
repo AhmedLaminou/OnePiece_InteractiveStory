@@ -34,6 +34,9 @@
         <action
             android:id="@+id/action_homeFragment_to_characterDetailFragment"
             app:destination="@id/characterDetailFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_storyReaderFragment"
+            app:destination="@id/storyReaderFragment" />
     </fragment>
 
     <fragment
@@ -152,5 +155,23 @@
             app:destination="@id/loginFragment"
             app:popUpTo="@id/homeFragment"
             app:popUpToInclusive="false" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/storyReaderFragment"
+        android:name="com.onepiece.story.ui.story.StoryReaderFragment"
+        android:label="Story Reader"
+        tools:layout="@layout/fragment_story_reader">
+        <argument
+            android:name="chapterId"
+            app:argType="string"
+            android:defaultValue="" />
+        <argument
+            android:name="arcId"
+            app:argType="string"
+            android:defaultValue="" />
+        <action
+            android:id="@+id/action_storyReaderFragment_to_characterDetailFragment"
+            app:destination="@id/characterDetailFragment" />
     </fragment>
 </navigation>

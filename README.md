@@ -9,6 +9,23 @@ A comprehensive, interactive Android application that immerses users in the worl
 - **Bottom Navigation** - All tabs working (Home, Encyclopedia, Bounties, etc.)
 - **Global Search** - Real-time search backed by MySQL dataset via Ktor backend
 - **Encyclopedia with Tabs** - Characters, Chapters, Arcs tabs with ViewPager2
+- **Wattpad-Style Home Screen** - Modern, immersive experience:
+  - Popular Stories horizontal carousel with book-cover cards
+  - Featured Characters carousel
+  - Top Bounties section
+  - Conqueror's Haki Users section
+  - Quick action cards for navigation
+- **Story Reader** - Wattpad-inspired chapter reader:
+  - Image carousel with parallax transitions
+  - Narrative text with smooth animations
+  - Characters in chapter section
+  - Chapter navigation (prev/next)
+- **Cinematic Arc Pages** - Immersive storytelling:
+  - Hero image carousel with indicators
+  - Stats (chapters, episodes, characters)
+  - Story summary with smooth animations
+  - Key characters carousel
+  - Quiz integration
 - **E-commerce Style Character Cards** - Grid layout with:
   - Character image (auto-loaded from assets)
   - Name, alias, affiliation
@@ -20,13 +37,23 @@ A comprehensive, interactive Android application that immerses users in the worl
   - Image carousel (swipe through all character images)
   - Radar chart for power stats
   - Profile info, biography, first appearance
+  - Episode appearances section
+  - Featured in arcs section
 - **Bounty/Wanted Posters Screen** - Complete redesign:
   - Grid of wanted poster cards sorted by bounty
   - Filter chips: All, Emperors, Supernovas, Ex-Warlords
   - Rank badges and formatted bounty amounts
-- **Devil Fruit Library** - Tabbed view for Paramecia, Zoan, Logia types
+- **Devil Fruit Library** - Enhanced encyclopedia:
+  - Tabbed view for Paramecia, Zoan, Logia types
+  - Card layout with fruit image, type badge
+  - Current user display with avatar
+  - Ability descriptions
 - **Favorites System** - Local persistence with Room database
-- **Animations** - Fall-down layout animations for card grids
+- **Smooth Animations** - Throughout the app:
+  - Fall-down layout animations for card grids
+  - Slide transitions for navigation
+  - Parallax effects on image carousels
+  - Zoom page transformers
 - **Straw Hat Jolly Roger App Icon** - Custom themed launcher icon
 - **MySQL-backed Dataset** - Canonical dataset with complete bounty and devil fruit data
 - **Character Images** - 40+ characters with organized image folders

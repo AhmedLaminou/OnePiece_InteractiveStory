@@ -25,8 +25,30 @@ Recommended order:
 
 The app uses a bottom navigation bar with the following tabs:
 
-- **Home**: Featured characters, top bounties, arcs, and global search
+- **Home**: Wattpad-style home with story carousels, featured characters, top bounties, and global search
 - **Encyclopedia**: Browse Characters / Chapters / Arcs (tabs) with e-commerce style cards
+
+## 2.1) Wattpad-Style Home Screen
+
+The home screen features a modern, immersive reading experience:
+
+- **Popular Stories**: Horizontal carousel of book-cover style story cards
+  - Each card shows arc title, chapter count, read count, and badges (HOT/NEW)
+  - Tap to open the Story Reader
+- **Featured Characters**: Horizontal carousel of character cards
+- **Top Bounties**: Characters with highest bounties
+- **Conqueror's Haki Users**: Special section for elite Haki users
+- **Quick Actions**: Cards for Encyclopedia, VS Battle, Bounties, Devil Fruits, My Crew
+
+## 2.2) Story Reader
+
+The Story Reader provides an immersive chapter reading experience:
+
+- **Image Carousel**: Swipe through chapter scenes with parallax effects
+- **Chapter Info**: Arc/saga label, chapter title, reading time, view count
+- **Narrative Text**: Story content with smooth fade-in animations
+- **Characters Section**: Characters appearing in the current chapter
+- **Navigation**: Previous/Next chapter buttons
 
 ## 3) Encyclopedia Features
 
@@ -61,6 +83,8 @@ When you tap a character card, you see:
 - Power stats radar chart
 - Biography
 - First appearance info (chapter/episode)
+- Episode appearances section (horizontal carousel of episodes featuring this character)
+- Featured in arcs section (horizontal carousel of arcs where this character appears)
 - Famous quote
 
 ## 6) Devil Fruit Library

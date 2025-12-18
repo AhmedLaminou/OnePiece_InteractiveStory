@@ -18,15 +18,22 @@
         android:theme="@style/Theme.OnePieceInteractiveStory"
         tools:targetApi="31">
         
+        <!-- Splash Screen - Launcher Activity -->
         <activity
-            android:name=".MainActivity"
+            android:name=".ui.SplashActivity"
             android:exported="true"
-            android:theme="@style/Theme.OnePieceInteractiveStory">
+            android:theme="@style/Theme.OnePieceInteractiveStory.Splash">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <!-- Main Activity -->
+        <activity
+            android:name=".MainActivity"
+            android:exported="false"
+            android:theme="@style/Theme.OnePieceInteractiveStory" />
     </application>
 
 </manifest>

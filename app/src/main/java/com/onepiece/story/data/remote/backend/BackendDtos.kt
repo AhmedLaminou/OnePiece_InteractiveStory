@@ -159,3 +159,32 @@ data class HakiUserDto(
     @SerialName("hasArmament") val hasArmament: Boolean,
     @SerialName("hasConquerors") val hasConquerors: Boolean
 )
+
+@Serializable
+data class EpisodeDto(
+    @SerialName("episodeNumber") val episodeNumber: Int,
+    val title: String? = null,
+    @SerialName("japaneseTitle") val japaneseTitle: String? = null,
+    @SerialName("arcId") val arcId: String? = null,
+    @SerialName("chaptersCovered") val chaptersCovered: String? = null,
+    @SerialName("airDate") val airDate: String? = null,
+    @SerialName("runtimeMinutes") val runtimeMinutes: Int? = null,
+    @SerialName("isFiller") val isFiller: Boolean = false,
+    val rating: Double? = null,
+    val summary: String? = null
+)
+
+@Serializable
+data class DevilFruitWithUserDto(
+    val id: String,
+    val name: String,
+    @SerialName("japaneseName") val japaneseName: String? = null,
+    @SerialName("englishName") val englishName: String? = null,
+    val meaning: String? = null,
+    val type: String? = null,
+    val description: String? = null,
+    val abilities: String? = null,
+    @SerialName("imageUrl") val imageUrl: String? = null,
+    @SerialName("currentUserName") val currentUserName: String? = null,
+    @SerialName("currentUserId") val currentUserId: String? = null
+)

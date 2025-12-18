@@ -4,7 +4,26 @@
         <item name="colorPrimary">@color/op_red_primary</item>
         <item name="colorSecondary">@color/op_gold_primary</item>
         <item name="android:statusBarColor">@color/bg_primary</item>
+        <item name="android:navigationBarColor">@color/bg_primary</item>
+        <item name="android:windowBackground">@color/bg_primary</item>
     </style>
 
     <style name="Theme.OnePieceInteractiveStory" parent="Base.Theme.OnePieceInteractiveStory" />
+
+    <!-- Splash Screen Theme -->
+    <style name="Theme.OnePieceInteractiveStory.Splash" parent="Theme.SplashScreen">
+        <item name="windowSplashScreenBackground">@color/bg_primary</item>
+        <item name="windowSplashScreenAnimatedIcon">@mipmap/ic_launcher</item>
+        <item name="windowSplashScreenAnimationDuration">1000</item>
+        <item name="postSplashScreenTheme">@style/Theme.OnePieceInteractiveStory</item>
+    </style>
+
+    <!-- Light Theme (for toggle) -->
+    <style name="Theme.OnePieceInteractiveStory.Light" parent="Theme.Material3.Light.NoActionBar">
+        <item name="colorPrimary">@color/op_red_primary</item>
+        <item name="colorSecondary">@color/op_gold_primary</item>
+        <item name="android:statusBarColor">@color/white</item>
+        <item name="android:navigationBarColor">@color/white</item>
+        <item name="android:windowBackground">@color/white</item>
+    </style>
 </resources>
