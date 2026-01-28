@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -82,8 +83,21 @@
 
     </com.google.android.material.appbar.AppBarLayout>
 
+    <!-- Reading Progress Bar -->
+    <ProgressBar
+        android:id="@+id/reading_progress"
+        style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="4dp"
+        android:layout_gravity="top"
+        android:elevation="10dp"
+        android:progress="0"
+        android:progressDrawable="@drawable/bg_stat_bar"
+        android:visibility="visible" />
+
     <!-- Scrollable Content -->
     <androidx.core.widget.NestedScrollView
+        android:id="@+id/story_scroll_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:fillViewport="true"
@@ -216,15 +230,17 @@
                 android:orientation="vertical"
                 android:paddingHorizontal="20dp">
 
-                <!-- Narration Text -->
+                <!-- Narration Text (Wattpad-style) -->
                 <TextView
                     android:id="@+id/story_content"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:lineSpacingExtra="8dp"
+                    android:fontFamily="serif"
+                    android:lineSpacingExtra="10dp"
+                    android:letterSpacing="0.02"
                     android:text="@string/lorem_ipsum"
                     android:textColor="@color/text_primary"
-                    android:textSize="16sp" />
+                    android:textSize="18sp" />
 
                 <!-- Inline Image Section -->
                 <FrameLayout
@@ -254,14 +270,16 @@
 
                 </FrameLayout>
 
-                <!-- Continue Narration -->
+                <!-- Continue Narration (Wattpad-style) -->
                 <TextView
                     android:id="@+id/story_content_continued"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:lineSpacingExtra="8dp"
+                    android:fontFamily="serif"
+                    android:lineSpacingExtra="10dp"
+                    android:letterSpacing="0.02"
                     android:textColor="@color/text_primary"
-                    android:textSize="16sp" />
+                    android:textSize="18sp" />
 
             </LinearLayout>
 

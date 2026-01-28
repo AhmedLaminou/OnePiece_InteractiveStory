@@ -37,6 +37,9 @@
         <action
             android:id="@+id/action_homeFragment_to_storyReaderFragment"
             app:destination="@id/storyReaderFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_chatFragment"
+            app:destination="@id/chatFragment" />
     </fragment>
 
     <fragment
@@ -155,6 +158,9 @@
             app:destination="@id/loginFragment"
             app:popUpTo="@id/homeFragment"
             app:popUpToInclusive="false" />
+        <action
+            android:id="@+id/action_profileFragment_to_crewBuilderFragment"
+            app:destination="@id/crewBuilderFragment" />
     </fragment>
 
     <fragment
@@ -174,4 +180,10 @@
             android:id="@+id/action_storyReaderFragment_to_characterDetailFragment"
             app:destination="@id/characterDetailFragment" />
     </fragment>
+
+    <fragment
+        android:id="@+id/chatFragment"
+        android:name="com.onepiece.story.ui.chat.ChatFragment"
+        android:label="Talk to Brook"
+        tools:layout="@layout/fragment_chat" />
 </navigation>

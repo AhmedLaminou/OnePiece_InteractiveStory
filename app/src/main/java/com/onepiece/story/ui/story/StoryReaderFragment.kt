@@ -17,13 +17,14 @@ import com.google.android.material.tabs.TabLayoutMediator
 import com.onepiece.story.R
 import com.onepiece.story.databinding.FragmentStoryReaderBinding
 import com.onepiece.story.ui.MainViewModel
-import com.onepiece.story.ui.adapters.FeaturedCharacterAdapter
+import com.onepiece.story.ui.adapters.CharacterAdapter
 
 class StoryReaderFragment : Fragment() {
 
     private var _binding: FragmentStoryReaderBinding? = null
     private val binding get() = _binding!!
     private val viewModel: MainViewModel by activityViewModels()
+    private val args: StoryReaderFragmentArgs by navArgs()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -39,55 +40,58 @@ class StoryReaderFragment : Fragment() {
         setupImageCarousel()
         setupCharactersRecycler()
         setupClickListeners()
-        loadStoryContent()
+        setupScrollListener()
+        observeChapter()
+        
+        // Load initial content
+        val chapterNum = args.chapterId.toIntOrNull() ?: 1
+        viewModel.loadChapterContent(chapterNum)
+    }
+
+    private fun setupScrollListener() {
+        binding.storyScrollView.setOnScrollChangeListener { v: View, scrollX: Int, scrollY: Int, oldScrollX: Int, oldScrollY: Int ->
+            val totalScrollHeight = binding.storyScrollView.getChildAt(0).height - binding.storyScrollView.height
+            if (totalScrollHeight > 0) {
+                val progress = (scrollY.toFloat() / totalScrollHeight.toFloat() * 100).toInt()
+                binding.readingProgress.progress = progress
+            }
+        }
+    }
+
+    private fun observeChapter() {
+        viewModel.selectedChapter.observe(viewLifecycleOwner) { chapter ->
+            if (chapter != null) {
+                binding.chapterTitle.text = chapter.name
+                binding.chapterNumber.text = "Chapter ${chapter.chapterNumber} • ${chapter.romanizedTitle}"
+                binding.storyContent.text = chapter.content ?: getString(R.string.lorem_ipsum)
+                
+                // Animate content fade in
+                val fadeIn = AnimationUtils.loadAnimation(context, android.R.anim.fade_in)
+                binding.storyContent.startAnimation(fadeIn)
+            }
+        }
     }
 
     private fun setupImageCarousel() {
         val carouselAdapter = StoryImageAdapter()
         binding.imageCarousel.adapter = carouselAdapter
 
-        // Sample images - in production, load from arc/chapter data
-        val sampleImages = listOf(
-            "Images/Characters/Monkey_D_Luffy",
-            "Images/Characters/Roronoa_Zoro",
-            "Images/Characters/Nami"
-        )
-
-        val imagePaths = mutableListOf<String>()
-        val assetManager = requireContext().assets
-
-        sampleImages.forEach { folder ->
-            try {
-                val files = assetManager.list(folder)
-                if (!files.isNullOrEmpty()) {
-                    imagePaths.add("$folder/${files[0]}")
-                }
-            } catch (e: Exception) {
-                // Skip if folder doesn't exist
+        viewModel.selectedArc.observe(viewLifecycleOwner) { arc ->
+            if (arc != null && arc.slides.isNotEmpty()) {
+                val images = arc.slides.map { it.imageUrl }
+                carouselAdapter.submitList(images)
             }
         }
 
-        carouselAdapter.submitList(imagePaths)
-
-        // Setup carousel indicators
-        TabLayoutMediator(binding.carouselIndicators, binding.imageCarousel) { _, _ ->
-            // Indicators are styled via drawable
-        }.attach()
-
-        // Add page change animation
+        TabLayoutMediator(binding.carouselIndicators, binding.imageCarousel) { _, _ -> }.attach()
         binding.imageCarousel.setPageTransformer(ZoomOutPageTransformer())
     }
 
     private fun setupCharactersRecycler() {
-        val characterAdapter = FeaturedCharacterAdapter { character ->
-            // Navigate to character detail
-            try {
-                val action = StoryReaderFragmentDirections
-                    .actionStoryReaderFragmentToCharacterDetailFragment(character.id)
-                findNavController().navigate(action)
-            } catch (e: Exception) {
-                // Navigation not set up yet
-            }
+        val characterAdapter = CharacterAdapter { character ->
+            val action = StoryReaderFragmentDirections
+                .actionStoryReaderFragmentToCharacterDetailFragment(character.id)
+            findNavController().navigate(action)
         }
 
         binding.charactersRecycler.apply {
@@ -95,9 +99,8 @@ class StoryReaderFragment : Fragment() {
             adapter = characterAdapter
         }
 
-        // Load featured characters for this chapter
-        viewModel.featuredCharacters.observe(viewLifecycleOwner) { characters ->
-            characterAdapter.submitList(characters.take(5))
+        viewModel.arcCharacters.observe(viewLifecycleOwner) { characters ->
+            characterAdapter.submitList(characters)
         }
     }
 
@@ -106,33 +109,18 @@ class StoryReaderFragment : Fragment() {
             findNavController().navigateUp()
         }
 
-        binding.btnShare.setOnClickListener {
-            // Share functionality
-        }
-
         binding.btnPrevChapter.setOnClickListener {
-            // Navigate to previous chapter
+            val current = args.chapterId.toIntOrNull() ?: 1
+            if (current > 1) {
+                viewModel.loadChapterContent(current - 1)
+                // Note: ideally update nav args or navigate again, but for now just load data
+            }
         }
 
         binding.btnNextChapter.setOnClickListener {
-            // Navigate to next chapter
+            val current = args.chapterId.toIntOrNull() ?: 1
+            viewModel.loadChapterContent(current + 1)
         }
-    }
-
-    private fun loadStoryContent() {
-        // Set sample story content
-        binding.arcLabel.text = "EAST BLUE SAGA"
-        binding.chapterTitle.text = "Romance Dawn"
-        binding.chapterNumber.text = "Chapter 1 • The Boy in the Barrel"
-        binding.readingTime.text = "8 min read"
-        binding.viewsCount.text = "2.5M reads"
-
-        // Story narration
-        binding.storyContent.text = getString(R.string.lorem_ipsum)
-
-        // Animate content
-        val fadeIn = AnimationUtils.loadAnimation(context, android.R.anim.fade_in)
-        binding.storyContent.startAnimation(fadeIn)
     }
 
     override fun onDestroyView() {

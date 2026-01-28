@@ -47,6 +47,17 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
     private val _allChapters = MutableLiveData<List<com.onepiece.story.data.local.ChapterEntity>>()
     val allChapters: LiveData<List<com.onepiece.story.data.local.ChapterEntity>> = _allChapters
 
+    fun loadChapterContent(chapterNumber: Int) {
+        viewModelScope.launch {
+            repository.getChapterContent(chapterNumber).collect {
+                _selectedChapter.value = it
+            }
+        }
+    }
+
+    private val _selectedChapter = MutableLiveData<com.onepiece.story.data.local.ChapterEntity?>()
+    val selectedChapter: LiveData<com.onepiece.story.data.local.ChapterEntity?> = _selectedChapter
+
     private val _searchResults = MutableLiveData<List<Character>>()
     val searchResults: LiveData<List<Character>> = _searchResults
 
@@ -217,5 +228,21 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
             repository.toggleFavorite(itemId, itemType, itemName, imageUrl)
             loadFavorites()
         }
+    }
+
+    fun getSwords(): LiveData<List<com.onepiece.story.data.model.Sword>> {
+        return repository.getSwords(50).asLiveData()
+    }
+
+    fun getShips(): LiveData<List<com.onepiece.story.data.model.Ship>> {
+        return repository.getShips(50).asLiveData()
+    }
+
+    fun getFactions(): LiveData<List<com.onepiece.story.data.model.Faction>> {
+        return repository.getFactions(50).asLiveData()
+    }
+
+    fun getBounties(): LiveData<List<com.onepiece.story.data.model.Bounty>> {
+        return repository.getBounties(50).asLiveData()
     }
 }

@@ -45,6 +45,8 @@ class EncyclopediaFragment : Fragment() {
                 0 -> "Characters"
                 1 -> "Chapters"
                 2 -> "Arcs"
+                3 -> "Swords"
+                4 -> "Ships"
                 else -> "Tab $position"
             }
         }.attach()

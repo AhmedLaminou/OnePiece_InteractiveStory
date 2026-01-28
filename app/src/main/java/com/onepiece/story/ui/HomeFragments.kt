@@ -35,6 +35,8 @@ class HomeFragment : Fragment() {
     private var _binding: FragmentHomePremiumBinding? = null
     private val binding get() = _binding!!
     private val viewModel: MainViewModel by activityViewModels()
+    private var autoScrollTimer: java.util.Timer? = null
+    private lateinit var searchAdapter: SearchResultsAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -57,6 +59,14 @@ class HomeFragment : Fragment() {
 
         binding.arcsRecyclerView.layoutManager = LinearLayoutManager(context)
         binding.arcsRecyclerView.adapter = adapter
+
+        // Setup Search Results Grid
+        searchAdapter = SearchResultsAdapter { character ->
+            val action = HomeFragmentDirections.actionHomeFragmentToCharacterDetailFragment(character.id)
+            findNavController().navigate(action)
+        }
+        binding.searchResultsRecycler.layoutManager = androidx.recyclerview.widget.GridLayoutManager(context, 2)
+        binding.searchResultsRecycler.adapter = searchAdapter
 
         binding.btnProfile.setOnClickListener {
             findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToProfileFragment())
@@ -90,30 +100,94 @@ class HomeFragment : Fragment() {
             findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToCrewBuilderFragment())
         }
 
-        viewModel.arcs.observe(viewLifecycleOwner) { arcs ->
-            adapter.submitList(arcs)
+        binding.btnAiChat.setOnClickListener {
+            findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToChatFragment())
         }
 
-        // Setup Popular Stories (Wattpad-style) - Using real Arc data from backend
-        val storiesAdapter = StoryCardAdapter { arc ->
-            // Navigate to arc detail with real arc data
+        // Setup Hero Banner
+        val heroAdapter = com.onepiece.story.ui.adapters.HeroAdapter { arc ->
+            val action = HomeFragmentDirections.actionHomeFragmentToArcDetailFragment(arc.id)
+            findNavController().navigate(action)
+        }
+        binding.heroPager.adapter = heroAdapter
+        com.google.android.material.tabs.TabLayoutMediator(binding.heroIndicator, binding.heroPager) { _, _ -> }.attach()
+
+        // Auto-scroll logic for Hero Banner
+        var currentPage = 0
+        autoScrollTimer?.cancel()
+        autoScrollTimer = java.util.Timer()
+        val update = Runnable {
+            _binding?.let {
+                if (currentPage >= heroAdapter.itemCount) {
+                    currentPage = 0
+                }
+                it.heroPager.setCurrentItem(currentPage++, true)
+            }
+        }
+        autoScrollTimer?.schedule(object : java.util.TimerTask() {
+            override fun run() {
+                activity?.runOnUiThread(update)
+            }
+        }, 3000, 5000)
+
+        // Setup Recommended Section
+        val recommendedAdapter = com.onepiece.story.ui.adapters.StoryAdapter { arc ->
+            val action = HomeFragmentDirections.actionHomeFragmentToArcDetailFragment(arc.id)
+            findNavController().navigate(action)
+        }
+        binding.recommendedRecycler.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+        binding.recommendedRecycler.adapter = recommendedAdapter
+
+        // Setup Popular Stories Section
+        val storiesAdapter = com.onepiece.story.ui.adapters.StoryAdapter { arc ->
             val action = HomeFragmentDirections.actionHomeFragmentToArcDetailFragment(arc.id)
             findNavController().navigate(action)
         }
         binding.storiesRecycler.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
         binding.storiesRecycler.adapter = storiesAdapter
 
-        // Use real arc data from backend - no fake data
+        // Setup Haki Users adapter
+        val hakiAdapter = com.onepiece.story.ui.adapters.CharacterAdapter { character ->
+             val action = HomeFragmentDirections.actionHomeFragmentToCharacterDetailFragment(character.id)
+             findNavController().navigate(action)
+        }
+        binding.conquerorsRecycler.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+        binding.conquerorsRecycler.adapter = hakiAdapter
+
         viewModel.arcs.observe(viewLifecycleOwner) { arcs ->
+            adapter.submitList(arcs)
+            heroAdapter.submitList(arcs.take(5))
+            recommendedAdapter.submitList(arcs.shuffled().take(5))
             storiesAdapter.submitList(arcs)
         }
+
+        // Setup Search and Filters
+        binding.searchInput.addTextChangedListener(object : android.text.TextWatcher {
+            override fun afterTextChanged(s: android.text.Editable?) {
+                val query = s?.toString() ?: ""
+                if (query.length >= 2) {
+                    viewModel.searchCharacters(query)
+                    binding.searchResultsContainer.visibility = View.VISIBLE
+                } else {
+                    viewModel.clearSearch()
+                    binding.searchResultsContainer.visibility = View.GONE
+                }
+            }
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
+        })
+
+        binding.chipAll.setOnClickListener { /* Filter logic in VM */ }
+        binding.chipCharacters.setOnClickListener { /* Filter logic in VM */ }
+        binding.chipArcs.setOnClickListener { /* Filter logic in VM */ }
+        binding.chipFruits.setOnClickListener { /* Filter logic in VM */ }
 
         binding.seeAllStories.setOnClickListener {
             findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToEncyclopediaFragment())
         }
 
         // Setup Featured Characters
-        val featuredAdapter = FeaturedCharacterAdapter { character ->
+        val featuredAdapter = CharacterAdapter { character ->
             val action = HomeFragmentDirections.actionHomeFragmentToCharacterDetailFragment(character.id)
             findNavController().navigate(action)
         }
@@ -122,10 +196,14 @@ class HomeFragment : Fragment() {
 
         viewModel.featuredCharacters.observe(viewLifecycleOwner) { characters ->
             featuredAdapter.submitList(characters)
+            
+            // Haki users (simple logic for now)
+            val topHaki = characters.filter { it.stats.haki > 80 }
+            hakiAdapter.submitList(topHaki)
         }
 
         // Setup Top Bounties
-        val bountiesAdapter = FeaturedCharacterAdapter { character ->
+        val bountiesAdapter = CharacterAdapter { character ->
             val action = HomeFragmentDirections.actionHomeFragmentToCharacterDetailFragment(character.id)
             findNavController().navigate(action)
         }
@@ -136,19 +214,6 @@ class HomeFragment : Fragment() {
             bountiesAdapter.submitList(characters)
         }
 
-        // Setup Conqueror's Haki Users
-        val hakiAdapter = HakiUserAdapter { hakiUser ->
-            // Try to find the character and navigate
-            viewModel.searchCharacters(hakiUser.characterName)
-        }
-        binding.conquerorsRecycler.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
-        binding.conquerorsRecycler.adapter = hakiAdapter
-
-        viewModel.conquerorUsers.observe(viewLifecycleOwner) { users ->
-            hakiAdapter.submitList(users)
-        }
-
-        // See All click handlers
         binding.seeAllCharacters.setOnClickListener {
             findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToEncyclopediaFragment())
         }
@@ -159,25 +224,6 @@ class HomeFragment : Fragment() {
 
         binding.seeAllBounties.setOnClickListener {
             findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToBountyFragment())
-        }
-
-        // Setup search results adapter
-        val searchAdapter = SearchResultsAdapter { character ->
-            val action = HomeFragmentDirections.actionHomeFragmentToCharacterDetailFragment(character.id)
-            findNavController().navigate(action)
-        }
-        binding.searchResultsRecycler.adapter = searchAdapter
-
-        // Setup search functionality
-        binding.searchInput.addTextChangedListener { text ->
-            val query = text?.toString() ?: ""
-            if (query.length >= 2) {
-                viewModel.searchCharacters(query)
-                binding.searchResultsContainer.visibility = View.VISIBLE
-            } else {
-                viewModel.clearSearch()
-                binding.searchResultsContainer.visibility = View.GONE
-            }
         }
 
         binding.searchInput.setOnEditorActionListener { _, actionId, _ ->
@@ -198,12 +244,15 @@ class HomeFragment : Fragment() {
             searchAdapter.submitList(results)
             binding.searchResultsTitle.text = "Search Results (${results.size})"
             
-            if (results.isEmpty() && binding.searchInput.text?.length ?: 0 >= 2) {
+            val hasQuery = binding.searchInput.text.isNotEmpty()
+            binding.searchResultsContainer.visibility = if (results.isNotEmpty() || hasQuery) View.VISIBLE else View.GONE
+            
+            if (results.isEmpty() && hasQuery && binding.searchInput.text.length >= 2) {
                 binding.searchEmptyState.visibility = View.VISIBLE
                 binding.searchResultsRecycler.visibility = View.GONE
             } else {
                 binding.searchEmptyState.visibility = View.GONE
-                binding.searchResultsRecycler.visibility = View.VISIBLE
+                binding.searchResultsRecycler.visibility = if (results.isNotEmpty()) View.VISIBLE else View.GONE
             }
         }
     }
@@ -218,6 +267,8 @@ class HomeFragment : Fragment() {
     }
 
     override fun onDestroyView() {
+        autoScrollTimer?.cancel()
+        autoScrollTimer = null
         super.onDestroyView()
         _binding = null
     }
@@ -300,8 +351,8 @@ class ArcDetailFragment : Fragment() {
     }
 
     override fun onDestroyView() {
+        _binding?.youtubePlayerView?.release()
         super.onDestroyView()
-        binding.youtubePlayerView.release()
         _binding = null
     }
 }

@@ -56,9 +56,40 @@ class ProfileFragment : Fragment() {
         }
 
         binding.btnLogout.setOnClickListener {
+            vibrate()
             viewModel.logout()
             findNavController().navigate(R.id.action_profileFragment_to_loginFragment)
         }
+
+        binding.btnEditAvatar.setOnClickListener {
+            vibrate()
+            android.widget.Toast.makeText(context, "Avatar editing coming soon!", android.widget.Toast.LENGTH_SHORT).show()
+        }
+
+        binding.editCrew.setOnClickListener {
+            vibrate()
+            findNavController().navigate(R.id.action_profileFragment_to_crewBuilderFragment)
+        }
+
+        binding.settingAbout.setOnClickListener {
+            vibrate()
+            android.widget.Toast.makeText(context, "One Piece Story v1.0.0-PRO", android.widget.Toast.LENGTH_SHORT).show()
+        }
+
+        binding.switchDarkMode.setOnCheckedChangeListener { _, isChecked ->
+            vibrate()
+            val mode = if (isChecked) com.onepiece.story.utils.ThemeManager.MODE_DARK 
+                      else com.onepiece.story.utils.ThemeManager.MODE_LIGHT
+            com.onepiece.story.utils.ThemeManager.setThemeMode(mode)
+        }
+
+        binding.settingNotifications.setOnClickListener {
+            binding.switchNotifications.toggle()
+        }
+    }
+
+    private fun vibrate() {
+        view?.performHapticFeedback(android.view.HapticFeedbackConstants.VIRTUAL_KEY)
     }
 
     override fun onDestroyView() {

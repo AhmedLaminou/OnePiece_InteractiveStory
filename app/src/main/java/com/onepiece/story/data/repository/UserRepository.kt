@@ -60,9 +60,10 @@ class UserRepository(context: Context) {
                 _userProfile.value = current.copy(xp = newXp, level = calculatedLevel)
                 
                 // Sync with Supabase
-                supabase.postgrest.from("users").update(
-                    mapOf("xp" to newXp, "level" to calculatedLevel)
-                ) {
+                supabase.postgrest.from("users").update({
+                    set("xp", newXp)
+                    set("level", calculatedLevel)
+                }) {
                     filter { eq("id", uid) }
                 }
             } catch (e: Exception) {
@@ -82,9 +83,9 @@ class UserRepository(context: Context) {
                 
                 try {
                     _userProfile.value = current.copy(unlockedBadges = newBadges)
-                    supabase.postgrest.from("users").update(
-                        mapOf("unlockedBadges" to newBadges)
-                    ) {
+                    supabase.postgrest.from("users").update({
+                        set("unlockedBadges", newBadges)
+                    }) {
                         filter { eq("id", uid) }
                     }
                 } catch (e: Exception) {
@@ -104,9 +105,9 @@ class UserRepository(context: Context) {
                  val newArcs = current.completedArcs + arcId
                  try {
                      _userProfile.value = current.copy(completedArcs = newArcs)
-                     supabase.postgrest.from("users").update(
-                        mapOf("completedArcs" to newArcs)
-                     ) {
+                     supabase.postgrest.from("users").update({
+                        set("completedArcs", newArcs)
+                     }) {
                         filter { eq("id", uid) }
                      }
                  } catch (e: Exception) {

@@ -165,6 +165,38 @@ object DataSeeder {
         humorLine = "Parenting Skills: 0/10. Would sacrifice son for a statue."
     )
 
+    val roger = Character(
+        id = "char_roger",
+        name = "Gol D. Roger",
+        imageUrl = "file:///android_asset/characters/Gol_D_Roger/gold_roger_4.png",
+        firstAppearanceArc = "Loguetown",
+        roleInArc = Role.YONKO,
+        biography = "The legendary King of the Pirates. He was the only man to conquer the Grand Line and find the One Piece. His execution sparked the Great Pirate Era.",
+        abilities = listOf("Divine Departure", "Conqueror's Haki", "Voice of All Things"),
+        devilFruit = null,
+        powerLevel = 1200,
+        yonkoComparison = 1.2,
+        stats = CharacterStats(speed = 98, durability = 100, combatIQ = 100, haki = 100, strength = 100, stamina = 100),
+        quotes = listOf("My treasure? If you want it, you can have it!", "A man's dream will never die!", "He laughed."),
+        funFacts = listOf("He was the first Pirate King.", "His biological son is Portgas D. Ace."),
+        humorLine = "The King himself. If Kaido is a wall, Roger is the entire mountain range."
+    )
+
+    val legendaryPirates = Arc(
+        id = "arc_legendary",
+        title = "Legendary Era",
+        saga = "Great Pirate Era",
+        summary = "Gol D. Roger, the Pirate King, whose death changed the world forever.",
+        slides = listOf(
+            StorySlide("file:///android_asset/characters/Gol_D_Roger/gold_roger_4.png", "The beginning of the Great Pirate Era.", "Wealth, Fame, Power"),
+            StorySlide("file:///android_asset/characters/Shanks/primary.jpg", "Shanks, the man who inherited the Hat.", "The New Era"),
+            StorySlide("file:///android_asset/characters/Edward_Newgate/primary.jpg", "Whitebeard, the strongest man in the world.", "The Great Pirate")
+        ),
+        characterIds = listOf("char_roger", "char_shanks"),
+        xpReward = 1000,
+        order = 0
+    )
+
     // ==========================================
     // ARCS - EAST BLUE SAGA
     // ==========================================
@@ -302,8 +334,8 @@ object DataSeeder {
     // AGGREGATION
     // ==========================================
 
-    val allCharacters = listOf(luffy, zoro, nami, usopp, sanji, shanks, buggy, alvida, morgan)
-    val allArcs = listOf(romanceDawn, orangeTown, syrupVillage, baratie)
+    val allCharacters = listOf(roger, luffy, zoro, nami, usopp, sanji, shanks, buggy, alvida, morgan)
+    val allArcs = listOf(legendaryPirates, romanceDawn, orangeTown, syrupVillage, baratie)
     val allQuizzes = listOf(quizRomanceDawn, quizOrangeTown)
 
     fun getCharacter(id: String): Character? = allCharacters.find { it.id == id }

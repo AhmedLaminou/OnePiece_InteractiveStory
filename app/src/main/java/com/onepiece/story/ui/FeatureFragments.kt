@@ -9,6 +9,8 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.navArgs
+import androidx.navigation.fragment.findNavController
+import android.view.animation.AnimationUtils
 import coil.load
 import com.github.mikephil.charting.components.XAxis
 import com.github.mikephil.charting.data.RadarData
@@ -210,95 +212,117 @@ class QuizFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        binding.quizToolbar.setNavigationOnClickListener { findNavController().navigateUp() }
+        
         viewModel.loadQuiz(args.quizId)
 
         viewModel.currentQuiz.observe(viewLifecycleOwner) { quiz ->
             if (quiz != null && quiz.questions.isNotEmpty()) {
-                showQuestion(quiz.questions[currentQuestionIndex])
+                binding.quizProgress.max = quiz.questions.size
+                showQuestion(quiz.questions[currentQuestionIndex], quiz.questions.size)
             }
         }
-    }
 
-    private fun showQuestion(question: com.onepiece.story.data.model.Question) {
-        binding.questionText.text = question.text
-        binding.feedbackText.text = ""
-        
-        val buttons = listOf(binding.option1, binding.option2, binding.option3, binding.option4)
-        
-        buttons.forEachIndexed { index, button ->
-            if (index < question.options.size) {
-                button.visibility = View.VISIBLE
-                button.text = question.options[index]
-                button.setOnClickListener {
-                    checkAnswer(index, question)
-                }
-                button.isEnabled = true
-                button.backgroundTintList = android.content.res.ColorStateList.valueOf(Color.parseColor("#333333"))
-            } else {
-                button.visibility = View.GONE
-            }
-        }
-    }
-
-    private fun checkAnswer(selectedIndex: Int, question: com.onepiece.story.data.model.Question) {
-        val buttons = listOf(binding.option1, binding.option2, binding.option3, binding.option4)
-        
-        if (selectedIndex == question.correctOptionIndex) {
-            score++
-            buttons[selectedIndex].backgroundTintList = android.content.res.ColorStateList.valueOf(Color.GREEN)
-            binding.feedbackText.text = "Correct! ${question.explanation}"
-            binding.feedbackText.setTextColor(Color.GREEN)
-        } else {
-            buttons[selectedIndex].backgroundTintList = android.content.res.ColorStateList.valueOf(Color.RED)
-            buttons[question.correctOptionIndex].backgroundTintList = android.content.res.ColorStateList.valueOf(Color.GREEN)
-            binding.feedbackText.text = "Wrong! ${question.explanation}"
-            binding.feedbackText.setTextColor(Color.RED)
-        }
-
-        // Disable all buttons
-        buttons.forEach { it.isEnabled = false }
-
-        // Next question delay (simulated)
-        binding.root.postDelayed({
+        binding.btnNextQuestion.setOnClickListener {
             currentQuestionIndex++
             viewModel.currentQuiz.value?.let { quiz ->
                 if (currentQuestionIndex < quiz.questions.size) {
-                    showQuestion(quiz.questions[currentQuestionIndex])
+                    showQuestion(quiz.questions[currentQuestionIndex], quiz.questions.size)
                 } else {
                     showResults()
                 }
             }
-        }, 2000)
+        }
+    }
+
+    private fun showQuestion(question: com.onepiece.story.data.model.Question, total: Int) {
+        binding.questionNumber.text = "QUESTION ${currentQuestionIndex + 1} OF $total"
+        binding.questionText.text = question.text
+        binding.quizProgress.progress = currentQuestionIndex + 1
+        binding.feedbackCard.visibility = View.GONE
+        binding.btnNextQuestion.visibility = View.GONE
+        
+        // Load question image if available
+        if (!question.imageUrl.isNullOrBlank()) {
+            binding.questionImage.visibility = View.VISIBLE
+            binding.questionImage.load(question.imageUrl)
+        } else {
+            binding.questionImage.visibility = View.GONE
+        }
+
+        binding.optionsContainer.removeAllViews()
+        
+        question.options.forEachIndexed { index, option ->
+            val optionBinding = com.onepiece.story.databinding.ItemQuizOptionBinding.inflate(
+                layoutInflater, binding.optionsContainer, false
+            )
+            optionBinding.optionText.text = option
+            optionBinding.root.setOnClickListener {
+                checkAnswer(index, question, optionBinding)
+            }
+            binding.optionsContainer.addView(optionBinding.root)
+        }
+    }
+
+    private fun checkAnswer(
+        selectedIndex: Int, 
+        question: com.onepiece.story.data.model.Question,
+        optionBinding: com.onepiece.story.databinding.ItemQuizOptionBinding
+    ) {
+        // Disable all options
+        for (i in 0 until binding.optionsContainer.childCount) {
+            binding.optionsContainer.getChildAt(i).isEnabled = false
+        }
+
+        val isCorrect = selectedIndex == question.correctOptionIndex
+        
+        if (isCorrect) {
+            score++
+            optionBinding.optionCard.setCardBackgroundColor(Color.parseColor("#4CAF50")) // Material Success
+            binding.feedbackTitle.text = "Correct!"
+            binding.feedbackCard.setCardBackgroundColor(Color.parseColor("#4CAF50"))
+        } else {
+            optionBinding.optionCard.setCardBackgroundColor(Color.parseColor("#F44336")) // Material Error
+            
+            // Highlight correct answer
+            val correctOptionView = binding.optionsContainer.getChildAt(question.correctOptionIndex)
+            val correctBinding = com.onepiece.story.databinding.ItemQuizOptionBinding.bind(correctOptionView)
+            correctBinding.optionCard.setCardBackgroundColor(Color.parseColor("#4CAF50"))
+            
+            binding.feedbackTitle.text = "Incorrect"
+            binding.feedbackCard.setCardBackgroundColor(Color.parseColor("#F44336"))
+        }
+
+        binding.feedbackText.text = question.explanation
+        binding.feedbackCard.visibility = View.VISIBLE
+        binding.btnNextQuestion.visibility = View.VISIBLE
+        
+        // Animate feedback card
+        val slideUp = AnimationUtils.loadAnimation(context, android.R.anim.slide_in_left)
+        binding.feedbackCard.startAnimation(slideUp)
     }
 
     private fun showResults() {
-        binding.questionText.text = "Quiz Completed!"
-        binding.optionsContainer.visibility = View.GONE
-        
         val totalQuestions = viewModel.currentQuiz.value?.questions?.size ?: 1
-        val percentage = score.toFloat() / totalQuestions
+        val xpEarned = score * 25 // Boosted XP reward
         
-        binding.feedbackText.text = "Score: $score / $totalQuestions"
-        binding.feedbackText.textSize = 32f
-        binding.feedbackText.setTextColor(Color.YELLOW)
-
-        // Award XP
-        val xpEarned = score * 20 // 20 XP per correct answer
         viewModel.addXp(xpEarned)
         
         // Unlock Badge if perfect score
-        if (percentage == 1.0f) {
+        if (score == totalQuestions) {
             val badgeId = "${viewModel.currentQuiz.value?.arcId}_master"
             viewModel.unlockBadge(badgeId)
-            Toast.makeText(context, "Perfect Score! Badge Unlocked!", Toast.LENGTH_LONG).show()
         }
-        
-        // Mark Arc as complete if passed (>50%)
-        if (percentage >= 0.5f) {
-             viewModel.currentQuiz.value?.arcId?.let { viewModel.completeArc(it) }
+
+        val brookCommentary = when {
+            score == totalQuestions -> "Yohohoho! A perfect score! You have the memory of a giant... although I don't have a brain to remember with! SKULL JOKE!"
+            score > totalQuestions / 2 -> "Splendid performance! That knowledge is music to my ears... if I had ears! Yohohoho!"
+            else -> "Don't be discouraged, young navigator! Every flat note is just a step towards a beautiful symphony! Yohohoho!"
         }
-        
-        Toast.makeText(context, "You earned $xpEarned XP!", Toast.LENGTH_SHORT).show()
+
+        // Show a custom success dialog or navigate to a specialized results screen
+        Toast.makeText(context, "$brookCommentary\n\nScore: $score/$totalQuestions. Earned $xpEarned XP!", Toast.LENGTH_LONG).show()
+        findNavController().navigateUp()
     }
 
     override fun onDestroyView() {

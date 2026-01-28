@@ -1,0 +1,451 @@
+{
+  "Arlong": {
+    "primary": "/images/characters/Arlong/arlong_1.webp",
+    "all": [
+      "/images/characters/Arlong/arlong_1.webp",
+      "/images/characters/Arlong/arlong_2.jpg"
+    ]
+  },
+  "Bartholomew_Kuma": {
+    "primary": "/images/characters/Bartholomew_Kuma/bthk_1.jpg",
+    "all": [
+      "/images/characters/Bartholomew_Kuma/bthk_1.jpg",
+      "/images/characters/Bartholomew_Kuma/bthk_2.webp",
+      "/images/characters/Bartholomew_Kuma/bthk_3.jpg",
+      "/images/characters/Bartholomew_Kuma/bthk_4.jpg",
+      "/images/characters/Bartholomew_Kuma/bthk_5.jpg"
+    ]
+  },
+  "Basil_Hawkins": {
+    "primary": "/images/characters/Basil_Hawkins/basil_hawkins.jpg",
+    "all": [
+      "/images/characters/Basil_Hawkins/basil_hawkins.jpg",
+      "/images/characters/Basil_Hawkins/basil_hawkins_2.jpg"
+    ]
+  },
+  "Boa_Hancock": {
+    "primary": "/images/characters/Boa_Hancock/bhck_1.jpg",
+    "all": [
+      "/images/characters/Boa_Hancock/bhck_1.jpg",
+      "/images/characters/Boa_Hancock/bhck_2.jpg",
+      "/images/characters/Boa_Hancock/bhck_3.jpg",
+      "/images/characters/Boa_Hancock/bhck_4.webp",
+      "/images/characters/Boa_Hancock/bhck_5.webp"
+    ]
+  },
+  "Borsalino": {
+    "primary": "/images/characters/Borsalino/kz_1.webp",
+    "all": [
+      "/images/characters/Borsalino/kz_1.webp",
+      "/images/characters/Borsalino/kz_2.jpg",
+      "/images/characters/Borsalino/kz_3.jpg",
+      "/images/characters/Borsalino/kz_4.webp"
+    ]
+  },
+  "Brook": {
+    "primary": "/images/characters/Brook/bk_1.jpg",
+    "all": [
+      "/images/characters/Brook/bk_1.jpg",
+      "/images/characters/Brook/bk_2.jpg",
+      "/images/characters/Brook/bk_3.avif",
+      "/images/characters/Brook/bk_4.webp",
+      "/images/characters/Brook/bk_5.webp"
+    ]
+  },
+  "Buggy": {
+    "primary": "/images/characters/Buggy/bgc_1.jpg",
+    "all": [
+      "/images/characters/Buggy/bgc_1.jpg",
+      "/images/characters/Buggy/bgc_2.jpg",
+      "/images/characters/Buggy/bgc_3.jpg",
+      "/images/characters/Buggy/bgc_4.jpg",
+      "/images/characters/Buggy/bgc_5.jpg"
+    ]
+  },
+  "Charlotte_Katakuri": {
+    "primary": "/images/characters/Charlotte_Katakuri/katakuri_1.avif",
+    "all": [
+      "/images/characters/Charlotte_Katakuri/katakuri_1.avif",
+      "/images/characters/Charlotte_Katakuri/katakuri_2.jpg",
+      "/images/characters/Charlotte_Katakuri/katakuri_3.webp"
+    ]
+  },
+  "Charlotte_Linlin": {
+    "primary": "/images/characters/Charlotte_Linlin/bg_1.webp",
+    "all": [
+      "/images/characters/Charlotte_Linlin/bg_1.webp",
+      "/images/characters/Charlotte_Linlin/bg_2.jpg",
+      "/images/characters/Charlotte_Linlin/bg_3.jpg",
+      "/images/characters/Charlotte_Linlin/bg_4.jpg",
+      "/images/characters/Charlotte_Linlin/bg_5.jpg"
+    ]
+  },
+  "Crocodile": {
+    "primary": "/images/characters/Crocodile/crc_1.jpg",
+    "all": [
+      "/images/characters/Crocodile/crc_1.jpg",
+      "/images/characters/Crocodile/crc_2.webp",
+      "/images/characters/Crocodile/crc_3.jpg",
+      "/images/characters/Crocodile/crc_4.jpg",
+      "/images/characters/Crocodile/crc_5.avif"
+    ]
+  },
+  "Donquixote_Doflamingo": {
+    "primary": "/images/characters/Donquixote_Doflamingo/dfg_1.webp",
+    "all": [
+      "/images/characters/Donquixote_Doflamingo/dfg_1.webp",
+      "/images/characters/Donquixote_Doflamingo/dfg_2.jpg",
+      "/images/characters/Donquixote_Doflamingo/dfg_3.jpg",
+      "/images/characters/Donquixote_Doflamingo/dfg_4.webp",
+      "/images/characters/Donquixote_Doflamingo/dfg_5.jpg"
+    ]
+  },
+  "Dracule_Mihawk": {
+    "primary": "/images/characters/Dracule_Mihawk/mhk_1.jpg",
+    "all": [
+      "/images/characters/Dracule_Mihawk/mhk_1.jpg",
+      "/images/characters/Dracule_Mihawk/mhk_2.avif",
+      "/images/characters/Dracule_Mihawk/mhk_3.jpg",
+      "/images/characters/Dracule_Mihawk/mhk_4.webp",
+      "/images/characters/Dracule_Mihawk/mhk_5.jpg"
+    ]
+  },
+  "Edward_Newgate": {
+    "primary": "/images/characters/Edward_Newgate/wb_1.jpg",
+    "all": [
+      "/images/characters/Edward_Newgate/wb_1.jpg",
+      "/images/characters/Edward_Newgate/wb_2.jpg",
+      "/images/characters/Edward_Newgate/wb_3.jpg",
+      "/images/characters/Edward_Newgate/wb_4.jpg",
+      "/images/characters/Edward_Newgate/wb_5.jpg"
+    ]
+  },
+  "Eustass_Kid": {
+    "primary": "/images/characters/Eustass_Kid/eustass_kid_1.webp",
+    "all": [
+      "/images/characters/Eustass_Kid/eustass_kid_1.webp",
+      "/images/characters/Eustass_Kid/eustass_kid_2.jpg"
+    ]
+  },
+  "Franky": {
+    "primary": "/images/characters/Franky/fk_1.webp",
+    "all": [
+      "/images/characters/Franky/fk_1.webp",
+      "/images/characters/Franky/fk_2.jpg",
+      "/images/characters/Franky/fk_3.jpg",
+      "/images/characters/Franky/fk_4.jpg",
+      "/images/characters/Franky/fk_5.jpg"
+    ]
+  },
+  "Gecko_Moria": {
+    "primary": "/images/characters/Gecko_Moria/gkm_1.jpg",
+    "all": [
+      "/images/characters/Gecko_Moria/gkm_1.jpg",
+      "/images/characters/Gecko_Moria/gkm_2.jpg",
+      "/images/characters/Gecko_Moria/gkm_3.jpg",
+      "/images/characters/Gecko_Moria/gkm_4.jpg",
+      "/images/characters/Gecko_Moria/gkm_5.jpg"
+    ]
+  },
+  "Gol_D_Roger": {
+    "primary": "/images/characters/Gol_D_Roger/gold_roger_1.jpg",
+    "all": [
+      "/images/characters/Gol_D_Roger/gold_roger_1.jpg",
+      "/images/characters/Gol_D_Roger/gold_roger_2.jpg",
+      "/images/characters/Gol_D_Roger/gold_roger_3.webp",
+      "/images/characters/Gol_D_Roger/gold_roger_4.png",
+      "/images/characters/Gol_D_Roger/gold_roger_5.jpg"
+    ]
+  },
+  "Issho": {
+    "primary": "/images/characters/Issho/fj_1.jpg",
+    "all": [
+      "/images/characters/Issho/fj_1.jpg",
+      "/images/characters/Issho/fj_2.webp",
+      "/images/characters/Issho/fj_3.jpg",
+      "/images/characters/Issho/fj_4.webp",
+      "/images/characters/Issho/fj_5.jpg"
+    ]
+  },
+  "Jewelry_Bonney": {
+    "primary": "/images/characters/Jewelry_Bonney/jewelry_bonney.webp",
+    "all": [
+      "/images/characters/Jewelry_Bonney/jewelry_bonney.webp",
+      "/images/characters/Jewelry_Bonney/jewelry_bonney_2.avif"
+    ]
+  },
+  "Jinbe": {
+    "primary": "/images/characters/Jinbe/jb_1.jpg",
+    "all": [
+      "/images/characters/Jinbe/jb_1.jpg",
+      "/images/characters/Jinbe/jb_2.jpg",
+      "/images/characters/Jinbe/jb_3.jpg",
+      "/images/characters/Jinbe/jb_4.jpg",
+      "/images/characters/Jinbe/jb_5.jpg"
+    ]
+  },
+  "Kaidou": {
+    "primary": "/images/characters/Kaidou/kd_1.jpg",
+    "all": [
+      "/images/characters/Kaidou/kd_1.jpg",
+      "/images/characters/Kaidou/kd_2.jpg",
+      "/images/characters/Kaidou/kd_3.webp",
+      "/images/characters/Kaidou/kd_4.jpg",
+      "/images/characters/Kaidou/kd_5.jpg"
+    ]
+  },
+  "Kaku": {
+    "primary": "/images/characters/Kaku/kaku_1.jpg",
+    "all": [
+      "/images/characters/Kaku/kaku_1.jpg",
+      "/images/characters/Kaku/kaku_2.jpg"
+    ]
+  },
+  "Kaya": {
+    "primary": "/images/characters/Kaya/kaya_1.webp",
+    "all": [
+      "/images/characters/Kaya/kaya_1.webp",
+      "/images/characters/Kaya/kaya_2.avif"
+    ]
+  },
+  "Koby": {
+    "primary": "/images/characters/Koby/koby_1.avif",
+    "all": [
+      "/images/characters/Koby/koby_1.avif",
+      "/images/characters/Koby/koby_2.webp",
+      "/images/characters/Koby/koby_3.avif"
+    ]
+  },
+  "Kozuki_Oden": {
+    "primary": "/images/characters/Kozuki_Oden/oden_1.avif",
+    "all": [
+      "/images/characters/Kozuki_Oden/oden_1.avif",
+      "/images/characters/Kozuki_Oden/oden_2.jpg",
+      "/images/characters/Kozuki_Oden/oden_3.webp",
+      "/images/characters/Kozuki_Oden/oden_4.avif",
+      "/images/characters/Kozuki_Oden/oden_5.webp"
+    ]
+  },
+  "Kuro": {
+    "primary": "/images/characters/Kuro/kuro_1.webp",
+    "all": [
+      "/images/characters/Kuro/kuro_1.webp",
+      "/images/characters/Kuro/kuro_2.jpg"
+    ]
+  },
+  "Kuzan": {
+    "primary": "/images/characters/Kuzan/aok_1.jpg",
+    "all": [
+      "/images/characters/Kuzan/aok_1.jpg",
+      "/images/characters/Kuzan/aok_2.jpg",
+      "/images/characters/Kuzan/aok_3.jpg",
+      "/images/characters/Kuzan/aok_4.jpg",
+      "/images/characters/Kuzan/aok_5.jpeg"
+    ]
+  },
+  "Marshall_D_Teach": {
+    "primary": "/images/characters/Marshall_D_Teach/bb_1.jpg",
+    "all": [
+      "/images/characters/Marshall_D_Teach/bb_1.jpg",
+      "/images/characters/Marshall_D_Teach/bb_2.jpg",
+      "/images/characters/Marshall_D_Teach/bb_3.jpg",
+      "/images/characters/Marshall_D_Teach/bb_4.jpg",
+      "/images/characters/Marshall_D_Teach/bb_5.jpg"
+    ]
+  },
+  "Monkey_D_Dragon": {
+    "primary": "/images/characters/Monkey_D_Dragon/dg_1.jpg",
+    "all": [
+      "/images/characters/Monkey_D_Dragon/dg_1.jpg",
+      "/images/characters/Monkey_D_Dragon/dg_2.jpg",
+      "/images/characters/Monkey_D_Dragon/dg_3.jpg",
+      "/images/characters/Monkey_D_Dragon/dg_4.webp",
+      "/images/characters/Monkey_D_Dragon/dg_5.avif"
+    ]
+  },
+  "Monkey_D_Garp": {
+    "primary": "/images/characters/Monkey_D_Garp/gp_1.webp",
+    "all": [
+      "/images/characters/Monkey_D_Garp/gp_1.webp",
+      "/images/characters/Monkey_D_Garp/gp_2.webp",
+      "/images/characters/Monkey_D_Garp/gp_3.jpg",
+      "/images/characters/Monkey_D_Garp/gp_4.jpg",
+      "/images/characters/Monkey_D_Garp/gp_5.jpg"
+    ]
+  },
+  "Monkey_D_Luffy": {
+    "primary": "/images/characters/Monkey_D_Luffy/lf_1.avif",
+    "all": [
+      "/images/characters/Monkey_D_Luffy/lf_1.avif",
+      "/images/characters/Monkey_D_Luffy/lf_2.jpg",
+      "/images/characters/Monkey_D_Luffy/lf_3.jpg",
+      "/images/characters/Monkey_D_Luffy/lf_4.jpg",
+      "/images/characters/Monkey_D_Luffy/lf_5.jpg"
+    ]
+  },
+  "Nami": {
+    "primary": "/images/characters/Nami/nm_1.webp",
+    "all": [
+      "/images/characters/Nami/nm_1.webp",
+      "/images/characters/Nami/nm_2.jpg",
+      "/images/characters/Nami/nm_3.jpg",
+      "/images/characters/Nami/nm_4.jpg",
+      "/images/characters/Nami/nm_5.webp"
+    ]
+  },
+  "Nico_Robin": {
+    "primary": "/images/characters/Nico_Robin/rb_1.avif",
+    "all": [
+      "/images/characters/Nico_Robin/rb_1.avif",
+      "/images/characters/Nico_Robin/rb_2.webp",
+      "/images/characters/Nico_Robin/rb_3.jpg",
+      "/images/characters/Nico_Robin/rb_4.webp",
+      "/images/characters/Nico_Robin/rb_5.webp"
+    ]
+  },
+  "Portgas_D_Ace": {
+    "primary": "/images/characters/Portgas_D_Ace/ace_1.jpg",
+    "all": [
+      "/images/characters/Portgas_D_Ace/ace_1.jpg",
+      "/images/characters/Portgas_D_Ace/ace_2.jpg",
+      "/images/characters/Portgas_D_Ace/ace_3.jpg",
+      "/images/characters/Portgas_D_Ace/ace_4.jpg",
+      "/images/characters/Portgas_D_Ace/ace_5.jpg"
+    ]
+  },
+  "Rob_Lucci": {
+    "primary": "/images/characters/Rob_Lucci/rob_lucci_1.webp",
+    "all": [
+      "/images/characters/Rob_Lucci/rob_lucci_1.webp",
+      "/images/characters/Rob_Lucci/rob_lucci_2.webp"
+    ]
+  },
+  "Roronoa_Zoro": {
+    "primary": "/images/characters/Roronoa_Zoro/zr_1.jpg",
+    "all": [
+      "/images/characters/Roronoa_Zoro/zr_1.jpg",
+      "/images/characters/Roronoa_Zoro/zr_2.jpg",
+      "/images/characters/Roronoa_Zoro/zr_3.jpg",
+      "/images/characters/Roronoa_Zoro/zr_4.jpg",
+      "/images/characters/Roronoa_Zoro/zr_5.jpg"
+    ]
+  },
+  "Sabo": {
+    "primary": "/images/characters/Sabo/sabo_1.jpg",
+    "all": [
+      "/images/characters/Sabo/sabo_1.jpg",
+      "/images/characters/Sabo/sabo_2.jpg",
+      "/images/characters/Sabo/sabo_3.jpg",
+      "/images/characters/Sabo/sabo_4.jpg",
+      "/images/characters/Sabo/sabo_5.jpg"
+    ]
+  },
+  "Sakazuki": {
+    "primary": "/images/characters/Sakazuki/ak_1.webp",
+    "all": [
+      "/images/characters/Sakazuki/ak_1.webp",
+      "/images/characters/Sakazuki/ak_2.webp",
+      "/images/characters/Sakazuki/ak_3.webp",
+      "/images/characters/Sakazuki/ak_4.avif",
+      "/images/characters/Sakazuki/ak_5.jpg"
+    ]
+  },
+  "Sanji": {
+    "primary": "/images/characters/Sanji/sj_1.jpg",
+    "all": [
+      "/images/characters/Sanji/sj_1.jpg",
+      "/images/characters/Sanji/sj_2.jpg",
+      "/images/characters/Sanji/sj_3.jpg",
+      "/images/characters/Sanji/sj_4.jpg",
+      "/images/characters/Sanji/sj_5.jpg"
+    ]
+  },
+  "Scratchmen_Apoo": {
+    "primary": "/images/characters/Scratchmen_Apoo/apu_1.webp",
+    "all": [
+      "/images/characters/Scratchmen_Apoo/apu_1.webp",
+      "/images/characters/Scratchmen_Apoo/apu_2.webp"
+    ]
+  },
+  "Shanks": {
+    "primary": "/images/characters/Shanks/shk_1.jpg",
+    "all": [
+      "/images/characters/Shanks/shk_1.jpg",
+      "/images/characters/Shanks/shk_2.jpg",
+      "/images/characters/Shanks/shk_3.jpg",
+      "/images/characters/Shanks/shk_4.jpg",
+      "/images/characters/Shanks/shk_5.jpg"
+    ]
+  },
+  "Silvers_Rayleigh": {
+    "primary": "/images/characters/Silvers_Rayleigh/rayleigh_1.jpg",
+    "all": [
+      "/images/characters/Silvers_Rayleigh/rayleigh_1.jpg",
+      "/images/characters/Silvers_Rayleigh/rayleigh_2.jpg",
+      "/images/characters/Silvers_Rayleigh/rayleigh_3.webp",
+      "/images/characters/Silvers_Rayleigh/rayleigh_4.jpg",
+      "/images/characters/Silvers_Rayleigh/rayleigh_5.png"
+    ]
+  },
+  "Tony_Tony_Chopper": {
+    "primary": "/images/characters/Tony_Tony_Chopper/cp_1.jpg",
+    "all": [
+      "/images/characters/Tony_Tony_Chopper/cp_1.jpg",
+      "/images/characters/Tony_Tony_Chopper/cp_2.jpg",
+      "/images/characters/Tony_Tony_Chopper/cp_3.jpg",
+      "/images/characters/Tony_Tony_Chopper/cp_4.jpg",
+      "/images/characters/Tony_Tony_Chopper/cp_5.webp"
+    ]
+  },
+  "Trafalgar_Law": {
+    "primary": "/images/characters/Trafalgar_Law/tfg_1.avif",
+    "all": [
+      "/images/characters/Trafalgar_Law/tfg_1.avif",
+      "/images/characters/Trafalgar_Law/tfg_2.webp",
+      "/images/characters/Trafalgar_Law/tfg_3.jpg",
+      "/images/characters/Trafalgar_Law/tfg_4.jpg",
+      "/images/characters/Trafalgar_Law/tfg_5.jpg"
+    ]
+  },
+  "Urouge": {
+    "primary": "/images/characters/Urouge/urouge_1.jpg",
+    "all": [
+      "/images/characters/Urouge/urouge_1.jpg",
+      "/images/characters/Urouge/urouge_2.jpg"
+    ]
+  },
+  "Usopp": {
+    "primary": "/images/characters/Usopp/us_1.jpg",
+    "all": [
+      "/images/characters/Usopp/us_1.jpg",
+      "/images/characters/Usopp/us_2.jpg",
+      "/images/characters/Usopp/us_3.webp",
+      "/images/characters/Usopp/us_4.jpg",
+      "/images/characters/Usopp/us_5.jpg"
+    ]
+  },
+  "Vegapunk": {
+    "primary": "/images/characters/Vegapunk/vegapunk_1.webp",
+    "all": [
+      "/images/characters/Vegapunk/vegapunk_1.webp",
+      "/images/characters/Vegapunk/vegapunk_2.jpg",
+      "/images/characters/Vegapunk/vegapunk_3.jpg",
+      "/images/characters/Vegapunk/vegapunk_4.jpg",
+      "/images/characters/Vegapunk/vegapunk_5.jpg"
+    ]
+  },
+  "Yasopp": {
+    "primary": "/images/characters/Yasopp/yassop_1.webp",
+    "all": [
+      "/images/characters/Yasopp/yassop_1.webp",
+      "/images/characters/Yasopp/yassop_2.jpg"
+    ]
+  },
+  "Zeff": {
+    "primary": "/images/characters/Zeff/zeff_1.jpg",
+    "all": [
+      "/images/characters/Zeff/zeff_1.jpg",
+      "/images/characters/Zeff/zeff_2.webp"
+    ]
+  }
+}

@@ -5,18 +5,17 @@ import com.onepiece.story.data.DataSeeder
 import com.onepiece.story.data.local.AppDatabase
 import com.onepiece.story.data.local.DevilFruitEntity
 import com.onepiece.story.data.local.DevilFruitType
-import com.onepiece.story.data.model.Arc
-import com.onepiece.story.data.model.Character
-import com.onepiece.story.data.model.DevilFruit
-import com.onepiece.story.data.model.Quiz
-import com.onepiece.story.data.model.CharacterStats
+import com.onepiece.story.data.model.*
 import com.onepiece.story.data.remote.SupabaseManager
-import com.onepiece.story.data.remote.backend.BackendApi
-import com.onepiece.story.data.remote.backend.CharacterProfileDto
-import com.onepiece.story.data.remote.backend.CharacterSummaryDto
+import com.onepiece.story.data.remote.supabase.ArcDto
+import com.onepiece.story.data.remote.supabase.ChapterDto
+import com.onepiece.story.data.remote.supabase.CharacterSummaryDto
+import com.onepiece.story.data.remote.supabase.DevilFruitDto
+import com.onepiece.story.data.remote.supabase.HakiDto
 import io.github.jan.supabase.auth.auth
 import io.github.jan.supabase.postgrest.postgrest
-import kotlinx.coroutines.Dispatchers
+import io.github.jan.supabase.postgrest.query.Columns
+import io.github.jan.supabase.postgrest.query.Order
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import java.lang.Exception
@@ -25,7 +24,6 @@ class OnePieceRepository(private val context: Context) {
 
     private val db = AppDatabase.getDatabase(context)
     private val supabase = SupabaseManager.client
-    private val backendApi = BackendApi()
 
     // User Management
     suspend fun saveUser(user: com.onepiece.story.data.model.User) {
@@ -51,45 +49,48 @@ class OnePieceRepository(private val context: Context) {
 
     fun getArcs(): Flow<List<Arc>> = flow {
         try {
-            val arcs = backendApi.getArcs()
-                .sortedBy { it.order ?: 0 }
-                .map {
-                    Arc(
-                        id = it.id,
-                        title = it.name,
-                        saga = it.saga ?: "",
-                        summary = it.description ?: "",
-                        order = it.order ?: 0
-                    )
-                }
-            emit(arcs)
+            val arcs = supabase.postgrest.from("op_arcs")
+                .select()
+                .decodeList<ArcDto>()
+                .sortedBy { it.id }
+                .map { it.toDomain() }
+            
+            if (arcs.isEmpty()) {
+                emit(DataSeeder.allArcs)
+            } else {
+                emit(arcs)
+            }
         } catch (e: Exception) {
+            e.printStackTrace()
             emit(DataSeeder.allArcs)
         }
     }
 
     fun getArcDetails(arcId: String): Flow<Arc?> = flow {
         try {
-            val it = backendApi.getArc(arcId)
-            emit(
-                Arc(
-                    id = it.id,
-                    title = it.name,
-                    saga = it.saga ?: "",
-                    summary = it.description ?: "",
-                    order = it.order ?: 0
-                )
-            )
+            val dto = supabase.postgrest.from("op_arcs")
+                .select { filter { eq("id", arcId) } }
+                .decodeSingle<ArcDto>()
+            emit(dto.toDomain())
         } catch (e: Exception) {
+            e.printStackTrace()
             emit(DataSeeder.getArc(arcId))
         }
     }
 
     fun getCharactersForArc(arcId: String): Flow<List<Character>> = flow {
         try {
-            val chars = backendApi.getArcCharacters(arcId).map { it.toDomainSummary() }
+            // Ideally we filter by arc_id if the column exists. 
+            // For now, fetching limit 50 to avoid loading all 1600 chars
+            val chars = supabase.postgrest.from("op_characters")
+                .select {
+                     limit(50)
+                }
+                .decodeList<CharacterSummaryDto>()
+                .map { it.toDomainSummary() }
             emit(chars)
         } catch (e: Exception) {
+            e.printStackTrace()
             val arc = DataSeeder.getArc(arcId)
             val chars = arc?.characterIds?.mapNotNull { DataSeeder.getCharacter(it) } ?: emptyList()
             emit(chars)
@@ -98,51 +99,44 @@ class OnePieceRepository(private val context: Context) {
 
     fun getAllCharacters(): Flow<List<Character>> = flow {
         try {
-            val chars = backendApi.getCharacters(limit = 200, offset = 0).map { it.toDomainSummary() }
+            val chars = supabase.postgrest.from("op_characters")
+                .select { limit(100) } // Pagination recommended
+                .decodeList<CharacterSummaryDto>()
+                .map { it.toDomainSummary() }
             emit(chars)
         } catch (e: Exception) {
+            e.printStackTrace()
             emit(emptyList())
         }
     }
 
     fun getCharacterDetails(characterId: String): Flow<Character?> = flow {
         try {
-            val profile = backendApi.getCharacterProfile(characterId)
-            emit(profile.toDomainDetail())
+            val character = supabase.postgrest.from("op_characters")
+                .select { filter { eq("character_id_mal", characterId) } }
+                .decodeSingle<CharacterSummaryDto>()
+            
+            // Fetch extra info (Haki, Devil Fruit)
+            val haki = try {
+                supabase.postgrest.from("op_haki_users")
+                    .select { filter { eq("character_id", characterId) } }
+                    .decodeSingleOrNull<HakiDto>()
+            } catch (e: Exception) { null }
+
+            val df = if (character.devilFruitId != null) {
+                try {
+                    supabase.postgrest.from("op_devil_fruits")
+                        .select { filter { eq("id", character.devilFruitId) } }
+                        .decodeSingleOrNull<DevilFruitDto>()
+                } catch (e: Exception) { null }
+            } else null
+
+            emit(character.toDomainDetail(haki, df))
         } catch (e: Exception) {
-            emit(DataSeeder.getCharacter(characterId))
+            e.printStackTrace()
+            val seederChar = DataSeeder.getCharacter(characterId)
+            emit(seederChar)
         }
-    }
-
-    private fun generateUniqueStats(entity: com.onepiece.story.data.local.CharacterEntity): com.onepiece.story.data.model.CharacterStats {
-        // Generate unique stats based on character attributes
-        val nameHash = entity.name.hashCode().let { kotlin.math.abs(it) }
-        val powerBase = entity.powerLevel.coerceIn(100, 1000)
-        
-        return com.onepiece.story.data.model.CharacterStats(
-            strength = ((powerBase * 0.1) + (nameHash % 30) + 50).toInt().coerceIn(30, 100),
-            speed = ((powerBase * 0.08) + ((nameHash / 10) % 35) + 40).toInt().coerceIn(25, 100),
-            durability = ((powerBase * 0.09) + ((nameHash / 100) % 25) + 45).toInt().coerceIn(30, 100),
-            haki = if (entity.haki != null) ((nameHash % 40) + 60).coerceIn(50, 100) else ((nameHash % 30) + 20).coerceIn(10, 60),
-            combatIQ = ((powerBase * 0.07) + ((nameHash / 1000) % 30) + 50).toInt().coerceIn(35, 100),
-            stamina = ((powerBase * 0.085) + ((nameHash / 50) % 28) + 48).toInt().coerceIn(30, 100)
-        )
-    }
-
-    private fun buildBiography(entity: com.onepiece.story.data.local.CharacterEntity): String {
-        val parts = mutableListOf<String>()
-        
-        entity.occupation?.let { if (it.isNotBlank()) parts.add("Occupation: $it") }
-        entity.affiliation?.let { if (it.isNotBlank()) parts.add("Affiliation: $it") }
-        entity.origin?.let { if (it.isNotBlank()) parts.add("Origin: $it") }
-        
-        if (entity.chapter != null || entity.episode != null) {
-            parts.add("First appeared in Chapter ${entity.chapter ?: "?"}, Episode ${entity.episode ?: "?"}")
-        }
-        
-        entity.note?.let { if (it.isNotBlank()) parts.add(it) }
-        
-        return if (parts.isNotEmpty()) parts.joinToString("\n\n") else "A legendary pirate from the One Piece world!"
     }
 
     fun searchCharacters(query: String): Flow<List<Character>> = flow {
@@ -151,7 +145,14 @@ class OnePieceRepository(private val context: Context) {
             return@flow
         }
         try {
-            val results = backendApi.searchCharacters(query).map { it.toDomainSummary() }
+            // Replace backendApi with Supabase
+            val results = supabase.postgrest.from("op_characters")
+                .select {
+                    filter { ilike("name", "%$query%") }
+                    limit(20)
+                }
+                .decodeList<CharacterSummaryDto>()
+                .map { it.toDomainSummary() }
             emit(results)
         } catch (e: Exception) {
             emit(emptyList())
@@ -161,15 +162,20 @@ class OnePieceRepository(private val context: Context) {
     fun getDevilFruitsByType(type: DevilFruitType): Flow<List<DevilFruitEntity>> {
         return flow {
             try {
-                val fruits = backendApi.getDevilFruits(type = type.name)
+                // Replace backendApi
+                val fruits = supabase.postgrest.from("op_devil_fruits")
+                    .select {
+                        filter { ilike("type", "%${type.name}%") }
+                    }
+                    .decodeList<DevilFruitDto>()
                     .map { dto ->
                         DevilFruitEntity(
-                            id = dto.id,
+                            id = dto.id.toString(),
                             name = dto.name,
                             type = dto.type?.toDevilFruitType() ?: DevilFruitType.UNKNOWN,
                             description = dto.description ?: "",
                             currentOwner = null,
-                            imageUrl = dto.imageUrl
+                            imageUrl = null // Update if image url exists in DTO
                         )
                     }
                 emit(fruits)
@@ -179,20 +185,49 @@ class OnePieceRepository(private val context: Context) {
         }
     }
 
+    fun getChapterContent(chapterNumber: Int): Flow<com.onepiece.story.data.local.ChapterEntity?> = flow {
+        try {
+            val chapter = supabase.postgrest.from("op_chapters")
+                .select { filter { eq("chapter_number", chapterNumber) } }
+                .decodeSingleOrNull<ChapterDto>()
+            
+            emit(chapter?.let {
+                com.onepiece.story.data.local.ChapterEntity(
+                    chapterNumber = it.chapterNumber,
+                    volume = 0, // Volume not in op_chapters yet
+                    name = it.title ?: it.vizTitle ?: "Chapter $chapterNumber",
+                    romanizedTitle = "", // Romanized not in op_chapters yet
+                    releaseDate = it.releaseDate,
+                    content = it.narrationContent
+                )
+            })
+        } catch (e: Exception) {
+            e.printStackTrace()
+            emit(null)
+        }
+    }
+
     fun getAllChapters(): Flow<List<com.onepiece.story.data.local.ChapterEntity>> {
         return flow {
             try {
-                val chapters = backendApi.getChapters(limit = 1000, offset = 0).map {
-                    com.onepiece.story.data.local.ChapterEntity(
-                        chapterNumber = it.chapterNumber,
-                        volume = it.volume ?: 0,
-                        name = it.title ?: it.vizTitle ?: "",
-                        romanizedTitle = it.romanizedTitle ?: "",
-                        releaseDate = it.releaseDate
-                    )
-                }
+                val chapters = supabase.postgrest.from("op_chapters")
+                    .select {
+                        // limit or order
+                        order(column = "chapter_number", order = Order.ASCENDING)
+                    }
+                    .decodeList<ChapterDto>()
+                    .map {
+                        com.onepiece.story.data.local.ChapterEntity(
+                            chapterNumber = it.chapterNumber,
+                            volume = 0,
+                            name = it.title ?: it.vizTitle ?: "Chapter ${it.chapterNumber}",
+                            romanizedTitle = "",
+                            releaseDate = it.releaseDate
+                        )
+                    }
                 emit(chapters)
             } catch (e: Exception) {
+                e.printStackTrace()
                 emit(emptyList())
             }
         }
@@ -245,15 +280,21 @@ class OnePieceRepository(private val context: Context) {
     fun getConquerorsHakiUsers(): Flow<List<com.onepiece.story.data.local.HakiUserEntity>> {
         return flow {
             try {
-                val users = backendApi.getConquerors(limit = 200).map {
-                    com.onepiece.story.data.local.HakiUserEntity(
-                        id = it.id,
-                        characterName = it.characterName,
-                        hasObservation = it.hasObservation,
-                        hasArmament = it.hasArmament,
-                        hasConquerors = it.hasConquerors
-                    )
-                }
+                // Replace backendApi with op_haki_users
+                val users = supabase.postgrest.from("op_haki_users")
+                    .select {
+                        filter { eq("conquerors_haki", true) }
+                    }
+                    .decodeList<HakiDto>()
+                    .map {
+                        com.onepiece.story.data.local.HakiUserEntity(
+                            id = it.id.toString(),
+                            characterName = it.characterName ?: "User ${it.characterId}",
+                            hasObservation = it.observation,
+                            hasArmament = it.armament,
+                            hasConquerors = it.conquerors
+                        )
+                    }
                 emit(users)
             } catch (e: Exception) {
                 emit(emptyList())
@@ -265,43 +306,33 @@ class OnePieceRepository(private val context: Context) {
         return db.hakiUserDao().getAll()
     }
 
-    // Top Bounties - characters sorted by bounty
+    // Top Bounties
     fun getTopBounties(limit: Int = 10): Flow<List<Character>> = flow {
         try {
-            val top = backendApi.getTopBounties(limit).map {
-                Character(
-                    id = it.id,
-                    name = it.name,
-                    imageUrl = assetUrl(it.primaryImagePath),
-                    humorLine = it.bountyFormatted ?: "",
-                    powerLevel = 0,
-                    status = it.status,
-                    affiliation = it.affiliation,
-                    bountyFormatted = it.bountyFormatted
-                )
-            }
+            val top = supabase.postgrest.from("op_characters")
+                .select {
+                    order("bounty", Order.DESCENDING)
+                    limit(limit.toLong())
+                }
+                .decodeList<CharacterSummaryDto>()
+                .map { it.toDomainSummary() }
             emit(top)
         } catch (e: Exception) {
             emit(emptyList())
         }
     }
 
-    // Featured Characters (Straw Hats or high power level)
+    // Featured Characters
     fun getFeaturedCharacters(limit: Int = 10): Flow<List<Character>> = flow {
         try {
-            val featured = backendApi.getFeaturedCharacters(limit).map {
-                Character(
-                    id = it.id,
-                    name = it.name,
-                    imageUrl = assetUrl(it.primaryImagePath),
-                    powerLevel = it.powerLevel ?: 0,
-                    humorLine = it.affiliation ?: it.alias ?: "Pirate",
-                    alias = it.alias,
-                    status = it.status,
-                    affiliation = it.affiliation,
-                    bountyFormatted = it.bountyFormatted
-                )
-            }
+            // Pick random or high bounty
+            val featured = supabase.postgrest.from("op_characters")
+                .select {
+                    filter { gt("bounty", 1000000000) } // High bounty as 'featured'
+                    limit(limit.toLong())
+                }
+                .decodeList<CharacterSummaryDto>()
+                .map { it.toDomainSummary() }
             emit(featured)
         } catch (e: Exception) {
             emit(emptyList())
@@ -325,40 +356,45 @@ class OnePieceRepository(private val context: Context) {
         return "file:///android_asset/$normalized"
     }
 
+    private fun ArcDto.toDomain(): Arc {
+        val slides = if (imageUrl != null) {
+            listOf(StorySlide(imageUrl = imageUrl, title = name, caption = description ?: ""))
+        } else emptyList()
+
+        return Arc(
+            id = id.toString(),
+            title = name,
+            saga = saga ?: "",
+            summary = description ?: "",
+            slides = slides,
+            order = id
+        )
+    }
+
     private fun CharacterSummaryDto.toDomainSummary(): Character {
         return Character(
-            id = id,
-            name = name,
-            imageUrl = assetUrl(primaryImagePath),
+            id = characterId ?: id.toString(),
+            name = name ?: "Unknown",
+            imageUrl = imageUrl ?: assetUrl(imageFolder?.let { "characters/$it/primary.jpg" }),
             powerLevel = powerLevel ?: 0,
-            humorLine = alias ?: "",
-            japaneseName = japaneseName,
-            age = age,
-            height = height,
+            humorLine = epithet ?: "One Piece Character",
             status = status,
-            affiliation = affiliation,
-            occupation = occupation,
-            origin = origin,
-            birthday = birthday,
-            bloodType = bloodType,
-            alias = alias,
-            bounty = bounty,
+            affiliation = null, 
             bountyFormatted = bountyFormatted
         )
     }
 
-    private fun CharacterProfileDto.toDomainDetail(): Character {
-        val stats = CharacterStats(
-            speed = character.statSpeed ?: 0,
-            durability = character.statDurability ?: 0,
-            combatIQ = character.statCombatIq ?: 0,
-            haki = character.statHaki ?: 0,
-            strength = character.statStrength ?: 0,
-            stamina = character.statStamina ?: 0
+    private fun CharacterSummaryDto.toDomainDetail(haki: HakiDto? = null, df: DevilFruitDto? = null): Character {
+        val domainStats = CharacterStats(
+            speed = statSpeed ?: 0,
+            durability = statDurability ?: 0,
+            combatIQ = statCombatIq ?: 0,
+            haki = statHaki ?: 0,
+            strength = statStrength ?: 0,
+            stamina = statStamina ?: 0
         )
 
-        val primary = images.firstOrNull()?.imagePath
-        val df = devilFruit?.let {
+        val domainDf = df?.let {
             DevilFruit(
                 name = it.name,
                 type = it.type ?: "",
@@ -367,26 +403,140 @@ class OnePieceRepository(private val context: Context) {
         }
 
         return Character(
-            id = character.id,
-            name = character.name,
-            imageUrl = assetUrl(primary ?: character.imageUrl),
-            biography = character.notes ?: "",
-            powerLevel = character.powerLevel ?: 0,
-            stats = stats,
-            humorLine = character.alias ?: "",
-            japaneseName = character.japaneseName,
-            age = character.age,
-            height = character.height,
-            status = character.status,
-            affiliation = character.affiliation,
-            occupation = character.occupation,
-            origin = character.origin,
-            birthday = character.birthday,
-            bloodType = character.bloodType,
-            alias = character.alias,
-            bounty = character.bounty,
-            bountyFormatted = character.bountyFormatted,
-            devilFruit = df
+            id = characterId ?: id.toString(),
+            name = name ?: "Unknown",
+            imageUrl = imageUrl ?: assetUrl(imageFolder?.let { "characters/$it/primary.jpg" }),
+            biography = about ?: "A mysterious figure from the Grand Line.",
+            powerLevel = powerLevel ?: 0,
+            stats = domainStats,
+            humorLine = epithet ?: "",
+            japaneseName = nameKanji,
+            age = age,
+            height = height,
+            status = status,
+            affiliation = null,
+            occupation = occupation,
+            origin = origin,
+            birthday = birthday,
+            bloodType = bloodType,
+            alias = epithet,
+            bounty = bounty,
+            bountyFormatted = bountyFormatted,
+            devilFruit = domainDf
+        )
+    }
+
+    // Swords
+    fun getSwords(limit: Int = 20): Flow<List<com.onepiece.story.data.model.Sword>> = flow {
+        try {
+            val swords = supabase.postgrest.from("op_swords")
+                .select { 
+                    limit(limit.toLong())
+                    order("name", Order.ASCENDING)
+                }
+                .decodeList<com.onepiece.story.data.remote.supabase.SwordDto>()
+                .map { it.toDomainSword() }
+            emit(swords)
+        } catch (e: Exception) {
+            e.printStackTrace()
+            emit(emptyList())
+        }
+    }
+
+    // Ships
+    fun getShips(limit: Int = 20): Flow<List<com.onepiece.story.data.model.Ship>> = flow {
+        try {
+            val ships = supabase.postgrest.from("op_ships")
+                .select { 
+                    limit(limit.toLong())
+                    order("name", Order.ASCENDING)
+                }
+                .decodeList<com.onepiece.story.data.remote.supabase.ShipDto>()
+                .map { it.toDomainShip() }
+            emit(ships)
+        } catch (e: Exception) {
+            e.printStackTrace()
+            emit(emptyList())
+        }
+    }
+
+    // Factions
+    fun getFactions(limit: Int = 20): Flow<List<com.onepiece.story.data.model.Faction>> = flow {
+        try {
+            val factions = supabase.postgrest.from("op_factions")
+                .select { 
+                    limit(limit.toLong())
+                    order("name", Order.ASCENDING)
+                }
+                .decodeList<com.onepiece.story.data.remote.supabase.FactionDto>()
+                .map { it.toDomainFaction() }
+            emit(factions)
+        } catch (e: Exception) {
+            e.printStackTrace()
+            emit(emptyList())
+        }
+    }
+
+    // Bounties
+    fun getBounties(limit: Int = 20): Flow<List<com.onepiece.story.data.model.Bounty>> = flow {
+        try {
+            val bounties = supabase.postgrest.from("op_bounties")
+                .select { 
+                    limit(limit.toLong())
+                    order("bounty_amount", Order.DESCENDING)
+                }
+                .decodeList<com.onepiece.story.data.remote.supabase.BountyDto>()
+                .map { it.toDomainBounty() }
+            emit(bounties)
+        } catch (e: Exception) {
+            e.printStackTrace()
+            emit(emptyList())
+        }
+    }
+
+    // Mappers
+    private fun com.onepiece.story.data.remote.supabase.SwordDto.toDomainSword(): com.onepiece.story.data.model.Sword {
+        return com.onepiece.story.data.model.Sword(
+            id = id,
+            name = name,
+            grade = grade ?: "Unknown",
+            type = type ?: "Unknown",
+            wielder = wielderName ?: "Unknown",
+            description = description ?: "",
+            imageUrl = imageUrl ?: "",
+            isBlackBlade = isBlackBlade
+        )
+    }
+
+    private fun com.onepiece.story.data.remote.supabase.ShipDto.toDomainShip(): com.onepiece.story.data.model.Ship {
+        return com.onepiece.story.data.model.Ship(
+            id = id,
+            name = name,
+            owner = ownerFactionId?.toString() ?: "Unknown",
+            type = shipType ?: "Unknown",
+            description = description ?: "",
+            imageUrl = imageUrl ?: ""
+        )
+    }
+
+    private fun com.onepiece.story.data.remote.supabase.FactionDto.toDomainFaction(): com.onepiece.story.data.model.Faction {
+        return com.onepiece.story.data.model.Faction(
+            id = id,
+            name = name,
+            type = type ?: "Unknown",
+            leader = leaderName ?: "Unknown",
+            totalBounty = totalBounty ?: 0L,
+            description = description ?: ""
+        )
+    }
+
+    private fun com.onepiece.story.data.remote.supabase.BountyDto.toDomainBounty(): com.onepiece.story.data.model.Bounty {
+        return com.onepiece.story.data.model.Bounty(
+            id = id,
+            characterName = characterName ?: "Unknown",
+            amount = amount ?: 0L,
+            status = if (isCurrent) "Active" else "Inactive",
+            reason = reason ?: ""
         )
     }
 

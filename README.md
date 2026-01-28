@@ -2,74 +2,33 @@
 
 A comprehensive, interactive Android application that immerses users in the world of One Piece. This app combines storytelling, character encyclopedias, interactive quizzes, and crew management into a modern, anime-themed experience.
 
-## Status (What Works vs What's Next)
+## Status (Active Development)
 
-### Implemented and verified:
+### 🌟 New Premium Web Experience
 
-- **Bottom Navigation** - All tabs working (Home, Encyclopedia, Bounties, etc.)
-- **Global Search** - Real-time search backed by MySQL dataset via Ktor backend
-- **Encyclopedia with Tabs** - Characters, Chapters, Arcs tabs with ViewPager2
-- **Wattpad-Style Home Screen** - Modern, immersive experience:
-  - Popular Stories horizontal carousel with book-cover cards
-  - Featured Characters carousel
-  - Top Bounties section
-  - Conqueror's Haki Users section
-  - Quick action cards for navigation
-- **Story Reader** - Wattpad-inspired chapter reader:
-  - Image carousel with parallax transitions
-  - Narrative text with smooth animations
-  - Characters in chapter section
-  - Chapter navigation (prev/next)
-- **Cinematic Arc Pages** - Immersive storytelling:
-  - Hero image carousel with indicators
-  - Stats (chapters, episodes, characters)
-  - Story summary with smooth animations
-  - Key characters carousel
-  - Quiz integration
-- **E-commerce Style Character Cards** - Grid layout with:
-  - Character image (auto-loaded from assets)
-  - Name, alias, affiliation
-  - Bounty badge with formatted amount
-  - Power level progress bar
-  - Status badge (Alive/Deceased)
-  - Click to navigate to detail page
-- **Character Detail Page** - Full profile with:
-  - Image carousel (swipe through all character images)
-  - Radar chart for power stats
-  - Profile info, biography, first appearance
-  - Episode appearances section
-  - Featured in arcs section
-- **Bounty/Wanted Posters Screen** - Complete redesign:
-  - Grid of wanted poster cards sorted by bounty
-  - Filter chips: All, Emperors, Supernovas, Ex-Warlords
-  - Rank badges and formatted bounty amounts
-- **Devil Fruit Library** - Enhanced encyclopedia:
-  - Tabbed view for Paramecia, Zoan, Logia types
-  - Card layout with fruit image, type badge
-  - Current user display with avatar
-  - Ability descriptions
-- **Favorites System** - Local persistence with Room database
-- **Smooth Animations** - Throughout the app:
-  - Fall-down layout animations for card grids
-  - Slide transitions for navigation
-  - Parallax effects on image carousels
-  - Zoom page transformers
-- **Straw Hat Jolly Roger App Icon** - Custom themed launcher icon
-- **MySQL-backed Dataset** - Canonical dataset with complete bounty and devil fruit data
-- **Character Images** - 40+ characters with organized image folders
+- **"Netflix-Style" UI**: A visually immersive React web app (`OnePieceWeb`) with glassmorphism, parallax effects, and smooth animations.
+- **Media Browsing**: Horizontal scrolling rows for Arcs and Crews.
+- **Dynamic Assets**: Smart image resolution favoring local high-quality assets.
 
-### Current limitations:
+### 📱 Android App (Premium)
 
-- **Devil Fruit detail page** needs card-style enhancement
-- **Offline mode** - App requires backend to be running
+- **Supabase-Native**: Directly queries the unified `op_` schema for live data.
+- **Immersive Story Mode**: Wattpad-style reader with parallax headers.
+- **Offline Favorites**: Room database integration.
+- **Asset Sync**: Automated pipeline ensures mobile assets match the web experience.
+
+### 🏗️ Backend & Data
+
+- **Supabase**: Unified PostgreSQL backend replacing the legacy MySQL setup.
+- **Consolidated Schema**: Streamlined `op_` tables (e.g., `op_characters`, `op_factions`) for domain specificity.
+- **Asset Pipeline**: Python automation (`sync_images.py`) keeps 1600+ character assets in sync across platforms.
 
 ## Documentation
 
-Detailed documentation is available in the `documentation/` folder:
+- **[👉 TECHNICAL DOCUMENTATION (Architecture, Schema, Assets)](TECHNICAL_DOCS.md)**  
+  _READ THIS for deep dives into how the Asset Pipeline and Database Migration work._
 
-- **[Technical Specifications](documentation/technical_sepcifications/README.md)** - Tech stack, architecture, database schema
-- **[User Manual](documentation/using_manual/README.md)** - How to install, navigate, and use the app
-- **[How the App Works](documentation/how_the_app_works/README.md)** - Data flow, search, favorites, Room vs MySQL
+Detailed legacy documentation is available in the `documentation/` folder.
 
 ## 📱 Overview
 
@@ -98,10 +57,10 @@ This project leverages a modern Android technology stack:
 - **Navigation**: Android Jetpack Navigation Component
 - **Asynchronous Programming**: Kotlin Coroutines & Flow
 - **Dependency Injection**: Manual DI / ViewModelFactory (Scalable to Hilt)
-- **Backend**: Ktor (Kotlin) in the `:backend` Gradle module
-- **Database**: MySQL (`onepiece_complete`)
-- **Android networking**: Ktor client + Kotlinx Serialization
-- **Local Database**: Room (SQLite) used for favorites (and optional caching)
+- **Backend**: Supabase (PostgreSQL + Auth)
+- **Database**: PostgreSQL (`onepiece_complete`) via Supabase
+- **Android networking**: Ktor client (Supabase-kt)
+- **Local Database**: Room (SQLite) used for favorites
 - **Auth/User Profiles**: Supabase
 - **Image Loading**:
   - [Coil](https://coil-kt.github.io/coil/)
@@ -136,11 +95,14 @@ The app follows the **Clean Architecture** principles to ensure separation of co
 You should run **all three** for the full experience:
 
 1. **MySQL**: create/populate the database
+
    - Run `database/onepiece_complete_database.sql` in your MySQL client.
    - The script contains `DROP DATABASE IF EXISTS onepiece_complete;` so it recreates cleanly.
 
 2. **Backend (Ktor)**: start the API server
+
    - If you're using the default local setup (root user, empty password, localhost, port 3306), you can just run:
+
      ```powershell
      ./gradlew :backend:run
      ```
@@ -179,13 +141,16 @@ You should run **all three** for the full experience:
 ## 🧭 What To Implement Next
 
 - **Devil Fruit detail page enhancement**
+
   - Add card-style layout similar to character detail page
 
 - **Better offline behavior (optional)**
+
   - Add a caching layer (Room) for story data so the app can open without the backend
   - Keep the backend as the source of truth
 
 - **More character images**
+
   - Add images for remaining characters
   - Run `scripts/organize-character-images.ps1` to organize new images
   - Run `scripts/generate-character-images-sql.ps1` to update database

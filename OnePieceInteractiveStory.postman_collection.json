@@ -1,0 +1,311 @@
+{
+	"info": {
+		"_postman_id": "8b5a1b3c-7e9a-4c1d-9f8e-d9c8b7a6f5e4",
+		"name": "One Piece Interactive Story - Full Supabase API",
+		"description": "Comprehensive collection for testing all Supabase REST API endpoints for the One Piece Interactive Story application.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Auth & Users",
+			"item": [
+				{
+					"name": "Get User Profile",
+					"request": {
+						"method": "GET",
+						"header": [
+							{ "key": "apikey", "value": "{{supabase_key}}", "type": "text" },
+							{ "key": "Authorization", "value": "Bearer {{supabase_key}}", "type": "text" }
+						],
+						"url": {
+							"raw": "{{supabase_url}}/rest/v1/users?id=eq.YOUR_USER_ID&select=*",
+							"host": ["{{supabase_url}}"],
+							"path": ["rest", "v1", "users"],
+							"query": [
+								{ "key": "id", "value": "eq.YOUR_USER_ID" },
+								{ "key": "select", "value": "*" }
+							]
+						}
+					}
+				}
+			]
+		},
+		{
+			"name": "Arcs",
+			"item": [
+				{
+					"name": "Get All Arcs",
+					"request": {
+						"method": "GET",
+						"header": [
+							{ "key": "apikey", "value": "{{supabase_key}}", "type": "text" },
+							{ "key": "Authorization", "value": "Bearer {{supabase_key}}", "type": "text" }
+						],
+						"url": {
+							"raw": "{{supabase_url}}/rest/v1/op_arcs?select=*&order=id.asc",
+							"host": ["{{supabase_url}}"],
+							"path": ["rest", "v1", "op_arcs"],
+							"query": [
+								{ "key": "select", "value": "*" },
+								{ "key": "order", "value": "id.asc" }
+							]
+						}
+					}
+				}
+			]
+		},
+		{
+			"name": "Characters",
+			"item": [
+				{
+					"name": "Get All Characters (Summary)",
+					"request": {
+						"method": "GET",
+						"header": [
+							{ "key": "apikey", "value": "{{supabase_key}}", "type": "text" },
+							{ "key": "Authorization", "value": "Bearer {{supabase_key}}", "type": "text" }
+						],
+						"url": {
+							"raw": "{{supabase_url}}/rest/v1/op_characters?select=*&limit=50",
+							"host": ["{{supabase_url}}"],
+							"path": ["rest", "v1", "op_characters"],
+							"query": [
+								{ "key": "select", "value": "*" },
+								{ "key": "limit", "value": "50" }
+							]
+						}
+					}
+				},
+				{
+					"name": "Get Character by ID",
+					"request": {
+						"method": "GET",
+						"header": [
+							{ "key": "apikey", "value": "{{supabase_key}}", "type": "text" },
+							{ "key": "Authorization", "value": "Bearer {{supabase_key}}", "type": "text" }
+						],
+						"url": {
+							"raw": "{{supabase_url}}/rest/v1/op_characters?id=eq.1&select=*",
+							"host": ["{{supabase_url}}"],
+							"path": ["rest", "v1", "op_characters"],
+							"query": [
+								{ "key": "id", "value": "eq.1" },
+								{ "key": "select", "value": "*" }
+							]
+						}
+					}
+				}
+			]
+		},
+		{
+			"name": "Chapters",
+			"item": [
+				{
+					"name": "Get All Chapters",
+					"request": {
+						"method": "GET",
+						"header": [
+							{ "key": "apikey", "value": "{{supabase_key}}", "type": "text" },
+							{ "key": "Authorization", "value": "Bearer {{supabase_key}}", "type": "text" }
+						],
+						"url": {
+							"raw": "{{supabase_url}}/rest/v1/op_chapters?select=*&order=chapter_number.asc",
+							"host": ["{{supabase_url}}"],
+							"path": ["rest", "v1", "op_chapters"],
+							"query": [
+								{ "key": "select", "value": "*" },
+								{ "key": "order", "value": "chapter_number.asc" }
+							]
+						}
+					}
+				},
+				{
+					"name": "Get Chapters by Arc",
+					"request": {
+						"method": "GET",
+						"header": [
+							{ "key": "apikey", "value": "{{supabase_key}}", "type": "text" },
+							{ "key": "Authorization", "value": "Bearer {{supabase_key}}", "type": "text" }
+						],
+						"url": {
+							"raw": "{{supabase_url}}/rest/v1/op_chapters?arc_id=eq.1&select=*",
+							"host": ["{{supabase_url}}"],
+							"path": ["rest", "v1", "op_chapters"],
+							"query": [
+								{ "key": "arc_id", "value": "eq.1" },
+								{ "key": "select", "value": "*" }
+							]
+						}
+					}
+				}
+			]
+		},
+		{
+			"name": "Devil Fruits",
+			"item": [
+				{
+					"name": "Get All Devil Fruits",
+					"request": {
+						"method": "GET",
+						"header": [
+							{ "key": "apikey", "value": "{{supabase_key}}", "type": "text" },
+							{ "key": "Authorization", "value": "Bearer {{supabase_key}}", "type": "text" }
+						],
+						"url": {
+							"raw": "{{supabase_url}}/rest/v1/op_devil_fruits?select=*",
+							"host": ["{{supabase_url}}"],
+							"path": ["rest", "v1", "op_devil_fruits"],
+							"query": [
+								{ "key": "select", "value": "*" }
+							]
+						}
+					}
+				}
+			]
+		},
+		{
+			"name": "Factions & Crews",
+			"item": [
+				{
+					"name": "Get All Factions",
+					"request": {
+						"method": "GET",
+						"header": [
+							{ "key": "apikey", "value": "{{supabase_key}}", "type": "text" },
+							{ "key": "Authorization", "value": "Bearer {{supabase_key}}", "type": "text" }
+						],
+						"url": {
+							"raw": "{{supabase_url}}/rest/v1/op_factions?select=*",
+							"host": ["{{supabase_url}}"],
+							"path": ["rest", "v1", "op_factions"],
+							"query": [
+								{ "key": "select", "value": "*" }
+							]
+						}
+					}
+				}
+			]
+		},
+		{
+			"name": "Ships",
+			"item": [
+				{
+					"name": "Get All Ships",
+					"request": {
+						"method": "GET",
+						"header": [
+							{ "key": "apikey", "value": "{{supabase_key}}", "type": "text" },
+							{ "key": "Authorization", "value": "Bearer {{supabase_key}}", "type": "text" }
+						],
+						"url": {
+							"raw": "{{supabase_url}}/rest/v1/op_ships?select=*",
+							"host": ["{{supabase_url}}"],
+							"path": ["rest", "v1", "op_ships"],
+							"query": [
+								{ "key": "select", "value": "*" }
+							]
+						}
+					}
+				}
+			]
+		},
+		{
+			"name": "Swords",
+			"item": [
+				{
+					"name": "Get All Swords",
+					"request": {
+						"method": "GET",
+						"header": [
+							{ "key": "apikey", "value": "{{supabase_key}}", "type": "text" },
+							{ "key": "Authorization", "value": "Bearer {{supabase_key}}", "type": "text" }
+						],
+						"url": {
+							"raw": "{{supabase_url}}/rest/v1/op_swords?select=*",
+							"host": ["{{supabase_url}}"],
+							"path": ["rest", "v1", "op_swords"],
+							"query": [
+								{ "key": "select", "value": "*" }
+							]
+						}
+					}
+				}
+			]
+		},
+		{
+			"name": "Bounties",
+			"item": [
+				{
+					"name": "Get All Bounties",
+					"request": {
+						"method": "GET",
+						"header": [
+							{ "key": "apikey", "value": "{{supabase_key}}", "type": "text" },
+							{ "key": "Authorization", "value": "Bearer {{supabase_key}}", "type": "text" }
+						],
+						"url": {
+							"raw": "{{supabase_url}}/rest/v1/op_bounties?select=*&order=bounty_amount.desc",
+							"host": ["{{supabase_url}}"],
+							"path": ["rest", "v1", "op_bounties"],
+							"query": [
+								{ "key": "select", "value": "*" },
+								{ "key": "order", "value": "bounty_amount.desc" }
+							]
+						}
+					}
+				}
+			]
+		},
+		{
+			"name": "Haki Users",
+			"item": [
+				{
+					"name": "Get All Haki Users",
+					"request": {
+						"method": "GET",
+						"header": [
+							{ "key": "apikey", "value": "{{supabase_key}}", "type": "text" },
+							{ "key": "Authorization", "value": "Bearer {{supabase_key}}", "type": "text" }
+						],
+						"url": {
+							"raw": "{{supabase_url}}/rest/v1/op_haki_users?select=*",
+							"host": ["{{supabase_url}}"],
+							"path": ["rest", "v1", "op_haki_users"],
+							"query": [
+								{ "key": "select", "value": "*" }
+							]
+						}
+					}
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [""]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [""]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "supabase_url",
+			"value": "https://eeeuqbxhthuswpusryal.supabase.co",
+			"type": "string"
+		},
+		{
+			"key": "supabase_key",
+			"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImVlZXVxYnhodGh1c3dwdXNyeWFsIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjU5MjY3ODcsImV4cCI6MjA4MTUwMjc4N30.DVcalZMp1lzQxMa4R3lf-kTeGXC13YYRBToFf6kMh1Q",
+			"type": "string"
+		}
+	]
+}

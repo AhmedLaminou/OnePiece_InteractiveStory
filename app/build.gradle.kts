@@ -38,6 +38,7 @@ android {
         versionName = "1.0"
 
         buildConfigField("String", "BACKEND_BASE_URL", "\"$backendBaseUrl\"")
+        buildConfigField("String", "OPEN_ROUTER_API_KEY", "\"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\"")
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }

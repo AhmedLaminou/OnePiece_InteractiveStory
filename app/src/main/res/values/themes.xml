@@ -10,12 +10,13 @@
 
     <style name="Theme.OnePieceInteractiveStory" parent="Base.Theme.OnePieceInteractiveStory" />
 
-    <!-- Splash Screen Theme -->
-    <style name="Theme.OnePieceInteractiveStory.Splash" parent="Theme.SplashScreen">
-        <item name="windowSplashScreenBackground">@color/bg_primary</item>
-        <item name="windowSplashScreenAnimatedIcon">@mipmap/ic_launcher</item>
-        <item name="windowSplashScreenAnimationDuration">1000</item>
-        <item name="postSplashScreenTheme">@style/Theme.OnePieceInteractiveStory</item>
+    <!-- Splash Screen Theme - Updated for custom Background -->
+    <style name="Theme.OnePieceInteractiveStory.Splash"
+        parent="Theme.Material3.DayNight.NoActionBar">
+        <item name="android:windowBackground">@drawable/splash_background</item>
+        <item name="android:windowFullscreen">true</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:navigationBarColor">@android:color/transparent</item>
     </style>
 
     <!-- Light Theme (for toggle) -->

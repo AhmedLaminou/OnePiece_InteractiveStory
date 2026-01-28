@@ -111,3 +111,44 @@ data class UserProfile(
     val completedArcs: List<String> = emptyList(),
     val title: String = "East Blue Rookie"
 ) : Parcelable
+
+@Parcelize
+data class Sword(
+    val id: Int = 0,
+    val name: String = "",
+    val grade: String = "",
+    val type: String = "",
+    val wielder: String = "",
+    val description: String = "",
+    val imageUrl: String = "",
+    val isBlackBlade: Boolean = false
+) : Parcelable
+
+@Parcelize
+data class Ship(
+    val id: Int = 0,
+    val name: String = "",
+    val owner: String = "",
+    val type: String = "",
+    val description: String = "",
+    val imageUrl: String = ""
+) : Parcelable
+
+@Parcelize
+data class Faction(
+    val id: Int = 0,
+    val name: String = "",
+    val type: String = "",
+    val leader: String = "",
+    val totalBounty: Long = 0,
+    val description: String = ""
+) : Parcelable
+
+@Parcelize
+data class Bounty(
+    val id: Int = 0,
+    val characterName: String = "",
+    val amount: Long = 0,
+    val status: String = "",
+    val reason: String = ""
+) : Parcelable

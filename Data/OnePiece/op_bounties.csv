@@ -1,0 +1,471 @@
+character_id,character_name,epithet,bounty_sequence,bounty_amount,bounty_status,reason_for_bounty,arc_revealed,chapter_revealed,crew_affiliation,notes
+1,Monkey D. Luffy,Straw Hat,1,30000000,Inactive,Defeated Arlong and top East Blue pirates,East Blue Saga,96,Straw Hat Pirates,First bounty in East Blue - highest in the region
+1,Monkey D. Luffy,Straw Hat,2,100000000,Inactive,Defeated Warlord Crocodile,Arabasta Saga,213,Straw Hat Pirates,Credited to Smoker publicly
+1,Monkey D. Luffy,Straw Hat,3,300000000,Inactive,Assault on Enies Lobby and defeating CP9,Water 7 Saga,435,Straw Hat Pirates,Became a Super Rookie
+1,Monkey D. Luffy,Straw Hat,4,400000000,Inactive,Summit War participation and Impel Down breakout,Post-War Arc,601,Straw Hat Pirates,After Marineford War
+1,Monkey D. Luffy,Straw Hat,5,500000000,Inactive,Defeated Doflamingo,Dressrosa Arc,801,Straw Hat Pirates,New wanted poster
+1,Monkey D. Luffy,Straw Hat,6,1500000000,Inactive,Whole Cake Island incident,Whole Cake Island Arc,903,Straw Hat Pirates,Declared Fifth Emperor by media
+1,Monkey D. Luffy,Straw Hat,7,3000000000,Active,Defeated Kaido - Recognized as Yonko,Wano Country Arc,1053,Straw Hat Pirates,Awakened Gear 5 form on poster
+2,Roronoa Zoro,Pirate Hunter,1,60000000,Inactive,Defeated Daz Bonez and 100 bounty hunters,Arabasta Saga,213,Straw Hat Pirates,Broke East Blue bounty record
+2,Roronoa Zoro,Pirate Hunter,2,120000000,Inactive,Enies Lobby incident,Water 7 Saga,435,Straw Hat Pirates,Became Super Rookie
+2,Roronoa Zoro,Pirate Hunter,3,320000000,Inactive,Dressrosa incident,Dressrosa Arc,801,Straw Hat Pirates,New poster
+2,Roronoa Zoro,Pirate Hunter,4,1111000000,Active,Defeated King in Wano,Wano Country Arc,1058,Straw Hat Pirates,Senior Officer of Grand Fleet
+3,Nami,Cat Burglar,1,16000000,Inactive,Enies Lobby incident,Water 7 Saga,435,Straw Hat Pirates,Bikini photo by trick photographer
+3,Nami,Cat Burglar,2,66000000,Inactive,Dressrosa incident,Dressrosa Arc,801,Straw Hat Pirates,Tricked into posing again
+3,Nami,Cat Burglar,3,366000000,Active,Wano Country raid,Wano Country Arc,1058,Straw Hat Pirates,Senior Officer of Grand Fleet
+4,Usopp,Sogeking/God,1,30000000,Inactive,Shot World Government flag at Enies Lobby,Water 7 Saga,435,Straw Hat Pirates,As Sogeking alter ego
+4,Usopp,God,2,200000000,Inactive,Dressrosa incident - became God Usopp,Dressrosa Arc,801,Straw Hat Pirates,Changed to real identity and God title
+4,Usopp,God,3,500000000,Active,Wano Country raid,Wano Country Arc,1058,Straw Hat Pirates,Senior Officer of Grand Fleet
+5,Sanji,Black Leg,1,77000000,Inactive,Enies Lobby incident,Water 7 Saga,435,Straw Hat Pirates,Sketch drawing instead of photo
+5,Sanji,Black Leg,2,177000000,Inactive,Dressrosa incident,Dressrosa Arc,801,Straw Hat Pirates,Only Alive condition by Judge's interference
+5,Sanji,Black Leg,3,330000000,Inactive,Whole Cake Island incident,Whole Cake Island Arc,903,Straw Hat Pirates,Name changed to Vinsmoke Sanji
+5,Sanji,Black Leg,4,1032000000,Active,Defeated Queen in Wano,Wano Country Arc,1058,Straw Hat Pirates,Sketch drawing again on poster
+6,Tony Tony Chopper,Cotton Candy Lover,1,50,Inactive,Enies Lobby incident,Water 7 Saga,435,Straw Hat Pirates,Mistaken for pet
+6,Tony Tony Chopper,Cotton Candy Lover,2,100,Inactive,Dressrosa incident,Dressrosa Arc,801,Straw Hat Pirates,Still mistaken for pet
+6,Tony Tony Chopper,Cotton Candy Lover,3,1000,Active,Wano Country raid,Wano Country Arc,1058,Straw Hat Pirates,Still low due to pet mistake
+7,Nico Robin,Devil Child,1,79000000,Inactive,Ohara incident at age 8,Enies Lobby Arc,398,Baroque Works/Straw Hat Pirates,Can read Poneglyphs
+7,Nico Robin,Devil Child,2,80000000,Inactive,Enies Lobby incident,Water 7 Saga,435,Straw Hat Pirates,Small increase
+7,Nico Robin,Devil Child,3,130000000,Inactive,Dressrosa incident,Dressrosa Arc,801,Straw Hat Pirates,Updated poster
+7,Nico Robin,Devil Child,4,930000000,Active,Wano Country raid,Wano Country Arc,1058,Straw Hat Pirates,Major jump due to Poneglyph knowledge
+8,Franky,Cyborg/Iron Man,1,44000000,Inactive,Enies Lobby incident,Water 7 Saga,435,Straw Hat Pirates,Forced to join crew
+8,Franky,Cyborg/Iron Man,2,94000000,Inactive,Dressrosa incident,Dressrosa Arc,801,Straw Hat Pirates,General Franky on poster
+8,Franky,Iron Man,3,394000000,Active,Wano Country raid,Wano Country Arc,1058,Straw Hat Pirates,Thousand Sunny figurehead on poster
+9,Brook,Soul King,1,33000000,Inactive,As Rumbar Pirates member 50 years ago,Thriller Bark Arc,489,Rumbar Pirates,Old bounty still active
+9,Brook,Soul King,2,83000000,Inactive,Dressrosa incident,Dressrosa Arc,801,Straw Hat Pirates,Concert photo used
+9,Brook,Soul King,3,383000000,Active,Wano Country raid,Wano Country Arc,1058,Straw Hat Pirates,Senior Officer of Grand Fleet
+10,Jinbe,Knight of the Sea,1,76000000,Inactive,Sun Pirates activities,Flashback,620,Sun Pirates,Early Sun Pirates days
+10,Jinbe,Knight of the Sea,2,250000000,Inactive,Sun Pirates leader activities,Impel Down Arc,528,Sun Pirates,Frozen as Warlord
+10,Jinbe,Knight of the Sea,3,438000000,Inactive,Marineford War participation,Post-War Arc,601,Sun Pirates,Left Warlords
+10,Jinbe,Knight of the Sea,4,1100000000,Active,Wano Country raid,Wano Country Arc,1058,Straw Hat Pirates,Senior Officer of Grand Fleet
+11,Gol D. Roger,Pirate King,1,5564800000,Inactive,Reached Laugh Tale and found One Piece,Zou Arc,957,Roger Pirates,Highest bounty ever - expired after execution
+12,Edward Newgate,Whitebeard,1,5046000000,Inactive,Yonko status and Gura Gura no Mi,Zou Arc,957,Whitebeard Pirates,Second highest bounty - died at Marineford
+13,Kaidou,of the Beasts,1,70000000,Inactive,Escaped Marine ship at age 13,Wano Country Arc,1049,Beasts Pirates,First bounty as child
+13,Kaidou,of the Beasts,2,4611100000,Active,Yonko status,Zou Arc,957,Beasts Pirates,Highest active bounty before defeat
+14,Charlotte Linlin,Big Mom,1,50000000,Inactive,At age 6 with Streusen,Whole Cake Island Arc,868,Big Mom Pirates,Child bounty
+14,Charlotte Linlin,Big Mom,2,500000000,Inactive,Childhood piracy,Whole Cake Island Arc,868,Big Mom Pirates,Still a child
+14,Charlotte Linlin,Big Mom,3,4388000000,Active,Yonko status and former Rocks Pirate,Zou Arc,957,Big Mom Pirates,Fourth highest bounty
+15,Shanks,Red Hair,1,1040000000,Inactive,When visiting Foosha Village,Romance Dawn Arc,1,Red Hair Pirates,12 years before main story
+15,Shanks,Red Hair,2,4048900000,Active,Yonko status,Zou Arc,957,Red Hair Pirates,Fifth highest bounty
+16,Marshall D. Teach,Blackbeard,1,2247600000,Inactive,Before attacking Hachinosu,Hachinosu Incident,1059,Blackbeard Pirates,Initial Yonko bounty
+16,Marshall D. Teach,Blackbeard,2,3996000000,Active,Current Yonko status,Egghead Arc,1059,Blackbeard Pirates,Only person with two Devil Fruits
+17,Dracule Mihawk,Hawk Eyes,1,3590000000,Active,After Warlord abolishment,Egghead Arc,1058,Cross Guild,World's Strongest Swordsman
+18,Buggy,The Clown/The Star Clown,1,15000000,Inactive,Pre-Grand Line activities,Orange Town Arc,9,Buggy Pirates,Former Roger Pirates member
+18,Buggy,The Clown/The Star Clown,2,3189000000,Active,Cross Guild leader and Yonko,Egghead Arc,1058,Cross Guild,Highest bounty increase ever
+19,Crocodile,Sir/Desert King,1,81000000,Inactive,Pre-Warlord activities,Arabasta Arc,155,Baroque Works,Frozen as Warlord
+19,Crocodile,Sir,2,1965000000,Active,Cross Guild co-founder,Egghead Arc,1058,Cross Guild,Massive increase after abolishment
+20,Trafalgar Law,Surgeon of Death,1,200000000,Inactive,Supernova activities,Sabaody Arc,498,Heart Pirates,Super Rookie
+20,Trafalgar Law,Surgeon of Death,2,440000000,Inactive,Pre-Warlord,Punk Hazard Arc,659,Heart Pirates,Frozen as Warlord
+20,Trafalgar Law,Surgeon of Death,3,500000000,Inactive,Defeated Doflamingo,Dressrosa Arc,801,Heart Pirates,Warlord dismissed
+20,Trafalgar Law,Surgeon of Death,4,3000000000,Active,Defeated Big Mom with Kid,Wano Country Arc,1053,Heart Pirates,Same as Luffy and Kid
+21,Eustass Kid,Captain,1,315000000,Inactive,Attacking civilians in Grand Line,Sabaody Arc,498,Kid Pirates,Highest Supernova bounty
+21,Eustass Kid,Captain,2,470000000,Inactive,Post-timeskip activities,Dressrosa Arc,677,Kid Pirates,Two-year increase
+21,Eustass Kid,Captain,3,3000000000,Active,Defeated Big Mom with Law,Wano Country Arc,1053,Kid Pirates,Same as Luffy and Law
+22,Loki,Accursed Prince,1,2600000000,Active,Special circumstances in Elbaf,Elbaf Arc,1131,Elbaf,Imprisoned prince with special bounty
+23,Dorry,Blue Ogre,1,100000000,Inactive,100+ year old bounty,Little Garden Arc,118,Giant Warrior Pirates,Never updated for century
+23,Dorry,Blue Ogre,2,1800000000,Active,Egghead incident with inflation adjustment,Egghead Arc,1130,Giant Warrior Pirates,Inflation adjusted
+24,Brogy,Red Ogre,1,100000000,Inactive,100+ year old bounty,Little Garden Arc,118,Giant Warrior Pirates,Never updated for century
+24,Brogy,Red Ogre,2,1800000000,Active,Egghead incident with inflation adjustment,Egghead Arc,1130,Giant Warrior Pirates,Inflation adjusted
+25,Boa Hancock,Pirate Empress,1,80000000,Inactive,Single campaign as Kuja captain,Amazon Lily Arc,516,Kuja Pirates,Age 18 - frozen as Warlord
+25,Boa Hancock,Pirate Empress,2,1659000000,Active,Warlord abolishment,Egghead Arc,1059,Kuja Pirates,Massive increase
+26,King,The Conflagration,1,1390000000,Active,All-Star of Beasts Pirates,Wano Country Arc,1035,Beasts Pirates,Last Lunarian
+27,Marco,The Phoenix,1,1374000000,Active,First Division Commander,Wano Country Arc,1028,Whitebeard Pirates,Mythical Zoan user
+28,Queen,The Plague,1,1320000000,Active,All-Star of Beasts Pirates,Wano Country Arc,935,Beasts Pirates,Former MADS member
+29,Charlotte Katakuri,N/A,1,1057000000,Active,Sweet Commander,Whole Cake Island Arc,860,Big Mom Pirates,Second son
+30,Jack,The Drought,1,1000000000,Active,All-Star of Beasts Pirates,Zou Arc,808,Beasts Pirates,First billion berry bounty revealed
+31,Charlotte Smoothie,N/A,1,932000000,Active,Sweet Commander,Whole Cake Island Arc,846,Big Mom Pirates,14th daughter
+32,Charlotte Cracker,Thousand Arms,1,860000000,Active,Sweet Commander,Whole Cake Island Arc,846,Big Mom Pirates,Biscuit Soldier on poster
+33,Charlotte Perospero,N/A,1,700000000,Active,Eldest Charlotte child,Whole Cake Island Arc,846,Big Mom Pirates,Officer
+34,Charlotte Snack,N/A,1,600000000,Active,Former Sweet Commander,Whole Cake Island Arc,894,Big Mom Pirates,Lost position to Cracker
+35,Portgas D. Ace,Fire Fist,1,550000000,Inactive,Whitebeard 2nd Division Commander,Marineford Arc,157,Whitebeard Pirates,Died at Marineford
+36,Little Oars Jr.,N/A,1,550000000,Active,Whitebeard subordinate,Marineford Arc,554,Little Pirates,Giant descendant of Oars
+37,Who's-Who,Who of the Droplets,1,546000000,Active,Tobiroppo member,Wano Country Arc,998,Beasts Pirates,Former CP9 agent
+38,Chinjao,The Drill,1,542000000,Active,Former pirate and Happo Navy leader,Dressrosa Arc,719,Happo Navy,30 year old bounty
+39,Izou,N/A,1,510000000,Inactive,16th Division Commander,Wano Country Arc,1053,Whitebeard Pirates,Died in Wano
+40,Ulti,N/A,1,400000000,Active,Tobiroppo member,Wano Country Arc,998,Beasts Pirates,Page One's sister
+41,Black Maria,N/A,1,480000000,Active,Tobiroppo member,Wano Country Arc,998,Beasts Pirates,Pleasure District manager
+42,Sasaki,N/A,1,472000000,Active,Tobiroppo member,Wano Country Arc,998,Beasts Pirates,Ancient Zoan user
+43,Belo Betty,N/A,1,457000000,Active,Revolutionary Army Commander,Levely Arc,904,Revolutionary Army,Highest female non-pirate bounty
+44,Tamago,Baron,1,429000000,Active,Big Mom combatant,Whole Cake Island Arc,850,Big Mom Pirates,Evolves when defeated
+45,Karasu,N/A,1,400000000,Active,Revolutionary Army Commander,Levely Arc,904,Revolutionary Army,North Army commander
+46,Pedro,of the Treetops,1,382000000,Inactive,Former Nox Pirates captain,Whole Cake Island Arc,850,Nox Pirates,Died at Whole Cake Island
+47,Scratchmen Apoo,Roar of the Sea,1,198000000,Inactive,Supernova activities,Sabaody Arc,498,On Air Pirates,Super Rookie
+47,Scratchmen Apoo,Roar of the Sea,2,350000000,Active,Post-timeskip,Dressrosa Arc,677,Beasts Pirates,Allied with Kaido
+48,Capone Bege,Gang,1,138000000,Inactive,Targeted renowned captains,Sabaody Arc,498,Fire Tank Pirates,Super Rookie
+48,Capone Bege,Gang,2,300000000,Inactive,Post-timeskip,Dressrosa Arc,677,Fire Tank Pirates,Allied with Big Mom
+48,Capone Bege,Gang,3,350000000,Active,Big Mom assassination plot,Whole Cake Island Arc,903,Fire Tank Pirates,Left Big Mom alliance
+49,Cavendish,White Horse,1,280000000,Inactive,Beautiful Pirates captain,Dressrosa Arc,704,Beautiful Pirates,Hakuba personality
+49,Cavendish,White Horse,2,330000000,Active,Defeated Doflamingo crew,Dressrosa Arc,801,Straw Hat Grand Fleet,Grand Fleet Division 1 leader
+50,Pekoms,N/A,1,330000000,Active,Big Mom combatant,Fish-Man Island Arc,651,Big Mom Pirates,Mink tribe
+51,Jewelry Bonney,Big Eater,1,140000000,Inactive,Supernova activities,Sabaody Arc,498,Bonney Pirates,Super Rookie
+51,Jewelry Bonney,Big Eater,2,320000000,Active,Post-timeskip,Egghead Arc,1060,Bonney Pirates,Age-manipulation powers
+52,Basil Hawkins,The Magician,1,249000000,Inactive,Supernova activities,Sabaody Arc,498,Hawkins Pirates,Super Rookie
+52,Basil Hawkins,The Magician,2,320000000,Active,Post-timeskip,Dressrosa Arc,677,Beasts Pirates,Allied with Kaido
+53,Donquixote Doflamingo,Heavenly Yaksha,1,340000000,Inactive,Pre-Warlord activities,Jaya Arc,234,Donquixote Pirates,Frozen as Warlord 10 years
+54,Lindbergh,N/A,1,316000000,Active,Revolutionary Army Commander,Levely Arc,904,Revolutionary Army,South Army commander
+55,Caesar Clown,Master,1,300000000,Active,Illegal experiments and prison escape,Punk Hazard Arc,671,Donquixote Pirates,Former Marine scientist
+56,Charlotte Daifuku,N/A,1,300000000,Active,Charlotte officer,Whole Cake Island Arc,846,Big Mom Pirates,3rd son
+57,Charlotte Oven,N/A,1,300000000,Active,Charlotte officer,Whole Cake Island Arc,846,Big Mom Pirates,4th son
+58,Bartholomew Kuma,The Tyrant,1,296000000,Inactive,Sank Marine fleet,Thriller Bark Arc,234,Revolutionary Army,Frozen as Warlord
+59,Morley,N/A,1,293000000,Active,Revolutionary Army Commander,Levely Arc,904,Revolutionary Army,West Army commander and former pirate
+60,Page One,N/A,1,290000000,Active,Tobiroppo member,Wano Country Arc,998,Beasts Pirates,Ulti's brother
+61,X Drake,Red Flag,1,222000000,Active,Alleged Marine betrayal,Sabaody Arc,498,Drake Pirates,Secret SWORD member
+62,Sai,Don Sai,1,210000000,Active,Happo Navy leader,Dressrosa Arc,758,Straw Hat Grand Fleet,Grand Fleet Division 3 leader
+63,Squard,Maelstrom Spider,1,210000000,Active,Whitebeard subordinate,Marineford Arc,551,Spade Pirates,Betrayed by Akainu's lies
+64,Caribou,Wet-Haired,1,210000000,Active,Killing Marines,Sabaody Arc,600,Caribou Pirates,Logia user
+65,Killer,Massacre Soldier,1,162000000,Inactive,Supernova activities,Sabaody Arc,498,Kid Pirates,Super Rookie
+65,Killer,Massacre Soldier,2,200000000,Active,Post-timeskip,Dressrosa Arc,677,Kid Pirates,Always wears mask
+66,Bellamy,The Hyena,1,55000000,Inactive,Big-Time Rookie,Jaya Arc,222,Bellamy Pirates,Mocked dreams
+66,Bellamy,The Hyena,2,195000000,Active,Post-timeskip activities,Dressrosa Arc,706,Donquixote Pirates,Allied with Doflamingo
+67,Ginny,N/A,1,190000000,Inactive,Revolutionary Army activities,Egghead Arc,1098,Revolutionary Army,Died - bounty no longer claimable
+68,Coribou,Blood-Splatterer,1,190000000,Active,Killing Marines,Sabaody Arc,600,Caribou Pirates,Caribou's brother
+69,Orlumbus,Massacre Ruler,1,148000000,Active,Yonta Maria Grand Fleet admiral,Dressrosa Arc,800,Straw Hat Grand Fleet,Grand Fleet Division 7 leader
+70,Urouge,Mad Monk,1,108000000,Active,Supernova activities,Sabaody Arc,498,Fallen Monk Pirates,Super Rookie from sky island
+71,Bobbin,Sweeper,1,105500000,Active,Big Mom combatant,Whole Cake Island Arc,834,Big Mom Pirates,Bishop rank
+72,Trebol,N/A,1,99000000,Inactive,Donquixote officer,Dressrosa Arc,682,Donquixote Pirates,Frozen 10 years as Warlord subordinate
+73,Diamante,N/A,1,99000000,Inactive,Donquixote officer,Dressrosa Arc,682,Donquixote Pirates,Frozen 10 years as Warlord subordinate
+74,Pica,N/A,1,99000000,Inactive,Donquixote officer,Dressrosa Arc,682,Donquixote Pirates,Frozen 10 years as Warlord subordinate
+75,Vito,Monster Gun,1,95000000,Active,Fire Tank combatant,Whole Cake Island Arc,825,Fire Tank Pirates,Bege's subordinate
+76,Rockstar,N/A,1,94000000,Active,Red Hair Pirates member,Jaya Arc,234,Red Hair Pirates,Messenger for Shanks
+77,Vander Decken IX,N/A,1,94000000,Active,Flying Pirates captain,Fish-Man Island Arc,606,Flying Pirates,Cursed to touch nothing
+78,Gotti,N/A,1,90000000,Active,Fire Tank combatant,Whole Cake Island Arc,825,Fire Tank Pirates,Bege's subordinate
+79,Lip Doughty,Service,1,88000000,Inactive,Fake Straw Hat member,Return to Sabaody Arc,600,Fake Straw Hat Crew,Arrested by Sentomaru
+80,Albion,Gashed,1,92000000,Active,New World pirate,Return to Sabaody Arc,600,Unknown,Tried to join fake Straw Hats
+81,Brownbeard,N/A,1,80060000,Inactive,New World pirate,Punk Hazard Arc,661,Centaur Patrol,Captured by Caesar then arrested
+82,Daz Bonez,The Killer,1,75000000,Active,Baroque Works officer,Arabasta Arc,190,Cross Guild,Mr. 1
+83,Gyro,Crab-Hand,1,73000000,Active,South Blue pirate,Fish-Man Island Arc,612,Gyro Pirates,Turned into centaur by Caesar
+84,Hody Jones,N/A,1,73000000,Active,New Fishman Pirates captain,Fish-Man Island Arc,644,New Fishman Pirates,Energy Steroid user
+85,Suleiman,The Beheader,1,67000000,Active,War criminal,Dressrosa Arc,706,Beautiful Pirates,Joined Cavendish
+86,Gambia,Missionary,1,67000000,Active,Barto Club officer,Dressrosa Arc,706,Barto Club,Fanatical Luffy fan
+87,Devil Dias,N/A,1,60000000,Inactive,Paradise pirate,Sabaody Arc,497,Unknown,Carried off by Marines
+88,Senor Pink,N/A,1,58000000,Inactive,Donquixote officer,Dressrosa Arc,775,Donquixote Pirates,Frozen 10 years as Warlord subordinate
+89,Kelly Funk,N/A,1,57000000,Active,Assassin,Dressrosa Arc,706,Mogaro Kingdom,Works with brother Bobby
+90,Peachbeard,N/A,1,52000000,Active,Blackbeard subordinate,Dressrosa Arc,925,Blackbeard Pirates,Allied with Blackbeard
+91,Boa Sandersonia,N/A,1,40000000,Active,Kuja Pirates member,Amazon Lily Arc,516,Kuja Pirates,Hancock's sister
+92,Boa Marigold,N/A,1,40000000,Active,Kuja Pirates member,Amazon Lily Arc,516,Kuja Pirates,Hancock's sister
+93,Roshio,The Executioner,1,42000000,Active,Paradise pirate,Jaya Arc,222,Unknown,Mock Town resident
+94,Mikazuki,N/A,1,36000000,Active,Paradise pirate,Jaya Arc,222,Unknown,Mock Town resident
+95,Shoujou,Sonar King,1,36000000,Active,Saruyama Alliance,Jaya Arc,227,Shoujou Pirates,Salvage operations
+96,Bobby Funk,N/A,1,36000000,Active,Assassin,Dressrosa Arc,706,Mogaro Kingdom,Works with brother Kelly
+97,Zala,Poison Spider,1,35000000,Active,Baroque Works officer,Arabasta Arc,190,Unknown,Miss Doublefinger
+98,Bentham,of the Wild,1,32000000,Inactive,Baroque Works officer,Arabasta Arc,161,Unknown,Mr. 2 Bon Kurei - captured twice
+99,Gladius,N/A,1,31000000,Inactive,Donquixote officer,Dressrosa Arc,706,Donquixote Pirates,Frozen 10 years as Warlord subordinate
+100,Marianne,Flag-Bearer of Freedom,1,29000000,Active,Baroque Works officer,Arabasta Arc,161,Unknown,Miss Goldenweek
+101,Demalo Black,Three Tongued,1,26000000,Inactive,Fake Luffy,Return to Sabaody Arc,598,Fake Straw Hat Crew,Arrested by Sentomaru
+102,Mont Blanc Cricket,N/A,1,25000000,Active,Saruyama Alliance leader,Jaya Arc,227,Saruyama Alliance,Descendant of Noland
+103,Charlotte Lola,N/A,1,24000000,Active,Former Big Mom Pirates,Thriller Bark Arc,449,Rolling Pirates,Big Mom's daughter who fled
+104,Foxy,Silver Fox,1,24000000,Active,Foxy Pirates captain,Long Ring Long Land Arc,305,Foxy Pirates,Davy Back Fight specialist
+105,Galdino,Loan Shark,1,24000000,Active,Former Baroque Works,Arabasta Arc,161,Cross Guild,Mr. 3
+106,Masira,Salvage King,1,23000000,Active,Saruyama Alliance,Jaya Arc,227,Masira Pirates,Salvage operations
+107,Arlong,Saw-Tooth,1,20000000,Inactive,Arlong Pirates captain,Arlong Park Arc,69,Arlong Pirates,Highest East Blue bounty - captured
+108,Lacuba,N/A,1,17000000,Active,Paradise pirate,Sabaody Arc,497,Unknown,Escaped Human Auction House
+109,Don Krieg,Pirate Admiral,1,17000000,Inactive,Krieg Pirates admiral,Baratie Arc,47,Krieg Pirates,Strongest East Blue fleet
+110,Kuro,Of a Hundred Plans,1,16000000,Inactive,Black Cat Pirates captain,Syrup Village Arc,33,Black Cat Pirates,Faked death
+111,Dellinger,N/A,1,15000000,Inactive,Donquixote officer,Dressrosa Arc,706,Donquixote Pirates,Half fighting fish
+112,Drophy,Town-Collapser,1,14000000,Active,Baroque Works officer,Arabasta Arc,161,Unknown,Miss Merry Christmas
+113,Curly Dadan,N/A,1,7800000,Active,Mountain bandit,Post-War Arc,582,Dadan Family,Raised Luffy and Ace
+114,Gin,Man-Demon,1,12000000,Inactive,Krieg combat commander,Baratie Arc,47,Krieg Pirates,Ruthless nature
+115,Machvise,N/A,1,11000000,Inactive,Donquixote officer,Dressrosa Arc,706,Donquixote Pirates,Ton Ton fruit user
+116,Gem,of the Border,1,10000000,Active,Baroque Works officer,Whisky Peak Arc,110,Unknown,Mr. 5
+117,Wellington,N/A,1,10000000,Active,North Blue pirate,Jaya Arc,222,Unknown,Mock Town resident
+118,Jango,The Hypnotist,1,9000000,Inactive,Former Black Cat officer,Syrup Village Arc,38,Marines,Joined Marines
+119,Kuroobi,N/A,1,9000000,Inactive,Arlong officer,Arlong Park Arc,SBS,Arlong Pirates,Ray martial artist - captured
+120,Higuma,N/A,1,8000000,Inactive,Mountain bandit,Romance Dawn Arc,1,Higuma Bandits,
+1,Gol D. Roger,King of the Pirates,1,5564800000,Inactive (Deceased),Conquered the Grand Line / Learned True History,Wano Country,957,Roger Pirates,Highest known pirate bounty in history.
+2,Edward Newgate,Whitebeard,1,5046000000,Inactive (Deceased),Power to destroy the world / Yonko status,Wano Country,957,Whitebeard Pirates,Former Rival to Roger.
+3,Kaido,King of the Beasts,1,4611100000,Active (Status Unknown),Yonko status / Tyranny in Wano,Wano Country,957,Beasts Pirates,Defeated by Luffy.
+4,Charlotte Linlin,Big Mom,1,4388000000,Active (Status Unknown),Yonko status / Ruler of Totto Land,Wano Country,957,Big Mom Pirates,Defeated by Kid and Law.
+5,Shanks,Red-Haired,1,4048900000,Active,Yonko status / Diplomatic influence,Wano Country,957,Red Hair Pirates,Youngest of the original Yonko.
+6,Marshall D. Teach,Blackbeard,1,0,Revoked (Updated),Warlord appointment,Post-Enies Lobby,474,Blackbeard Pirates,Former Whitebeard member.
+6,Marshall D. Teach,Blackbeard,2,2247600000,Active (Outdated),Yonko status / Two Devil Fruits,Post-Dressrosa,925,Blackbeard Pirates,First bounty as Yonko.
+6,Marshall D. Teach,Blackbeard,3,3996000000,Active,Defeating Heart Pirates / Expanding territory,Egghead,1063,Blackbeard Pirates,Current bounty.
+7,Dracule Mihawk,Hawk Eyes,1,3590000000,Active,World's Strongest Swordsman / Cross Guild Founder,Egghead,1058,Cross Guild,Higher bounty than his nominal leader Buggy.
+8,Buggy,The Genius Jester,1,15000000,Revoked (Updated),Terrorizing East Blue,Orange Town,19,Buggy Pirates,Early East Blue villain.
+8,Buggy,The Genius Jester,2,3189000000,Active,Figurehead Leader of Cross Guild / Yonko Status,Egghead,1058,Cross Guild,Fails upwards successfully.
+9,Monkey D. Luffy,Straw Hat,1,30000000,Active (Updated),Defeating Arlong / East Blue dominance,Loguetown,96,Straw Hat Pirates,First bounty.
+9,Monkey D. Luffy,Straw Hat,2,100000000,Active (Updated),Defeating Crocodile (Warlord),Jaya,232,Straw Hat Pirates,Declared Supernova.
+9,Monkey D. Luffy,Straw Hat,3,300000000,Active (Updated),Enies Lobby raid / Defeating Rob Lucci,Post-Enies Lobby,435,Straw Hat Pirates,Declared war on World Govt.
+9,Monkey D. Luffy,Straw Hat,4,400000000,Active (Updated),Impel Down breakout / Marineford War,Return to Sabaody,601,Straw Hat Pirates,Post-Timeskip reveal.
+9,Monkey D. Luffy,Straw Hat,5,500000000,Active (Updated),Defeating Doflamingo / Dressrosa alliance,Post-Dressrosa,801,Straw Hat Pirates,Grand Fleet formed.
+9,Monkey D. Luffy,Straw Hat,6,1500000000,Active (Updated),Invading Totto Land / Defeating Katakuri,Post-WCI,903,Straw Hat Pirates,Declared Fifth Emperor (unofficially).
+9,Monkey D. Luffy,Straw Hat,7,3000000000,Active,Defeating Kaido / Joyboy Awakening,Post-Wano,1053,Straw Hat Pirates,Officially a Yonko.
+10,Monkey D. Garp,The Fist,1,3000000000,Active,Cross Guild Marine Bounty (3 Crowns),Egghead,1056,Marines,Equal to an Admiral in Cross Guild eyes.
+11,Trafalgar Law,Surgeon of Death,1,200000000,Active (Updated),Rookie actions,Sabaody,498,Heart Pirates,Supernova Era.
+11,Trafalgar Law,Surgeon of Death,2,440000000,Frozen (Warlord),Rocky Port Incident,Punk Hazard,659,Heart Pirates,Became Warlord.
+11,Trafalgar Law,Surgeon of Death,3,500000000,Active (Updated),Alliance with Straw Hats / Dressrosa,Post-Dressrosa,801,Heart Pirates,Warlord title revoked.
+11,Trafalgar Law,Surgeon of Death,4,3000000000,Active,Defeating Big Mom,Post-Wano,1053,Heart Pirates,Shares value with Luffy/Kid.
+12,Eustass Kid,Captain,1,315000000,Active (Updated),Civilian casualties / Rookie actions,Sabaody,498,Kid Pirates,Highest Supernova bounty pre-skip.
+12,Eustass Kid,Captain,2,470000000,Active (Updated),New World aggression,Post-Timeskip,601,Kid Pirates,Targeted Shanks' fleet.
+12,Eustass Kid,Captain,3,3000000000,Active,Defeating Big Mom,Post-Wano,1053,Kid Pirates,Currently defeated by Shanks.
+13,Sir Crocodile,Desert King,1,81000000,Frozen (Updated),Logia user / Pirate acts,Alabasta,155,Baroque Works,Frozen when became Warlord.
+13,Sir Crocodile,Desert King,2,1965000000,Active,Logia Mastery / Cross Guild Leadership / Cunning,Egghead,1058,Cross Guild,Massive jump due to threat level.
+14,Boa Hancock,Pirate Empress,1,80000000,Frozen (Updated),Single campaign,Amazon Lily,522,Kuja Pirates,Frozen instantly for Warlord status.
+14,Boa Hancock,Pirate Empress,2,1659000000,Active,Warlord revocation / Haki / Threat to Govt,Egghead,1059,Kuja Pirates,High threat assessment.
+15,King,The Wildfire,1,1390000000,Active,Kaido's Right Hand / Lunarian Race,Wano Country,957,Beasts Pirates,Defeated by Zoro.
+16,Marco,The Phoenix,1,1374000000,Active,Whitebeard's Right Hand / Marineford War,Wano Country,957,Whitebeard Pirates,Leader of the Remnants.
+17,Queen,The Plague,1,1320000000,Active,MADS Scientist / Kaido's Commander,Wano Country,935,Beasts Pirates,Defeated by Sanji.
+18,Roronoa Zoro,Pirate Hunter,1,60000000,Active (Updated),Defeating Daz Bonez / 100 Bounty Hunters,Alabasta,213,Straw Hat Pirates,First bounty.
+18,Roronoa Zoro,Pirate Hunter,2,120000000,Active (Updated),Enies Lobby / Defeating Kaku,Post-Enies Lobby,435,Straw Hat Pirates,Supernova status.
+18,Roronoa Zoro,Pirate Hunter,3,320000000,Active (Updated),Dressrosa / Defeating Pica,Post-Dressrosa,801,Straw Hat Pirates,Crossed 300M mark.
+18,Roronoa Zoro,Pirate Hunter,4,1111000000,Active,Defeating King / Conqueror's Haki,Post-Wano,1058,Straw Hat Pirates,The "Number 2" of the crew.
+19,Jinbe,Knight of the Sea,1,76000000,Active (Updated),Sun Pirates activity,Fishman Island,628,Sun Pirates,Pre-Warlord.
+19,Jinbe,Knight of the Sea,2,250000000,Frozen (Updated),Warlord appointment,Impel Down,528,Sun Pirates,Frozen era.
+19,Jinbe,Knight of the Sea,3,438000000,Active (Updated),Resignation from Warlords / Marineford,Post-Timeskip,635,Straw Hat Pirates,Joined Straw Hats.
+19,Jinbe,Knight of the Sea,4,1100000000,Active,Defeating Who's Who / Senior Officer status,Post-Wano,1058,Straw Hat Pirates,Third highest in crew.
+20,Charlotte Katakuri,Dogtooth,1,1057000000,Active,Big Mom's Strongest Commander,WCI,860,Big Mom Pirates,Undefeated until Luffy.
+21,Vinsmoke Sanji,Black Leg,1,77000000,Active (Updated),Enies Lobby / Defeating Jabra,Post-Enies Lobby,435,Straw Hat Pirates,Photo was a doodle.
+21,Vinsmoke Sanji,Black Leg,2,177000000,Active (Updated),Dressrosa (Only Alive status),Post-Dressrosa,801,Straw Hat Pirates,Vinsmoke name leverage.
+21,Vinsmoke Sanji,Black Leg,3,330000000,Active (Updated),WCI / Vinsmoke assassination plot,Post-WCI,903,Straw Hat Pirates,Restored to Dead or Alive.
+21,Vinsmoke Sanji,Black Leg,4,1032000000,Active,Defeating Queen / Germa Science,Post-Wano,1058,Straw Hat Pirates,The "Wings" of the Pirate King.
+22,Jack,The Drought,1,1000000000,Active,Destruction of Zou / Kaido's Commander,Zou,809,Beasts Pirates,First 1B bounty revealed.
+23,Charlotte Smoothie,Juice Minister,1,932000000,Active,Big Mom Sweet Commander,WCI,846,Big Mom Pirates,Hybrid long-leg tribe.
+24,Nico Robin,Devil Child,1,79000000,Active (Updated),Survivor of Ohara,Water 7,398,Straw Hat Pirates,Assigned at age 8.
+24,Nico Robin,Devil Child,2,80000000,Active (Updated),Enies Lobby participation,Post-Enies Lobby,435,Straw Hat Pirates,Minimal increase.
+24,Nico Robin,Devil Child,3,130000000,Active (Updated),Dressrosa participation,Post-Dressrosa,801,Straw Hat Pirates,Defeated Gladius (assist).
+24,Nico Robin,Devil Child,4,930000000,Active,Defeating Black Maria / Reading Poneglyphs,Post-Wano,1058,Straw Hat Pirates,Massive threat to World Govt.
+25,Charlotte Cracker,Biscuit Knight,1,860000000,Active,Big Mom Sweet Commander,WCI,836,Big Mom Pirates,Defeated by Luffy/Nami.
+26,Charlotte Perospero,Candy Minister,1,700000000,Active,Eldest Son of Big Mom,WCI,834,Big Mom Pirates,Defeated by Nekomamushi.
+27,Sabo,Flame Emperor,1,602000000,Active,Chief of Staff Revolutionary Army,Dressrosa,794,Revolutionary Army,Number 2 of Revolutionaries.
+28,Charlotte Snack,,1,600000000,Active,Former Sweet Commander,WCI,837,Big Mom Pirates,Demoted after loss to Urouge.
+29,Little Oars Jr.,,1,550000000,Active,Marineford Invasion,Marineford,554,Whitebeard Allies,Ancient Giant descendant.
+30,Portgas D. Ace,Fire Fist,1,550000000,Inactive (Deceased),Commander 2nd Division / Roger's Son,Marineford,552,Whitebeard Pirates,Captured by Blackbeard.
+31,Who's Who,The Droplet,1,546000000,Active,Tobi Roppo / Former CP9,Wano Country,978,Beasts Pirates,Knows Gum-Gum Fruit secret.
+32,Don Chinjao,The Drill,1,542000000,Active,Legendary Pirate,Dressrosa,708,Happo Navy,Rival to Garp.
+33,Izou,,1,510000000,Inactive (Deceased),Whitebeard Commander / Wano Retainer,Wano Country,957,Whitebeard Pirates,Died fighting CP0.
+34,Koby,The Hero,1,500000000,Active,Cross Guild Marine Bounty (5 Stars),Egghead,1056,Marines,Sword Member / Hero of Rocky Port.
+35,Usopp,Sogeking,1,30000000,Active (Updated),Enies Lobby / Burning Flag,Post-Enies Lobby,435,Straw Hat Pirates,Alter ego used.
+35,Usopp,God Usopp,2,200000000,Active (Updated),Dressrosa / Snipping Sugar,Post-Dressrosa,801,Straw Hat Pirates,Identified as God Usopp.
+35,Usopp,God Usopp,3,500000000,Active,Wano Raid participation,Post-Wano,1058,Straw Hat Pirates,Credit for pageantry.
+36,Black Maria,,1,480000000,Active,Tobi Roppo,Wano Country,978,Beasts Pirates,Defeated by Robin.
+37,Edward Weevil,Whitebeard Jr.,1,480000000,Active,Former Warlord / Aggression,Zou,802,Independent,Claims to be WB's son.
+38,Sasaki,,1,472000000,Active,Tobi Roppo / Armored Division,Wano Country,978,Beasts Pirates,Defeated by Franky.
+39,Belo Betty,,1,457000000,Active,Revolutionary Army Commander (East),Reverie,904,Revolutionary Army,Inspires citizens.
+40,Tamago,Baron,1,429000000,Active,Combatant Knight,WCI,829,Big Mom Pirates,Long-leg tribe.
+41,Karasu,,1,400000000,Active,Revolutionary Army Commander (North),Reverie,904,Revolutionary Army,Soot-Soot Fruit user.
+42,Ulti,,1,400000000,Active,Tobi Roppo,Wano Country,978,Beasts Pirates,Defeated by Nami/Zeus.
+43,Franky,Cyborg,1,44000000,Active (Updated),Enies Lobby / Burning Blueprint,Post-Enies Lobby,435,Straw Hat Pirates,Battle Franky 37.
+43,Franky,Cyborg,2,94000000,Active (Updated),Dressrosa / Defeating Senor Pink,Post-Dressrosa,801,Straw Hat Pirates,General Franky used.
+43,Franky,Cyborg,3,394000000,Active,Defeating Sasaki,Post-Wano,1058,Straw Hat Pirates,Poster is of the Thousand Sunny.
+44,Brook,Soul King,1,33000000,Active (Updated),Rumbar Pirates past,Thriller Bark,489,Straw Hat Pirates,Active from 50 years ago.
+44,Brook,Soul King,2,83000000,Active (Updated),Dressrosa / Fame as Soul King,Post-Dressrosa,801,Straw Hat Pirates,Concert poster used.
+44,Brook,Soul King,3,383000000,Active,WCI Poneglyph Heist / Wano Assist,Post-Wano,1058,Straw Hat Pirates,MVP of WCI.
+45,Pedro,Of the Treetops,1,382000000,Inactive (Deceased),Nox Pirates Captain,WCI,834,Minks / Nox Pirates,Suicide bombing vs Perospero.
+46,Nami,Cat Burglar,1,16000000,Active (Updated),Enies Lobby / Defeating Kalifa,Post-Enies Lobby,435,Straw Hat Pirates,Sexualized poster requested by photographer.
+46,Nami,Cat Burglar,2,66000000,Active (Updated),Dressrosa participation,Post-Dressrosa,801,Straw Hat Pirates,Minor increase.
+46,Nami,Cat Burglar,3,366000000,Active,Defeating Ulti (with Big Mom's help),Post-Wano,1058,Straw Hat Pirates,Possesses Zeus.
+47,Capone Bege,Gang,1,138000000,Active (Updated),West Blue Mafia history,Sabaody,498,Fire Tank Pirates,Supernova.
+47,Capone Bege,Gang,2,300000000,Active (Updated),Big Mom assassination attempt,WCI,857,Fire Tank Pirates,Married Chiffon.
+47,Capone Bege,Gang,3,350000000,Active,Post-WCI escape,Post-WCI,903,Fire Tank Pirates,Cover story adventures.
+48,Donquixote Doflamingo,Heavenly Yaksha,1,340000000,Frozen (Captured),Former Warlord / King of Dressrosa,Jaya,233,Donquixote Family,Rules the underworld as Joker.
+49,Cavendish,White Horse,1,280000000,Active (Updated),Super Rookie,Dressrosa,704,Beautiful Pirates,Has split personality Hakuba.
+49,Cavendish,White Horse,2,330000000,Active,Straw Hat Grand Fleet,Post-Dressrosa,801,Straw Hat Grand Fleet,1st Ship Captain.
+50,Pekoms,,1,330000000,Active (Status Unknown),Combatant,Fishman Island,651,Big Mom Pirates,Mink tribe.
+51,Gecko Moria,,1,320000000,Active,Former Warlord,Thriller Bark,455,Thriller Bark Pirates,Rival to Kaido in past.
+52,Basil Hawkins,Magician,1,249000000,Active (Updated),North Blue Pirate,Sabaody,498,Hawkins Pirates,Supernova.
+52,Basil Hawkins,Magician,2,320000000,Inactive (Deceased?),Wano Headliner,Post-Timeskip,601,Beasts Pirates,Died in Wano war.
+53,Lindbergh,,1,316000000,Active,Revolutionary Army Commander (South),Reverie,904,Revolutionary Army,Mink inventor.
+54,Jewelry Bonney,Big Eater,1,140000000,Active (Updated),South Blue Pirate,Sabaody,498,Bonney Pirates,Supernova.
+54,Jewelry Bonney,Big Eater,2,320000000,Active,Reverie infiltration / Egghead,Egghead,1060,Bonney Pirates,Daughter of Kuma.
+55,Caesar Clown,Master,1,300000000,Active,Mass Murder weapon expert,Punk Hazard,664,Donquixote Affiliate,Former MADS scientist.
+56,Charlotte Oven,Browned,1,300000000,Active,Minister of Baking,WCI,861,Big Mom Pirates,Heat-Heat Fruit.
+57,Charlotte Daifuku,Bean,1,300000000,Active,Minister of Beans,WCI,861,Big Mom Pirates,Genie user.
+58,Bartholomew Kuma,Tyrant,1,296000000,Frozen (Deceased/Robot),Former Warlord / Revolutionary,Jaya,233,Revolutionary Army,Turned into Pacifista.
+59,Morley,,1,293000000,Active,Revolutionary Army Commander (West),Reverie,904,Revolutionary Army,Giant / Okama.
+60,Page One,,1,290000000,Active,Tobi Roppo,Wano Country,929,Beasts Pirates,Spinosaurus user.
+61,Fisher Tiger,,1,230000000,Inactive (Deceased),Assault on Mary Geoise,Fishman Island,620,Sun Pirates,Freed the slaves.
+62,X Drake,Red Flag,1,222000000,Active,Marine Spy (SWORD),Sabaody,498,Drake Pirates / Marines,Undercover as pirate.
+63,Sai,Don,1,210000000,Active,Leader of Happo Navy,Post-Dressrosa,801,Straw Hat Grand Fleet,3rd Ship Captain.
+64,Squard,Maelstrom Spider,1,210000000,Active,Whitebeard Ally,Marineford,555,Squard Pirates,Manipulated by Akainu.
+65,Caribou,Wet-Haired,1,210000000,Active,Rookie Killer,Return to Sabaody,600,Caribou Pirates,Knows Ancient Weapon locations.
+66,Scratchmen Apoo,Roar of the Sea,1,198000000,Active (Updated),Longarm Tribe Pirate,Sabaody,498,On Air Pirates,Supernova.
+66,Scratchmen Apoo,Roar of the Sea,2,350000000,Active,Kaido Informant,Post-Timeskip,601,On Air Pirates,Betrayed Kid/Hawkins.
+67,Killer,Massacre Soldier,1,162000000,Active (Updated),Kid's Vice Captain,Sabaody,498,Kid Pirates,Supernova (Non-Captain).
+67,Killer,Massacre Soldier,2,200000000,Active,Wano participation / Kamazo,Post-Timeskip,601,Kid Pirates,Failed SMILE eater.
+68,Bartolomeo,Cannibal,1,150000000,Active (Updated),Rookie,Dressrosa,704,Barto Club,Luffy Fanboy.
+68,Bartolomeo,Cannibal,2,200000000,Active,Straw Hat Grand Fleet,Post-Dressrosa,801,Straw Hat Grand Fleet,2nd Ship Captain.
+69,Bellamy,The Hyena,1,55000000,Active (Updated),Mock Town bully,Jaya,222,Bellamy Pirates,Mocked Luffy.
+69,Bellamy,The Hyena,2,195000000,Retired,Doflamingo Officer,Dressrosa,706,Donquixote Family,Retired to dye flags.
+70,Coribou,,1,190000000,Active,Caribou's Brother,Return to Sabaody,600,Caribou Pirates,Comparison to lizard.
+71,Orlumbus,Massacre Ruler,1,148000000,Active,Yonta Maria Fleet Admiral,Post-Dressrosa,801,Straw Hat Grand Fleet,7th Ship Captain.
+72,Charlotte Mont-d'Or,Scribe,1,120000000,Active,Minister of Cheese,WCI,829,Big Mom Pirates,Book fruit.
+73,Urouge,Mad Monk,1,108000000,Active,Sky Island Pirate,Sabaody,498,Fallen Monk Pirates,Defeated Snack (600M).
+74,Bobbin,,1,105500000,Active,Bishop Combatant,WCI,829,Big Mom Pirates,Fixer for Big Mom.
+75,Dorry,Blue Ogre,1,100000000,Active (Updated),Little Garden Duel,Little Garden,118,Giant Warrior Pirates,100 year old bounty.
+75,Dorry,Blue Ogre,2,1800000000,Active,Egghead Raid / Shanks Ally,Egghead,1110,Giant Warrior Pirates,Major update.
+76,Brogy,Red Ogre,1,100000000,Active (Updated),Little Garden Duel,Little Garden,118,Giant Warrior Pirates,100 year old bounty.
+76,Brogy,Red Ogre,2,1800000000,Active,Egghead Raid / Shanks Ally,Egghead,1110,Giant Warrior Pirates,Major update.
+77,Vito,Monster Gun,1,95000000,Active,Bege's Advisor,Zou,813,Fire Tank Pirates,Large hands.
+78,Rockstar,,1,94000000,Active,New Recruit,Jaya,234,Red Hair Pirates,Messenger to Whitebeard.
+79,Gasparde,,1,95000000,Active (Non-Canon),Dead End Adventure Movie,Movie 4,N/A,Gasparde Pirates,Logia Candy.
+80,Gotti,Assassin,1,90000000,Active,Bege's Hitman,Zou,813,Fire Tank Pirates,Cyborg arm.
+81,Lip Doughty,,1,88000000,Active,Sabaody Rookie,Return to Sabaody,600,Unknown,Joined Fake Straw Hats.
+82,Brownbeard,,1,80060000,Active,Punk Hazard Patrol,Punk Hazard,664,Brownbeard Pirates,Centaur form.
+83,Mr. 1,Daz Bonez,1,75000000,Active,Baroque Works Agent,Alabasta,190,Baroque Works / Cross Guild,Joined Crocodile.
+84,Gyro,Crab-Hand,1,73000000,Active,Fishman Island Intruder,Fishman Island,611,Gyro Pirates,Eaten by Hody Jones' crew.
+85,Doc Q,Death God,1,72000000,Active,Blackbeard Doctor,Jaya,234,Blackbeard Pirates,Sickly horse Stronger.
+86,Gambit,,1,67000000,Active,Capone's Staff,Sabaody,498,Fire Tank Pirates,Unknown fate.
+87,Suleiman,The Beheader,1,67000000,Active,Criminal of War,Dressrosa,704,Straw Hat Grand Fleet,Joined Cavendish.
+88,Lao G,,1,61000000,Frozen (Captured),Donquixote Executive,Dressrosa,702,Donquixote Family,G-Style martial arts.
+89,Devil Dias,,1,60000000,Inactive,Slave,Sabaody,497,Acumate Pirates,Collared by Tenryuubito.
+90,Senor Pink,,1,58000000,Frozen (Captured),Donquixote Executive,Dressrosa,702,Donquixote Family,Hard-boiled.
+91,Kelly Funk,,1,57000000,Active,Assassin,Dressrosa,704,Funk Brothers,Jacket Fruit.
+92,Byrnndi World,World Destroyer,1,500000000,Active (Non-Canon),3D2Y Special,TV Special,N/A,World Pirates,Moa Moa Fruit.
+93,Peachbeard,,1,52000000,Active,Blackbeard Affiliate,Reverie,904,Peachbeard Pirates,Attacked Lulusia.
+94,Roshio, The Executioner,1,42000000,Inactive (Deceased),Mock Town Victim,Jaya,222,Roshio Pirates,Killed by Bellamy.
+95,Sarkies,Big Knife,1,38000000,Active,Bellamy's Mate,Jaya,222,Bellamy Pirates,Mind-controlled by Doflamingo.
+96,Shoujou,Sonar King,1,36000000,Active,Salvage King,Jaya,226,Saruyama Alliance,Looks like a monkey.
+97,Mikazuki,,1,36000000,Active,Water 7 Bully,Water 7,323,Big Helmet Pirates,Beaten by Galley-La.
+98,Bobby Funk,,1,36000000,Active,Assassin,Dressrosa,704,Funk Brothers,Wears Kelly (Jacket).
+99,Miss Doublefinger,Zala,1,35000000,Active,Baroque Works Agent,Alabasta,190,Baroque Works,Spike Fruit.
+100,Mr. 2,Bon Kurei,1,32000000,Active (Impel Down),Baroque Works Agent,Alabasta,156,Baroque Works,New Queen of Newkama Land.
+101,Gladius,,1,31000000,Frozen (Captured),Donquixote Officer,Dressrosa,702,Donquixote Family,Pop-Pop Fruit.
+102,Miss Goldenweek,Marianne,1,29000000,Active,Baroque Works Agent,Little Garden,117,Baroque Works,Colors Trap user.
+103,Demaro Black,Three-Tongued,1,26000000,Active,Impersonator,Return to Sabaody,600,Fake Straw Hat Pirates,Posed as Luffy.
+104,Mont Blanc Cricket,,1,25000000,Active,Liar Noland Descendant,Jaya,226,Saruyama Alliance,Looking for Golden City.
+105,Galdino,Mr. 3,1,24000000,Active,Baroque Works Agent,Little Garden,117,Cross Guild,Wax-Wax Fruit.
+106,Foxy,Silver Fox,1,24000000,Active,Davy Back Fight,Long Ring Long Land,305,Foxy Pirates,Slow-Slow Fruit.
+107,Masira,Salvage King,1,23000000,Active,Salvage King,Jaya,220,Saruyama Alliance,Monkey appearance.
+108,Arlong,The Saw,1,20000000,Active,East Blue Tyrant,Arlong Park,69,Arlong Pirates,Bribed Marines to stay hidden.
+109,Don Krieg,Foul Play,1,17000000,Active,East Blue Overlord,Baratie,46,Krieg Pirates,Commanded 50 ships.
+110,Lacuba,,1,17000000,Active,Slave,Sabaody,500,Unknown,Pirate Strategist.
+111,Kuro,Clahador,1,16000000,Active,Black Cat Captain,Syrup Village,26,Black Cat Pirates,Faked death.
+112,Wellington,,1,10000000,Active,Enies Lobby Guard,Enies Lobby,426,None,Only anime filler bounty.
+113,Dick,,1,10000000,Active,Mountain Bandit,Post-War,584,Bandit,Beaten by Ace/Sabo.
+114,Machvise,,1,11000000,Frozen (Captured),Donquixote Officer,Dressrosa,702,Donquixote Family,Ton-Ton Fruit.
+115,Gin,Man-Demon,1,12000000,Active (Unknown),Krieg Combatant,Baratie,46,Krieg Pirates,Refused to kill Sanji.
+116,Higuma,The Bear,1,8000000,Inactive (Deceased),Mountain Bandit,Romance Dawn,1,Bandit,Killed by Sea King.
+117,Curly Dadan,,1,7800000,Active,Mountain Bandit,Post-War,584,Dadan Family,Foster mother to Ace/Luffy.
+118,Bluejam,,1,14300000,Inactive,East Blue Pirate,Post-War,584,Bluejam Pirates,Burned in Gray Terminal.
+119,Golass,,1,8000000,Active,Sniper Island Enemy,Filler,N/A,Unknown,Anime only.
+120,Miss Valentine,Mikita,1,7500000,Active,Baroque Works Agent,Whiskey Peak,112,Baroque Works,Kilo-Kilo Fruit.
+121,Sham,,1,7000000,Active,Black Cat Officer,Syrup Village,32,Black Cat Pirates,Nyaban Brothers.
+122,Buchi,,1,7000000,Active,Black Cat Officer,Syrup Village,32,Black Cat Pirates,Nyaban Brothers.
+123,Jango,Double-Crosser,1,9000000,Revoked,Black Cat Hypnotist,Syrup Village,26,Marines,Joined Marines under Hina.
+124,Alvida,Iron Mace,1,5000000,Active,East Blue Pirate,Romance Dawn,2,Cross Guild,First villain.
+125,Porchemy,,1,34000000,Inactive (Deceased),Bluejam Officer,Post-War,584,Bluejam Pirates,Tortured Luffy.
+126,Babe,Mr. 4,1,3200000,Active,Baroque Works Agent,Alabasta,163,Baroque Works,Dog-Gun Lassoo.
+127,Bepo,,1,500,Active,Heart Pirates Navigator,Sabaody,498,Heart Pirates,Mistaken for pet.
+128,Tony Tony Chopper,Cotton Candy Lover,1,50,Active (Updated),Enies Lobby,Post-Enies Lobby,435,Straw Hat Pirates,Mistaken for pet.
+128,Tony Tony Chopper,Cotton Candy Lover,2,100,Active (Updated),Dressrosa,Post-Dressrosa,801,Straw Hat Pirates,Still a pet.
+128,Tony Tony Chopper,Cotton Candy Lover,3,1000,Active,Wano Raid,Post-Wano,1058,Straw Hat Pirates,10x increase (still low).
+129,Pandaman,,1,3333333,Active,Easter Egg,Recurring,N/A,None,Joke character.
+130,Charlotte Perespero,ERROR,1,700000000,Duplicate,,,,,Duplicate entry for check.
+131,Vista,Flower Sword,1,0,Active (Unknown),Whitebeard Commander,Marineford,553,Whitebeard Pirates,Rivaled Mihawk.
+132,Jozu,Diamond,1,0,Active (Unknown),Whitebeard Commander,Marineford,553,Whitebeard Pirates,Lost arm to Aokiji.
+133,Lucky Roux,,1,0,Active (Unknown),Red Hair Officer,Romance Dawn,1,Red Hair Pirates,Fastest shooter.
+134,Benn Beckman,,1,0,Active (Unknown),Red Hair Vice Captain,Romance Dawn,1,Red Hair Pirates,Comparable to Shanks.
+135,Yasopp,Chaser,1,0,Active (Unknown),Red Hair Sniper,Romance Dawn,1,Red Hair Pirates,Usopp's dad.
+136,Dellinger,,1,15000000,Frozen (Captured),Donquixote Officer,Dressrosa,702,Donquixote Family,Fighting fish hybrid.
+137,Baby 5,,1,0,Active (Retired),Former Donquixote,Dressrosa,702,Happo Navy,Married Sai.
+138,Buffalo,,1,0,Active,Donquixote Officer,Punk Hazard,692,Donquixote Family,Spin-Spin Fruit.
+139,Sugar,,1,0,Frozen (Captured),Donquixote Special Officer,Dressrosa,702,Donquixote Family,Hobi Hobi Fruit (Toys).
+140,Trebol,,1,99000000,Frozen (Captured),Donquixote Elite,Dressrosa,702,Donquixote Family,Sticky-Sticky Fruit.
+141,Diamante,,1,99000000,Frozen (Captured),Donquixote Elite,Dressrosa,702,Donquixote Family,Flag-Flag Fruit.
+142,Pica,,1,99000000,Frozen (Captured),Donquixote Elite,Dressrosa,702,Donquixote Family,Stone-Stone Fruit.
+143,Gecko Moria,,1,320000000,Active,Thriller Bark,Thriller Bark,455,Thriller Bark Pirates,Shadow Fruit.
+144,Jaguar D. Saul,,1,0,Inactive (Hiding?),Former Vice Admiral,Ohara,392,Marines,Frozen by Aokiji.
+145,Kuzan,Aokiji,1,3000000000,Active,Cross Guild Marine Bounty (Estimate),Egghead,1056,Blackbeard Pirates,Former Admiral turned Pirate.
+146,Sakazuki,Akainu,1,3000000000,Active,Cross Guild Marine Bounty (Estimate),Egghead,1056,Marines,Fleet Admiral (likely higher).
+147,Borsalino,Kizaru,1,3000000000,Active,Cross Guild Marine Bounty (Estimate),Egghead,1056,Marines,Admiral.
+148,Hibari,,1,200000000,Active,Cross Guild Marine Bounty (2 Stars),Egghead,1080,Marines,SWORD member.
+149,Prince Grus,,1,500000000,Active,Cross Guild Marine Bounty (5 Stars),Egghead,1080,Marines,SWORD member.
+150,Kujaku,,1,500000000,Active,Cross Guild Marine Bounty (5 Stars),Egghead,1080,Marines,SWORD member / Tsuru's granddaughter.
+151,Silvers Rayleigh,Dark King,1,0,Active (Unknown),Roger's First Mate / Knows Void Century,Sabaody,500,Roger Pirates,Bounty is active but amount unrevealed (likely Billions).
+152,Douglas Bullet,Demon Heir,1,4428000000,Active (Non-Canon),Stampede Movie Villain,Movie Stampede,N/A,Roger Pirates / Independent,Rivaled Roger in strength.
+153,Shiki,Golden Lion,1,0,Active (Unknown),First Impel Down escapee / Rival to Roger,Strong World,0,Golden Lion Pirates,Declared war on World Govt 20 years ago.
+154,T-Bone,Ship Cutter,1,500000000,Inactive (Deceased),Cross Guild Marine Bounty (5 Stars),Egghead,1082,Marines,Killed by a starving civilian for the bounty.
+155,Hajrudin,Pirate Mercenary,1,230000000,Active,New Giant Warrior Pirates Captain,Post-Dressrosa,801,Straw Hat Grand Fleet,6th Ship Captain.
+156,Ideo,Destruction Cannon,1,195000000,Active,XXX Gym Martial Arts Alliance,Post-Dressrosa,801,Straw Hat Grand Fleet,4th Ship Captain / Longarm Tribe.
+157,Leo,Warrior,1,79000000,Active,Tontatta Pirates Captain,Post-Dressrosa,801,Straw Hat Grand Fleet,5th Ship Captain / Tontatta Tribe.
+158,Blue Gilly,,1,160000000,Active,Jiaokune Do Master,Post-Dressrosa,801,Straw Hat Grand Fleet,Joined Ideo's crew / Longleg Tribe.
+159,Abdullah,,1,0,Active (Unknown),Criminal,Dressrosa,704,Straw Hat Grand Fleet,Joined Ideo / Former Bounty Hunter.
+160,Jeet,,1,0,Active (Unknown),Criminal,Dressrosa,704,Straw Hat Grand Fleet,Joined Ideo / Former Bounty Hunter.
+161,Albion,Gashed,1,92000000,Active,Sabaody Recruit,Return to Sabaody,600,Unknown,Attempted to join Fake Straw Hats.
+162,Rock,Yeti Cool Brother,1,20000000,Active,Assassin,Punk Hazard,666,Unknown,Worked for Caesar Clown.
+163,Scotch,Yeti Cool Brother,1,20000000,Active,Assassin,Punk Hazard,666,Unknown,Worked for Caesar Clown.
+164,Hyouzou,Drunkard,1,0,Active (Unknown),Mercenary Swordsman,Fishman Island,609,New Fishman Pirates,Blue-ringed octopus merman.
+165,Dosun,,1,0,Active (Unknown),Officer,Fishman Island,611,New Fishman Pirates,Hammerhead shark fishman.
+166,Zeo,,1,0,Active (Unknown),Officer,Fishman Island,611,New Fishman Pirates,Wobbegong shark fishman.
+167,Daruma,,1,0,Active (Unknown),Officer,Fishman Island,611,New Fishman Pirates,Cookie-cutter shark fishman.
+168,Ikaros Much,,1,0,Active (Unknown),Officer,Fishman Island,611,New Fishman Pirates,Giant squid fishman.
+169,Vander Decken IX,,1,0,Frozen (Captured),Flying Pirates Captain,Fishman Island,606,Flying Pirates,Stalked Shirahoshi.
+170,Caribou,Wet-Haired,2,210000000,Active,Wano Information,Wano Country,940,Caribou Pirates,Tried to join Straw Hats.
+171,Coribou,,2,190000000,Active,Wano Cover Story,Wano Country,940,Caribou Pirates,Rescued brother.
+172,Gambia,The Missionary,1,67000000,Active,Barto Club Staff,Dressrosa,705,Barto Club,Bartolomeo's subordinate.
+173,Suleiman,The Beheader,1,67000000,Active,Class A War Criminal,Dressrosa,704,Beautiful Pirates,Joined Cavendish.
+174,Puzzle,Phoenix,1,100000000,Active (Non-Canon),Ice Hunter Arc,Anime Filler,326,Phoenix Pirates,New World survivor.
+175,Mad Treasure,,1,200000000,Active (Non-Canon),Heart of Gold Special,TV Special,N/A,Treasure Pirates,Chain-Chain Fruit.
+176,Psycho P,,1,200000000,Active (Non-Canon),Heart of Gold Special,TV Special,N/A,Treasure Pirates,Camo-Camo Fruit.
+177,Bill,Smelter,1,10000000,Active (Non-Canon),Silver Mine Arc,Anime Filler,746,Silver Pirate Alliance,Smelt-Smelt Fruit.
+178,Peseta,,1,6000000,Active (Non-Canon),Silver Mine Arc,Anime Filler,746,Silver Pirate Alliance,Bill's subordinate.
+179,Desire,,1,5000000,Active (Non-Canon),Silver Mine Arc,Anime Filler,746,Silver Pirate Alliance,Bartolomeo's childhood friend.
+180,Gild Tesoro,Golden Emperor,1,0,Active (Unknown - Non-Canon),Film Gold Villain,Movie Gold,N/A,Tesoro Crew,Possesses 20% of world's berries.
+181,Charlotte Galette,,1,0,Active (Unknown),Minister of Butter,WCI,829,Big Mom Pirates,18th Daughter.
+182,Charlotte Opera,,1,0,Active (Unknown),Minister of Whipped Cream,WCI,829,Big Mom Pirates,5th Son.
+183,Charlotte Amande,Demon Lady,1,0,Active (Unknown),Minister of Nuts,WCI,829,Big Mom Pirates,Swordsman "Slow Ballad".
+184,Bobbin, The Disposer,1,105500000,Active,Bishop Rank,WCI,829,Big Mom Pirates,Fixer.
+185,Diesel,,1,0,Active (Unknown),WCI Supplier,WCI,829,Big Mom Pirates,Longarm tribe.
+186,Streusen,Gourmet Knight,1,0,Active (Unknown),Co-Founder,WCI,868,Big Mom Pirates,Head Chef.
+187,Pound,,1,0,Inactive (Civilian?),Former Husband,WCI,831,Big Mom Family,Lola/Chiffon's father.
+188,Chiffon,,1,0,Active,Bege's Wife,WCI,826,Fire Tank Pirates,Former Big Mom daughter.
+189,Lola,Proposer,1,24000000,Active,Rolling Pirates Captain,Thriller Bark,450,Rolling Pirates,Big Mom's runaway daughter.
+190,Risky Brothers,,1,0,Active,Rolling Pirates,Thriller Bark,450,Rolling Pirates,Zombies in Thriller Bark.
+191,Inazuma,,1,0,Active (Unknown),Revolutionary Deputy,Impel Down,538,Revolutionary Army,Scissors Fruit.
+192,Emporio Ivankov,Okama King,1,0,Active (Unknown),Revolutionary Commander (Grand Line),Impel Down,537,Revolutionary Army,Queen of Kamabakka.
+193,Koala,,1,0,Active (Unknown),Fishman Karate Instructor,Dressrosa,731,Revolutionary Army,Former slave.
+194,Hack,,1,0,Active (Unknown),Fishman Karate Instructor,Dressrosa,731,Revolutionary Army,Jimbei's friend.
+195,Shiryu,OfThe Rain,1,0,Revoked (Impel Down),Former Head Jailer,Impel Down,538,Marines (Former),Jailed for excessive violence.
+196,Shiryu,OfThe Rain,2,0,Active (Unknown),Titanic Captain (2nd Ship),Marineford,576,Blackbeard Pirates,Clear-Clear Fruit user.
+197,Avalo Pizarro,Corrupt King,1,0,Active (Unknown),Titanic Captain (4th Ship),Marineford,576,Blackbeard Pirates,Level 6 Escapee / Island Fruit.
+198,Catarina Devon,Crescent Moon Hunter,1,0,Active (Unknown),Titanic Captain (6th Ship),Marineford,576,Blackbeard Pirates,Mythical Zoan (Nine Tailed Fox).
+199,Vasco Shot,Heavy Drinker,1,0,Active (Unknown),Titanic Captain (8th Ship),Marineford,576,Blackbeard Pirates,Liquor-Liquor Fruit.
+200,Sanjuan Wolf,Colossal Battleship,1,0,Active (Unknown),Titanic Captain (7th Ship),Marineford,576,Blackbeard Pirates,Giant Fruit / Largest Giant.
+201,Laffitte,Demon Sheriff,1,42200000,Active,Titanic Captain (5th Ship),Jaya,234,Blackbeard Pirates,Infiltrated Mary Geoise.
+202,Jesus Burgess,Champion,1,20000000,Active,Titanic Captain (1st Ship),Jaya,234,Blackbeard Pirates,Strong-Strong Fruit.
+203,Van Augur,Supersonic,1,64000000,Active,Titanic Captain (3rd Ship),Jaya,234,Blackbeard Pirates,Warp-Warp Fruit.
+204,Doc Q,Death God,1,72000000,Active,Titanic Captain (9th Ship),Jaya,234,Blackbeard Pirates,Sick-Sick Fruit.
+205,Kuzan,Aokiji,1,3000000000,Active (Cross Guild Estimate),Titanic Captain (10th Ship),Egghead,1081,Blackbeard Pirates,Former Admiral.
+206,Stronger,,1,0,Active,Horse,Jaya,234,Blackbeard Pirates,Mythical Zoan (Pegasus).
+207,Miss Monday,,1,0,Inactive,Baroque Works Agent,Whiskey Peak,107,Baroque Works,Strength based.
+208,Mr. 9,,1,0,Inactive,Baroque Works Agent,Whiskey Peak,107,Baroque Works,Miss Wednesday's partner.
+209,Mr. 7,Sniper,1,0,Inactive (Deceased?),Baroque Works Agent,Alabasta,SBS,Baroque Works,Replaced by new Mr 7.
+210,Miss Father's Day,,1,0,Inactive,Baroque Works Agent,Alabasta,204,Baroque Works,Frog gun user.
+211,Mr. 11,,1,0,Inactive (Captured),Baroque Works Agent,Alabasta,160,Baroque Works,Captured by Smoker.
+212,Mr. 5,Gem,1,10000000,Active,Baroque Works Agent,Whiskey Peak,110,Baroque Works,Bomb-Bomb Fruit.
+213,Miss All Sunday,Nico Robin,1,79000000,Active (Fake Name),Baroque Works Vice President,Alabasta,114,Baroque Works,Robin's cover identity.
+214,Corgi,,1,0,Inactive,Government Official,Water 7,326,World Government,Tried to capture Robin.
+215,Spandam,,1,0,Active,CP9 Chief / CP0,Enies Lobby,358,CP9 / CP0,Weakest CP9 member.
+216,Rob Lucci,Massacre Weapon,1,0,Active (CP0),CP9 Strongest / CP0,Water 7,327,CP9 / CP0,Leopard Fruit.
+217,Kaku,Mountain Wind,1,0,Active (CP0),CP9 / CP0,Water 7,327,CP9 / CP0,Giraffe Fruit.
+218,Jabra,,1,0,Inactive (CP0?),CP9 Agent,Enies Lobby,379,CP9,Wolf Fruit.
+219,Blueno,,1,0,Active (CP0),CP9 Agent,Water 7,343,CP9 / CP0,Door-Door Fruit.
+220,Kumadori,,1,0,Inactive (CP0?),CP9 Agent,Enies Lobby,379,CP9,Life Return.
+221,Fukuro,,1,0,Inactive (CP0?),CP9 Agent,Enies Lobby,379,CP9,Zipper mouth.
+222,Kalifa,,1,0,Active (CP0),CP9 Agent,Water 7,326,CP9 / CP0,Bubble Fruit.
+223,Nero,Sea Weasel,1,0,Inactive,CP9 New Recruit,Water 7,363,CP9,Defeated by Franky on Sea Train.
+224,Wanze,Mad,1,0,Inactive,CP7 Chef,Water 7,368,CP7,Ramen Kempo.
+225,T-Bone,,1,0,Inactive (Marine),Marine Captain (Pre-Cross Guild),Water 7,366,Marines,Known for hating crooked swordsmanship.
+226,Very Good,,1,0,Active,Marine Captain,Enies Lobby,426,Marines,Berry-Berry Fruit.
+227,Shu,,1,0,Active,Marine Captain,Enies Lobby,426,Marines,Rust-Rust Fruit (Destroyed Yubashiri).
+228,Sharinguru,,1,0,Active,Marine Captain,Enies Lobby,426,Marines,Wheel-Wheel Fruit.
+229,Strawberry,,1,0,Active,Vice Admiral,Enies Lobby,426,Marines,Long head.
+230,Yamakaji,,1,0,Active,Vice Admiral,Enies Lobby,426,Marines,Always smiling.
+231,Doberman,,1,0,Active,Vice Admiral,Enies Lobby,426,Marines,Scarred face.
+232,Onigumo,,1,0,Active,Vice Admiral,Enies Lobby,426,Marines,Spider-like hair.
+233,Momonga,,1,0,Active,Vice Admiral,Enies Lobby,426,Marines,Resisted Hancock.
+234,Bastille,Shark Cutter,1,0,Active,Vice Admiral,Dressrosa,717,Marines,Defeated by Sabo.
+235,Maynard,Pursuer,1,0,Active,Vice Admiral,Dressrosa,705,Marines,Infiltrated Colosseum as Capman.
+236,Smoker,White Hunter,1,0,Active,Vice Admiral,Loguetown,97,Marines,Luffy's persistent chaser.
+237,Tashigi,,1,0,Active,Captain,Loguetown,97,Marines,Sword nerd / Kuina lookalike.
+238,Hina,Black Cage,1,0,Active,Rear Admiral,Alabasta,212,Marines,Cage-Cage Fruit.
+239,Fullbody,Double Ironfist,1,0,Demoted,Lieutenant,Baratie,43,Marines,Demoted after Jango incident.
+240,Jango,Double Crosser,2,0,Active,Seaman Recruit,Alabasta,212,Marines,Follows Hina.
+241,Morgan,Axe-Hand,1,0,Revoked (Fugitive),Former Marine Captain,Romance Dawn,3,None,Father of Helmeppo.
+242,Nezumi,,1,0,Active (Corrupt),Marine Captain,Arlong Park,69,Marines,Took bribes from Arlong.
+243,Pudding Pudding,,1,0,Inactive (Deceased?),Commodore,Arlong Park,77,Marines,Sunk by Arlong.
+244,Sentomaru,,1,0,Active (Rebel?),Science Unit Captain,Sabaody,497,Marines / Egghead,Bodyguard of Vegapunk.
+245,Kong,,1,0,Active,Commander-in-Chief,Water 7,0,World Government,Former Fleet Admiral.
+246,Sengoku,The Buddha,1,3000000000,Active (Cross Guild Estimate),Inspector General / Former Fleet Admiral,Jaya,234,Marines,Mythical Zoan.
+247,Tsuru,Great Staff,1,1000000000,Active (Cross Guild Estimate),Vice Admiral,Jaya,234,Marines,Wash-Wash Fruit.
+248,Doll,,1,0,Active,Vice Admiral,Egghead,1061,Marines,G-14 Base Commander.
+249,Helmeppo,,1,0,Active,Lieutenant Commander,Romance Dawn,3,Marines,SWORD member.
+250,X Drake,Red Flag,2,0,Active,SWORD Captain,Sabaody,498,Marines (SWORD),Undercover Pirate.

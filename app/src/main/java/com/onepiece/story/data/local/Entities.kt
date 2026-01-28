@@ -40,7 +40,8 @@ data class ChapterEntity(
     val volume: Int,
     val name: String,
     val romanizedTitle: String,
-    val releaseDate: String?
+    val releaseDate: String?,
+    val content: String? = null
 )
 
 @Entity(tableName = "arcs")

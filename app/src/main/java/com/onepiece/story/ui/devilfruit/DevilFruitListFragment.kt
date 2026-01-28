@@ -20,13 +20,17 @@ class DevilFruitListFragment : Fragment() {
     private var _binding: FragmentDevilFruitListBinding? = null
     private val binding get() = _binding!!
     private val viewModel: MainViewModel by activityViewModels()
-    private lateinit var type: DevilFruitType
+    private val type: DevilFruitType by lazy {
+        arguments?.getString("type")?.let { DevilFruitType.valueOf(it) } ?: DevilFruitType.UNKNOWN
+    }
 
     companion object {
         fun newInstance(type: DevilFruitType): DevilFruitListFragment {
-            val fragment = DevilFruitListFragment()
-            fragment.type = type
-            return fragment
+            return DevilFruitListFragment().apply {
+                arguments = Bundle().apply {
+                    putString("type", type.name)
+                }
+            }
         }
     }
 
@@ -44,7 +48,7 @@ class DevilFruitListFragment : Fragment() {
         val adapter = DevilFruitAdapter()
         binding.recyclerView.adapter = adapter
         
-        // Observe data from ViewModel (Need to implement this in ViewModel)
+        // Observe data from ViewModel
         viewModel.getDevilFruitsByType(type).observe(viewLifecycleOwner) { fruits ->
             adapter.submitList(fruits)
         }

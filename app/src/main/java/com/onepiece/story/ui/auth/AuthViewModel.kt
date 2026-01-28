@@ -56,8 +56,9 @@ class AuthViewModel(private val repository: OnePieceRepository) : ViewModel() {
                     this.password = pass
                 }
                 // Supabase might require email confirmation, but assuming auto-confirm for dev
-                _currentUser.value = supabase.auth.currentSessionOrNull()?.user
-                val userId = supabase.auth.currentSessionOrNull()?.user?.id
+                val session = supabase.auth.currentSessionOrNull()
+                _currentUser.value = session?.user
+                val userId = session?.user?.id
                 if (userId != null) {
                     val newUser = User(id = userId, name = name, email = email)
                     saveUserToSupabase(newUser)
