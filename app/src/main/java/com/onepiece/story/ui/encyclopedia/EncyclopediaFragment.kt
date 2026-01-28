@@ -47,6 +47,7 @@ class EncyclopediaFragment : Fragment() {
                 2 -> "Arcs"
                 3 -> "Swords"
                 4 -> "Ships"
+                5 -> "Factions"
                 else -> "Tab $position"
             }
         }.attach()

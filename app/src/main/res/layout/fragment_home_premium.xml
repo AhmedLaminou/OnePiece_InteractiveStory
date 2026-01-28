@@ -88,28 +88,30 @@
                     android:textColor="@color/text_secondary"
                     android:textSize="14sp" />
 
-                <!-- Search Bar -->
+                <!-- Premium Search Bar -->
                 <com.google.android.material.card.MaterialCardView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
-                    app:cardBackgroundColor="@color/bg_secondary"
-                    app:cardCornerRadius="12dp"
-                    app:cardElevation="2dp"
-                    app:strokeWidth="0dp">
+                    android:layout_marginTop="20dp"
+                    app:cardBackgroundColor="#1A1A1A"
+                    app:cardCornerRadius="24dp"
+                    app:cardElevation="8dp"
+                    app:strokeColor="#33FFFFFF"
+                    app:strokeWidth="1dp">
 
                     <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="48dp"
+                        android:layout_height="56dp"
                         android:gravity="center_vertical"
                         android:orientation="horizontal"
-                        android:paddingHorizontal="16dp">
+                        android:paddingHorizontal="16dp"
+                        android:background="@drawable/bg_glass_card">
 
                         <ImageView
                             android:layout_width="24dp"
                             android:layout_height="24dp"
                             android:src="@android:drawable/ic_menu_search"
-                            app:tint="@color/text_secondary" />
+                            app:tint="@color/op_gold_primary" />
 
                         <EditText
                             android:id="@+id/search_input"
@@ -118,13 +120,30 @@
                             android:layout_weight="1"
                             android:layout_marginStart="12dp"
                             android:background="@android:color/transparent"
-                            android:hint="Search characters, arcs, devil fruits..."
-                            android:textColorHint="@color/text_secondary"
+                            android:hint="Search the Grand Line..."
+                            android:textColorHint="#80FFFFFF"
                             android:textColor="@color/text_primary"
-                            android:textSize="14sp"
+                            android:textSize="16sp"
+                            android:fontFamily="sans-serif-medium"
                             android:imeOptions="actionSearch"
                             android:inputType="text"
                             android:maxLines="1" />
+
+                        <View
+                            android:layout_width="1dp"
+                            android:layout_height="24dp"
+                            android:layout_marginHorizontal="12dp"
+                            android:background="#33FFFFFF" />
+
+                        <ImageView
+                            android:id="@+id/btn_filter_search"
+                            android:layout_width="24dp"
+                            android:layout_height="24dp"
+                            android:src="@android:drawable/ic_menu_sort_by_size"
+                            app:tint="@color/op_gold_primary"
+                            android:clickable="true"
+                            android:focusable="true"
+                            android:background="?attr/selectableItemBackgroundBorderless" />
 
                     </LinearLayout>
 
@@ -329,6 +348,86 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal">
+
+                    <!-- Story Feed Card -->
+                    <com.google.android.material.card.MaterialCardView
+                        android:id="@+id/btn_story_feed"
+                        android:layout_width="140dp"
+                        android:layout_height="100dp"
+                        android:layout_marginEnd="12dp"
+                        android:clickable="true"
+                        android:focusable="true"
+                        app:cardBackgroundColor="@color/op_red_dark"
+                        app:cardCornerRadius="16dp"
+                        app:cardElevation="8dp"
+                        app:strokeColor="#FFD700"
+                        app:strokeWidth="1dp">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:gravity="center"
+                            android:orientation="vertical"
+                            android:padding="12dp">
+
+                            <ImageView
+                                android:layout_width="32dp"
+                                android:layout_height="32dp"
+                                android:src="@android:drawable/ic_menu_gallery"
+                                app:tint="@color/text_primary" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="8dp"
+                                android:text="Story Feed"
+                                android:textColor="@color/text_primary"
+                                android:textSize="13sp"
+                                android:textStyle="bold" />
+
+                        </LinearLayout>
+
+                    </com.google.android.material.card.MaterialCardView>
+
+                    <!-- Quiz Card -->
+                    <com.google.android.material.card.MaterialCardView
+                        android:id="@+id/btn_quizzes"
+                        android:layout_width="140dp"
+                        android:layout_height="100dp"
+                        android:layout_marginEnd="12dp"
+                        android:clickable="true"
+                        android:focusable="true"
+                        app:cardBackgroundColor="@color/op_gold_dark"
+                        app:cardCornerRadius="16dp"
+                        app:cardElevation="8dp">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:gravity="center"
+                            android:orientation="vertical"
+                            android:padding="12dp">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="?"
+                                android:textColor="@color/bg_primary"
+                                android:textSize="28sp"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="4dp"
+                                android:text="Quizzes"
+                                android:textColor="@color/bg_primary"
+                                android:textSize="13sp"
+                                android:textStyle="bold" />
+
+                        </LinearLayout>
+
+                    </com.google.android.material.card.MaterialCardView>
 
                     <!-- Encyclopedia Card -->
                     <com.google.android.material.card.MaterialCardView

@@ -8,6 +8,8 @@
 
     <!-- Gold/Yellow Accent - Treasure Theme -->
     <color name="op_gold_primary">#FFD700</color>
+    <color name="op_gold">#FFD700</color>
+    <color name="op_gold_alpha">#26FFD700</color>
     <color name="op_gold_dark">#FFA000</color>
     <color name="op_gold_light">#FFE57F</color>
 
@@ -87,4 +89,12 @@
     <color name="rarity_rare">#2196F3</color>
     <color name="rarity_super_rare">#9C27B0</color>
     <color name="rarity_secret">#FFD700</color>
+
+    <!-- Quiz Colors -->
+    <color name="quiz_correct">#4CAF50</color>
+    <color name="quiz_incorrect">#F44336</color>
+    <color name="quiz_progress">#E91E63</color>
+
+    <!-- Background -->
+    <color name="background_dark">#0A0A0F</color>
 </resources>

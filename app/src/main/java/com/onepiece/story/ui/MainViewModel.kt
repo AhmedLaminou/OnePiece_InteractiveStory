@@ -32,6 +32,9 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
     private val _arcCharacters = MutableLiveData<List<Character>>()
     val arcCharacters: LiveData<List<Character>> = _arcCharacters
 
+    private val _arcChapters = MutableLiveData<List<com.onepiece.story.data.local.ChapterEntity>>()
+    val arcChapters: LiveData<List<com.onepiece.story.data.local.ChapterEntity>> = _arcChapters
+
     private val _selectedCharacter = MutableLiveData<Character?>()
     val selectedCharacter: LiveData<Character?> = _selectedCharacter
 
@@ -73,6 +76,9 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
     private val _conquerorUsers = MutableLiveData<List<com.onepiece.story.data.local.HakiUserEntity>>()
     val conquerorUsers: LiveData<List<com.onepiece.story.data.local.HakiUserEntity>> = _conquerorUsers
 
+    private val _devilFruitDetail = MutableLiveData<DevilFruitEntity?>()
+    val devilFruitDetail: LiveData<DevilFruitEntity?> = _devilFruitDetail
+
     init {
         loadArcs()
         loadUserProfile()
@@ -83,7 +89,7 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
         loadConquerorUsers()
     }
 
-    private fun loadFeaturedCharacters() {
+    fun loadFeaturedCharacters() {
         viewModelScope.launch {
             repository.getFeaturedCharacters(10).collect {
                 _featuredCharacters.value = it
@@ -164,7 +170,16 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
                 _selectedArc.value = arc
                 if (arc != null) {
                     loadCharactersForArc(arc.id)
+                    loadChaptersForArc(arc.id)
                 }
+            }
+        }
+    }
+
+    private fun loadChaptersForArc(arcId: String) {
+        viewModelScope.launch {
+            repository.getChaptersByArc(arcId).collect {
+                _arcChapters.value = it
             }
         }
     }
@@ -189,6 +204,14 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
         viewModelScope.launch {
             repository.getQuiz(quizId).collect {
                 _currentQuiz.value = it
+            }
+        }
+    }
+
+    fun loadDevilFruit(fruitId: String) {
+        viewModelScope.launch {
+            repository.getDevilFruitById(fruitId).collect {
+                _devilFruitDetail.value = it
             }
         }
     }

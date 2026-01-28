@@ -9,14 +9,15 @@ plugins {
     id("org.jetbrains.kotlin.plugin.serialization") version "2.0.0"
 }
 
-val backendBaseUrl: String by lazy {
-    val props = Properties()
+val localProperties = Properties().apply {
     val localPropsFile = rootProject.file("local.properties")
     if (localPropsFile.exists()) {
-        localPropsFile.inputStream().use { props.load(it) }
+        localPropsFile.inputStream().use { load(it) }
     }
+}
 
-    val fromLocalProps = props.getProperty("backend.baseUrl")?.trim().orEmpty()
+val backendBaseUrl: String by lazy {
+    val fromLocalProps = localProperties.getProperty("backend.baseUrl")?.trim().orEmpty()
     val fromGradleProp = (project.findProperty("backend.baseUrl") as? String)?.trim().orEmpty()
 
     when {
@@ -38,7 +39,10 @@ android {
         versionName = "1.0"
 
         buildConfigField("String", "BACKEND_BASE_URL", "\"$backendBaseUrl\"")
-        buildConfigField("String", "OPEN_ROUTER_API_KEY", "\"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\"")
+        val openRouterKey = localProperties.getProperty("OPEN_ROUTER_API_KEY")?.trim()?.removeSurrounding("\"") ?: "sk-or-v1-PLACEHOLDER"
+        // Key needs explicit quotes for buildConfigField
+        buildConfigField("String", "OPEN_ROUTER_API_KEY", "\"$openRouterKey\"")
+
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }

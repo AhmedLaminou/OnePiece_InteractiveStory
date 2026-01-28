@@ -12,9 +12,11 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import androidx.navigation.fragment.findNavController
 import com.onepiece.story.R
 import com.onepiece.story.data.model.Ship
 import com.onepiece.story.ui.MainViewModel
+import coil.load
 
 class ShipsTabFragment : Fragment(), SearchableFragment {
 
@@ -42,7 +44,11 @@ class ShipsTabFragment : Fragment(), SearchableFragment {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         
-        adapter = ShipsListAdapter()
+        adapter = ShipsListAdapter { ship ->
+            // Navigate to detail
+            val action = EncyclopediaFragmentDirections.actionEncyclopediaFragmentToShipDetailFragment(ship.id.toString())
+            findNavController().navigate(action)
+        }
         (view as RecyclerView).adapter = adapter
 
         viewModel.getShips().observe(viewLifecycleOwner) { ships ->
@@ -65,7 +71,9 @@ class ShipsTabFragment : Fragment(), SearchableFragment {
     }
 }
 
-class ShipsListAdapter : ListAdapter<Ship, ShipsListAdapter.ViewHolder>(ShipDiffCallback()) {
+class ShipsListAdapter(
+    private val onItemClick: (Ship) -> Unit
+) : ListAdapter<Ship, ShipsListAdapter.ViewHolder>(ShipDiffCallback()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context)
@@ -89,8 +97,19 @@ class ShipsListAdapter : ListAdapter<Ship, ShipsListAdapter.ViewHolder>(ShipDiff
             subtitle.text = "Owner: ${item.owner}"
             description.text = item.description
             badge.text = item.type.uppercase()
-            image.setImageResource(R.drawable.ic_anchor) // Use anchor for ships
-            image.setColorFilter(itemView.resources.getColor(R.color.op_gold_primary, null))
+            
+            // Load image from database URL, fallback to icon
+            if (!item.imageUrl.isNullOrBlank()) {
+                image.load(item.imageUrl) {
+                    placeholder(R.drawable.ic_anchor)
+                    error(R.drawable.ic_anchor)
+                }
+            } else {
+                image.setImageResource(R.drawable.ic_anchor)
+                image.setColorFilter(itemView.resources.getColor(R.color.op_gold_primary, null))
+            }
+            
+            itemView.setOnClickListener { onItemClick(item) }
         }
     }
 

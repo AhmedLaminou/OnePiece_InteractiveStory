@@ -1,6 +1,6 @@
 -- ============================================
--- REBUILD COMPLETE SCHEMA (REV 5)
--- Purpose: Consolidate all op_ tables and add op_episodes
+-- REBUILD COMPLETE SCHEMA (REV 6 - SEED COMPATIBLE)
+-- Purpose: Consolidate all op_ tables and ensure compatibility with all 100-series seed files
 -- ============================================
 
 BEGIN;
@@ -27,7 +27,7 @@ CREATE TABLE op_factions (
     id SERIAL PRIMARY KEY,
     name VARCHAR(200) NOT NULL UNIQUE,
     name_japanese VARCHAR(200),
-    type VARCHAR(100), -- Relaxed check for diversity
+    type VARCHAR(100),
     leader_name VARCHAR(200),
     ship_name VARCHAR(200),
     total_bounty BIGINT,
@@ -113,7 +113,7 @@ CREATE TABLE op_characters (
     first_appearance_episode INTEGER
 );
 
--- 6. Episodes (NEW)
+-- 6. Episodes
 CREATE TABLE op_episodes (
     id SERIAL PRIMARY KEY,
     episode_number INTEGER NOT NULL UNIQUE,
@@ -133,6 +133,7 @@ CREATE TABLE op_episodes (
 CREATE TABLE op_chapters (
     id SERIAL PRIMARY KEY,
     chapter_number INTEGER NOT NULL UNIQUE,
+    volume INTEGER, -- Added to match seed
     arc_id INTEGER REFERENCES op_arcs(id) ON DELETE SET NULL,
     title TEXT,
     romanized_title TEXT,
@@ -164,18 +165,22 @@ CREATE TABLE op_bounties (
     id SERIAL PRIMARY KEY,
     character_id INTEGER REFERENCES op_characters(id) ON DELETE CASCADE,
     character_name VARCHAR(200),
-    amount BIGINT NOT NULL,
+    amount BIGINT NOT NULL,            -- Renamed to match seed (was bounty_amount)
+    is_current BOOLEAN DEFAULT FALSE,  -- Renamed to match seed (was bounty_status)
+    reason TEXT,                       -- Renamed to match seed (was reason_for_bounty)
     arc_revealed VARCHAR(200),
     chapter_revealed INTEGER,
-    is_current BOOLEAN DEFAULT TRUE,
-    reason TEXT
+    epithet VARCHAR(200),              -- Retaining as nullable
+    bounty_sequence INTEGER,           -- Retaining as nullable
+    crew_affiliation VARCHAR(200),     -- Retaining as nullable
+    notes TEXT                         -- Retaining as nullable
 );
 
 -- 10. Ships
 CREATE TABLE op_ships (
     id SERIAL PRIMARY KEY,
     name VARCHAR(200) NOT NULL UNIQUE,
-    owner_faction_id INTEGER REFERENCES op_factions(id) ON DELETE SET NULL,
+    owner_faction_id INTEGER REFERENCES op_factions(id) ON DELETE SET NULL, -- Renamed to match seed (was owner_crew)
     ship_type VARCHAR(100),
     description TEXT,
     status VARCHAR(50),
@@ -187,12 +192,15 @@ CREATE TABLE op_ships (
 CREATE TABLE op_swords (
     id SERIAL PRIMARY KEY,
     name VARCHAR(200) NOT NULL UNIQUE,
+    name_japanese VARCHAR(200),
     grade VARCHAR(100),
     type VARCHAR(100),
-    wielder_name VARCHAR(200),
-    description TEXT,
+    wielder_name VARCHAR(200),          -- Renamed to match seed (was wielder)
     is_cursed BOOLEAN DEFAULT FALSE,
     is_black_blade BOOLEAN DEFAULT FALSE,
+    special_abilities TEXT,
+    description TEXT,
+    current_status VARCHAR(100),
     image_url TEXT
 );
 

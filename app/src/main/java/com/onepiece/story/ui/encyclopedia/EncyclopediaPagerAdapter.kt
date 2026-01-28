@@ -5,7 +5,7 @@ import androidx.viewpager2.adapter.FragmentStateAdapter
 
 class EncyclopediaPagerAdapter(fragment: Fragment) : FragmentStateAdapter(fragment) {
 
-    override fun getItemCount(): Int = 5
+    override fun getItemCount(): Int = 6
 
     override fun createFragment(position: Int): Fragment {
         return when (position) {
@@ -14,7 +14,9 @@ class EncyclopediaPagerAdapter(fragment: Fragment) : FragmentStateAdapter(fragme
             2 -> ArcsTabFragment()
             3 -> SwordsTabFragment()
             4 -> ShipsTabFragment()
+            5 -> FactionsTabFragment()
             else -> CharactersTabFragment()
         }
     }
 }
+

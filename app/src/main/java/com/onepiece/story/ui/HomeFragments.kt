@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.EditorInfo
+import android.widget.Toast
 import androidx.core.view.ViewCompat
 import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
@@ -80,6 +81,16 @@ class HomeFragment : Fragment() {
         }
         updateThemeToggleIcon()
 
+        updateThemeToggleIcon()
+
+        binding.btnStoryFeed.setOnClickListener {
+            findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToStoryFeedFragment())
+        }
+
+        binding.btnQuizzes.setOnClickListener {
+            findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToQuizListFragment())
+        }
+
         binding.btnEncyclopedia.setOnClickListener {
             findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToEncyclopediaFragment())
         }
@@ -146,14 +157,6 @@ class HomeFragment : Fragment() {
         binding.storiesRecycler.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
         binding.storiesRecycler.adapter = storiesAdapter
 
-        // Setup Haki Users adapter
-        val hakiAdapter = com.onepiece.story.ui.adapters.CharacterAdapter { character ->
-             val action = HomeFragmentDirections.actionHomeFragmentToCharacterDetailFragment(character.id)
-             findNavController().navigate(action)
-        }
-        binding.conquerorsRecycler.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
-        binding.conquerorsRecycler.adapter = hakiAdapter
-
         viewModel.arcs.observe(viewLifecycleOwner) { arcs ->
             adapter.submitList(arcs)
             heroAdapter.submitList(arcs.take(5))
@@ -196,10 +199,18 @@ class HomeFragment : Fragment() {
 
         viewModel.featuredCharacters.observe(viewLifecycleOwner) { characters ->
             featuredAdapter.submitList(characters)
-            
-            // Haki users (simple logic for now)
-            val topHaki = characters.filter { it.stats.haki > 80 }
-            hakiAdapter.submitList(topHaki)
+        }
+
+        // Setup Conqueror's Haki Users with proper HakiUserAdapter
+        val hakiUserAdapter = com.onepiece.story.ui.adapters.HakiUserAdapter { hakiUser ->
+            // Navigate to Encyclopedia or show toast
+            Toast.makeText(context, "👑 ${hakiUser.characterName} - Conqueror's Haki User", Toast.LENGTH_SHORT).show()
+        }
+        binding.conquerorsRecycler.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+        binding.conquerorsRecycler.adapter = hakiUserAdapter
+
+        viewModel.conquerorUsers.observe(viewLifecycleOwner) { hakiUsers ->
+            hakiUserAdapter.submitList(hakiUsers)
         }
 
         // Setup Top Bounties
@@ -323,6 +334,16 @@ class ArcDetailFragment : Fragment() {
                 binding.arcSummary.text = arc.summary
                 slideAdapter.submitList(arc.slides)
                 
+                // Bind arc info badges
+                binding.sagaBadge.text = arc.saga.ifBlank { "Unknown Saga" }
+                binding.chapterCountBadge.text = if (arc.chapterCount > 0) {
+                    "${arc.chapterCount} Chapters"
+                } else {
+                    "Chapters"
+                }
+                binding.chapterRange.text = arc.chapterRange.ifBlank { "" }
+                binding.chapterRange.visibility = if (arc.chapterRange.isNotBlank()) View.VISIBLE else View.GONE
+                
                 // Initialize YouTube Player if clips exist
                 if (arc.videoClips.isNotEmpty()) {
                     binding.youtubePlayerView.addYouTubePlayerListener(object : AbstractYouTubePlayerListener() {
@@ -338,8 +359,41 @@ class ArcDetailFragment : Fragment() {
                     binding.videoHeader.visibility = View.GONE
                 }
 
+                // Load additional images from assets
+                val folderName = arc.title.replace(" ", "_").replace("-", "_")
+                val folderPath = "Images/Arcs/$folderName"
+                try {
+                    val assetManager = requireContext().assets
+                    val files = assetManager.list(folderPath)
+                    if (!files.isNullOrEmpty()) {
+                        val assetSlides = files.filter { 
+                            it.endsWith(".jpg") || it.endsWith(".png") || it.endsWith(".webp") 
+                        }.map { fileName ->
+                            com.onepiece.story.data.model.StorySlide(
+                                imageUrl = "file:///android_asset/$folderPath/$fileName",
+                                title = arc.title,
+                                caption = ""
+                            )
+                        }
+                        if (assetSlides.isNotEmpty()) {
+                            // Combine with existing slides or replace
+                            val allSlides = arc.slides + assetSlides
+                            slideAdapter.submitList(allSlides)
+                            binding.slidesPager.visibility = View.VISIBLE
+                        }
+                    }
+                } catch (e: Exception) {
+                    // Ignore asset errors
+                }
+
                 binding.btnStartQuiz.setOnClickListener {
-                    val action = ArcDetailFragmentDirections.actionArcDetailFragmentToQuizFragment(arc.quizId)
+                    // Start quiz (convert string ID to Int if needed, or pass 1 for valid input)
+                    // The new QuizPlayFragment expects an Int ID
+                    val quizId = try {
+                        arc.quizId.toIntOrNull() ?: 1
+                    } catch (e: Exception) { 1 }
+                    
+                    val action = ArcDetailFragmentDirections.actionArcDetailFragmentToQuizPlayFragment(quizId)
                     findNavController().navigate(action)
                 }
             }
@@ -347,6 +401,26 @@ class ArcDetailFragment : Fragment() {
 
         viewModel.arcCharacters.observe(viewLifecycleOwner) { characters ->
             charAdapter.submitList(characters)
+            // Update character count badge
+            binding.characterCountBadge.text = "${characters.size} Characters"
+        }
+
+        // Chapters
+        val chapterAdapter = com.onepiece.story.ui.adapters.ChapterAdapter { chapter ->
+            try {
+                 val action = ArcDetailFragmentDirections.actionArcDetailFragmentToStoryReaderFragment(
+                     chapter.chapterNumber.toString(),
+                     args.arcId
+                 )
+                findNavController().navigate(action)
+            } catch (e: Exception) {
+               Toast.makeText(context, "Chapter ${chapter.chapterNumber} selected", Toast.LENGTH_SHORT).show()
+            }
+        }
+        binding.chaptersRecycler.adapter = chapterAdapter
+
+        viewModel.arcChapters.observe(viewLifecycleOwner) { chapters ->
+            chapterAdapter.submitList(chapters)
         }
     }
 

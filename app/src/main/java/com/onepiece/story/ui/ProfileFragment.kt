@@ -5,6 +5,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.lifecycleScope
+import kotlinx.coroutines.launch
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.GridLayoutManager
@@ -33,6 +35,7 @@ class ProfileFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         val repository = OnePieceRepository(requireContext())
+        val quizRepository = com.onepiece.story.data.repository.QuizRepository(requireContext())
         viewModel = AuthViewModel(repository)
 
         val badgeAdapter = BadgeAdapter()
@@ -48,6 +51,17 @@ class ProfileFragment : Fragment() {
                 // Not logged in, redirect or show empty state
                 binding.username.text = "Guest Pirate"
                 binding.pirateTitle.text = "Login to see stats"
+            }
+        }
+
+        // Load quiz stats from Supabase
+        viewLifecycleOwner.lifecycleScope.launch {
+            quizRepository.getUserProfile().collect { profile ->
+                profile?.let {
+                    binding.quizScore.text = "${it.totalXp}"
+                    binding.favoritesCount.text = "${it.totalQuizzesTaken}"
+                    binding.battlesWon.text = "${it.totalCorrectAnswers}"
+                }
             }
         }
 

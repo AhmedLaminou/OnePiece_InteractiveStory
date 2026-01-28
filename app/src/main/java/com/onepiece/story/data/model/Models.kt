@@ -67,8 +67,24 @@ data class Arc(
     val funFacts: List<String> = emptyList(),
     val quizId: String = "",
     val xpReward: Int = 100,
-    val order: Int = 0
-) : Parcelable
+    val order: Int = 0,
+    val chapterStart: Int? = null,
+    val chapterEnd: Int? = null,
+    val episodeStart: Int? = null,
+    val episodeEnd: Int? = null,
+    val mainAntagonist: String? = null,
+    val location: String? = null
+) : Parcelable {
+    val chapterCount: Int
+        get() = if (chapterStart != null && chapterEnd != null) {
+            (chapterEnd - chapterStart + 1).coerceAtLeast(0)
+        } else 0
+    
+    val chapterRange: String
+        get() = if (chapterStart != null && chapterEnd != null) {
+            "Chapters $chapterStart - $chapterEnd"
+        } else ""
+}
 
 @Parcelize
 data class StorySlide(

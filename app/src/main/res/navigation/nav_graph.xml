@@ -40,7 +40,19 @@
         <action
             android:id="@+id/action_homeFragment_to_chatFragment"
             app:destination="@id/chatFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_storyFeedFragment"
+            app:destination="@id/storyFeedFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_quizListFragment"
+            app:destination="@id/quizListFragment" />
     </fragment>
+
+    <fragment
+        android:id="@+id/storyFeedFragment"
+        android:name="com.onepiece.story.ui.feed.StoryFeedFragment"
+        android:label="Story Feed"
+        tools:layout="@layout/fragment_story_feed" />
 
     <fragment
         android:id="@+id/arcDetailFragment"
@@ -54,8 +66,18 @@
             android:id="@+id/action_arcDetailFragment_to_characterDetailFragment"
             app:destination="@id/characterDetailFragment" />
         <action
-            android:id="@+id/action_arcDetailFragment_to_quizFragment"
-            app:destination="@id/quizFragment" />
+            android:id="@+id/action_arcDetailFragment_to_quizPlayFragment"
+            app:destination="@id/quizPlayFragment" />
+        <action
+            android:id="@+id/action_arcDetailFragment_to_storyReaderFragment"
+            app:destination="@id/storyReaderFragment">
+            <argument
+                android:name="chapterId"
+                app:argType="string" />
+            <argument
+                android:name="arcId"
+                app:argType="string" />
+        </action>
     </fragment>
 
     <fragment
@@ -79,6 +101,27 @@
     </fragment>
 
     <fragment
+        android:id="@+id/quizPlayFragment"
+        android:name="com.onepiece.story.ui.quiz.QuizPlayFragment"
+        android:label="Take Quiz"
+        tools:layout="@layout/fragment_quiz_play">
+        <argument
+            android:name="quizId"
+            app:argType="integer"
+            android:defaultValue="1" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/quizListFragment"
+        android:name="com.onepiece.story.ui.quiz.QuizListFragment"
+        android:label="Quizzes"
+        tools:layout="@layout/fragment_quiz_list">
+        <action
+            android:id="@+id/action_quizListFragment_to_quizPlayFragment"
+            app:destination="@id/quizPlayFragment" />
+    </fragment>
+
+    <fragment
         android:id="@+id/encyclopediaFragment"
         android:name="com.onepiece.story.ui.encyclopedia.EncyclopediaFragment"
         android:label="Encyclopedia"
@@ -86,6 +129,12 @@
         <action
             android:id="@+id/action_encyclopediaFragment_to_characterDetailFragment"
             app:destination="@id/characterDetailFragment" />
+        <action
+            android:id="@+id/action_encyclopediaFragment_to_swordDetailFragment"
+            app:destination="@id/swordDetailFragment" />
+        <action
+            android:id="@+id/action_encyclopediaFragment_to_shipDetailFragment"
+            app:destination="@id/shipDetailFragment" />
     </fragment>
 
     <fragment
@@ -104,7 +153,21 @@
         android:id="@+id/devilFruitFragment"
         android:name="com.onepiece.story.ui.devilfruit.DevilFruitFragment"
         android:label="Devil Fruit Library"
-        tools:layout="@layout/fragment_devil_fruit" />
+        tools:layout="@layout/fragment_devil_fruit">
+        <action
+            android:id="@+id/action_devilFruitFragment_to_devilFruitDetailFragment"
+            app:destination="@id/devilFruitDetailFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/devilFruitDetailFragment"
+        android:name="com.onepiece.story.ui.devilfruit.DevilFruitDetailFragment"
+        android:label="Devil Fruit Details"
+        tools:layout="@layout/fragment_devil_fruit_detail">
+        <argument
+            android:name="devilFruitId"
+            app:argType="string" />
+    </fragment>
 
     <fragment
         android:id="@+id/crewBuilderFragment"
@@ -186,4 +249,24 @@
         android:name="com.onepiece.story.ui.chat.ChatFragment"
         android:label="Talk to Brook"
         tools:layout="@layout/fragment_chat" />
+
+    <fragment
+        android:id="@+id/swordDetailFragment"
+        android:name="com.onepiece.story.ui.details.SwordDetailFragment"
+        android:label="Sword Details"
+        tools:layout="@layout/fragment_sword_detail">
+        <argument
+            android:name="swordId"
+            app:argType="string" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/shipDetailFragment"
+        android:name="com.onepiece.story.ui.details.ShipDetailFragment"
+        android:label="Ship Details"
+        tools:layout="@layout/fragment_ship_detail">
+        <argument
+            android:name="shipId"
+            app:argType="string" />
+    </fragment>
 </navigation>
